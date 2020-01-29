@@ -1,6 +1,8 @@
 {
 //  "extends": "../../tsconfig.base",
   "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+
     "outDir": "./lib",
     "sourceMap": true,
     "emitDecoratorMetadata": true,
