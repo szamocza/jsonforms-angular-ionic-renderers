@@ -1,8 +1,17 @@
 {
-  "extends": "../../tsconfig.base",
+//  "extends": "../../tsconfig.base",
   "compilerOptions": {
     "outDir": "./lib",
-    "sourceMap": true
+    "sourceMap": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "lib": [
+      "dom",
+      "es2015"
+    ],
+    "module": "es2015",
+    "moduleResolution": "node",
+    "target": "es5"
   },
   "exclude":[
     "node_modules"
