@@ -4,9 +4,9 @@ import {
   JsonFormsState,
   RankedTester,
   rankWith
-} from '@jsonforms/core';
+} from 'jsonforms/packages/core';
 import { NgRedux } from '@angular-redux/store';
-import { JsonFormsControl } from '@jsonforms/angular';
+import { JsonFormsControl } from 'jsonforms/packages/angular';
 
 @Component({
   selector: 'jsonforms-string-control',

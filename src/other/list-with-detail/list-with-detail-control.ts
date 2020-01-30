@@ -13,8 +13,8 @@ import {
   toDataPath,
   UISchemaElement,
   uiTypeIs
-} from '@jsonforms/core';
-import { JsonFormsControl } from '@jsonforms/angular';
+} from 'jsonforms/packages/core';
+import { JsonFormsControl } from 'jsonforms/packages/angular';
 import { Nav, Platform } from 'ionic-angular';
 import { NgRedux } from '@angular-redux/store';
 import { MasterPage } from './pages/master/master';
@@ -68,7 +68,7 @@ export class ListWithDetailControl extends JsonFormsControl {
   }
 
   ngOnInit() {
-    this.subscription = this.ngRedux
+    this.subscription = <any>this.ngRedux
       .select()
       .subscribe((state: JsonFormsState) => {
         const { data, schema, uischema } = this.mapToProps(state);

@@ -10,8 +10,8 @@ import {
   or,
   RankedTester,
   rankWith
-} from '@jsonforms/core';
-import { JsonFormsControl } from '@jsonforms/angular';
+} from 'jsonforms/packages/core';
+import { JsonFormsControl } from 'jsonforms/packages/angular';
 import { L10nDecimalPipe, LocaleService, LocaleValidation } from 'angular-l10n';
 
 @Component({

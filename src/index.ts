@@ -30,7 +30,7 @@ import {
   RangeControlRenderer,
   rangeControlTester
 } from './controls/range/range-control';
-import { isEnumControl, rankWith } from '@jsonforms/core';
+import { isEnumControl, rankWith } from 'jsonforms/packages/core';
 import { AutoCompleteControlRenderer } from './controls/enum/autocomplete-control';
 import {
   HorizontalLayoutRenderer,

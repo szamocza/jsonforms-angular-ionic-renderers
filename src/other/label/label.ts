@@ -6,7 +6,7 @@ import {
   RankedTester,
   rankWith,
   uiTypeIs
-} from '@jsonforms/core';
+} from 'jsonforms/packages/core';
 import { NgRedux } from '@angular-redux/store';
 import { JsonFormsIonicLayout } from '../../layouts/JsonFormsIonicLayout';
 

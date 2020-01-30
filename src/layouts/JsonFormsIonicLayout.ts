@@ -4,10 +4,10 @@ import {
   Layout,
   mapStateToLayoutProps,
   UISchemaElement
-} from '@jsonforms/core';
-import { JsonFormsBaseRenderer } from '@jsonforms/angular';
+} from 'jsonforms/packages/core';
+import { JsonFormsBaseRenderer } from 'jsonforms/packages/angular';
 import { NgRedux } from '@angular-redux/store';
-import { Subscription } from 'rxjs';
+import {Subscription} from "rxjs";
 
 export class JsonFormsIonicLayout extends JsonFormsBaseRenderer<Layout>
   implements OnInit, OnDestroy {
@@ -21,7 +21,7 @@ export class JsonFormsIonicLayout extends JsonFormsBaseRenderer<Layout>
   }
 
   ngOnInit() {
-    this.subscription = this.ngRedux
+    this.subscription = <any>this.ngRedux
       .select()
       .subscribe((state: JsonFormsState) => {
         const ownProps = {

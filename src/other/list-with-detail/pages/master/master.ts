@@ -7,7 +7,7 @@ import {
   JsonFormsState,
   JsonSchema,
   mapDispatchToArrayControlProps
-} from '@jsonforms/core';
+} from 'jsonforms/packages/core';
 import { NgRedux } from '@angular-redux/store';
 
 @IonicPage()

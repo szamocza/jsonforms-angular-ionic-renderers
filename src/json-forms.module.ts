@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { IonicModule } from 'ionic-angular';
 import { IonicSelectableModule } from 'ionic-selectable';
-import { JsonFormsModule } from '@jsonforms/angular';
+import { JsonFormsModule } from 'jsonforms/packages/angular';
 import {
   L10nConfig,
   LocaleValidationModule,

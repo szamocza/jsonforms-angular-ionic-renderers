@@ -24,7 +24,7 @@
 */
 import { NgRedux } from '@angular-redux/store';
 import { Component } from '@angular/core';
-import { JsonFormsControl } from '@jsonforms/angular';
+import { JsonFormsControl } from 'jsonforms/packages/angular';
 import {
   ControlProps,
   isObjectControl,
@@ -32,7 +32,7 @@ import {
   RankedTester,
   rankWith,
   UISchemaElement
-} from '@jsonforms/core';
+} from 'jsonforms/packages/core';
 
 @Component({
   selector: 'jsonforms-object-control',

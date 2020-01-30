@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { JsonFormsControl } from '@jsonforms/angular';
+import { JsonFormsControl } from 'jsonforms/packages/angular';
 import { NgRedux } from '@angular-redux/store';
-import { JsonFormsState } from '@jsonforms/core';
+import { JsonFormsState } from 'jsonforms/packages/core';
 
 @Component({
   selector: 'jsonforms-autocomplete-control',

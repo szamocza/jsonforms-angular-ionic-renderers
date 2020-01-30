@@ -5,8 +5,8 @@ import {
   JsonFormsState,
   RankedTester,
   rankWith
-} from '@jsonforms/core';
-import { JsonFormsControl } from '@jsonforms/angular';
+} from 'jsonforms/packages/core';
+import { JsonFormsControl } from 'jsonforms/packages/angular';
 
 @Component({
   selector: 'jsonforms-boolean-control',

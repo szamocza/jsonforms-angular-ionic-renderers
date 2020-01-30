@@ -7,8 +7,8 @@ import {
   optionIs,
   RankedTester,
   rankWith
-} from '@jsonforms/core';
-import { JsonFormsControl } from '@jsonforms/angular';
+} from 'jsonforms/packages/core';
+import { JsonFormsControl } from 'jsonforms/packages/angular';
 import { Toggle } from 'ionic-angular';
 
 @Component({

@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import * as _ from 'lodash';
 import { NavParams } from 'ionic-angular';
-import { Category, UISchemaElement } from '@jsonforms/core';
-import { JsonFormsBaseRenderer } from '@jsonforms/angular';
+import { Category, UISchemaElement } from 'jsonforms/packages/core';
+import { JsonFormsBaseRenderer } from 'jsonforms/packages/angular';
 import { ParamsService } from '../../../services/ParamsService';
 
 @Component({

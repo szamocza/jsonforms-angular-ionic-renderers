@@ -7,7 +7,7 @@ import {
   RankedTester,
   rankWith,
   uiTypeIs
-} from '@jsonforms/core';
+} from 'jsonforms/packages/core';
 import { Component, ViewChild } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { CategoryRenderer } from './category/category';

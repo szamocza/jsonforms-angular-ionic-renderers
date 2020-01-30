@@ -6,8 +6,8 @@ import {
   JsonFormsState,
   RankedTester,
   rankWith
-} from '@jsonforms/core';
-import { JsonFormsControl } from '@jsonforms/angular';
+} from 'jsonforms/packages/core';
+import { JsonFormsControl } from 'jsonforms/packages/angular';
 import { DateTime } from 'ionic-angular';
 
 const formats: { [locale: string]: string } = {
