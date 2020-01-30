@@ -54,6 +54,7 @@ import {
   ObjectControlRenderer,
   objectControlTester
 } from './controls/object/object.control';
+import {ArrayControlRenderer, arrayControlTester} from "./controls/array/array.control";
 
 export {
   booleanControlTester,
@@ -132,6 +133,7 @@ export const ionicRenderers: { tester: any; renderer: any }[] = [
   { tester: rangeControlTester, renderer: RangeControlRenderer },
   { tester: rankWith(3, isEnumControl), renderer: AutoCompleteControlRenderer },
   { tester: objectControlTester, renderer: ObjectControlRenderer },
+  { tester: arrayControlTester, renderer: ArrayControlRenderer },
 
   // layouts
   { tester: horizontalLayoutTester, renderer: HorizontalLayoutRenderer },

@@ -32,6 +32,7 @@ import { CategorizationTabLayoutRenderer } from './layouts/categorization/catego
 import { AutoCompleteControlRenderer } from './controls/enum/autocomplete-control';
 import { ObjectControlRenderer } from './controls/object/object.control';
 import { ParamsService } from './services/ParamsService';
+import {ArrayControlRenderer} from "./controls/array/array.control";
 
 const emptyL10NConfig: L10nConfig = {};
 
@@ -48,6 +49,7 @@ const emptyL10NConfig: L10nConfig = {};
     RangeControlRenderer,
     AutoCompleteControlRenderer,
     ObjectControlRenderer,
+    ArrayControlRenderer,
 
     // layouts
     HorizontalLayoutRenderer,
@@ -93,6 +95,7 @@ const emptyL10NConfig: L10nConfig = {};
     RangeControlRenderer,
     AutoCompleteControlRenderer,
     ObjectControlRenderer,
+    ArrayControlRenderer,
 
     // layouts
     HorizontalLayoutRenderer,
