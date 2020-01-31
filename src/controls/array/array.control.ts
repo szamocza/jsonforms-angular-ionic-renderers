@@ -2,42 +2,60 @@ import {NgRedux} from '@angular-redux/store';
 import {Component} from '@angular/core';
 import {JsonFormsControl} from 'jsonforms/packages/angular';
 import {
-    ArrayControlProps,
-    ControlProps, Generate,
+    ArrayControlProps, ControlElement,
+    ControlProps, Generate, getLocale,
     isObjectArrayControl,
     isPrimitiveArrayControl,
-    JsonFormsState,
+    JsonFormsState, mapDispatchToArrayControlProps,
     or, Paths,
     RankedTester,
     rankWith,
     UISchemaElement
 } from 'jsonforms/packages/core';
+import {AlertController} from "ionic-angular";
+import {LocaleService, TranslatePipe, TranslationService} from "angular-l10n";
 
 @Component({
     selector: 'jsonforms-array-control',
     template: `
-    <ion-label>
-        {{label}}
-        <button ion-button (click)="addNew()">
-            <ion-icon name="add"></ion-icon>
-        </button>
-    </ion-label>
-    <ion-list>
-        <ion-item *ngIf="(!data || (data && data.length==0)); else hasData">No data</ion-item>
-        <ng-template #hasData>
-            <ion-item *ngFor="let element of data; let i = index">
-                <jsonforms-outlet
-                  [uischema]="uiSchemas[i]"
-                  [schema]="scopedSchema.items"
-                  [path]="paths[i]"
-                >
-                </jsonforms-outlet>
-                <button ion-button (click)="delete(i)">
-                    <ion-icon name="trash"></ion-icon>
-                </button>
-            </ion-item>
-        </ng-template>
-    </ion-list>
+    <div *ngIf="props && props.visible">
+        <ion-label>
+            <ion-grid>
+                <ion-row>
+                    <ion-col>{{label}}</ion-col>
+                    <ion-col col-1>
+                        <button ion-button color="light" (click)="addNew()">
+                            <ion-icon name="add"></ion-icon>
+                        </button>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </ion-label>
+        <ion-list>
+            <ion-item *ngIf="(!data || (data && data.length==0)); else hasData">No data</ion-item>
+            <ng-template #hasData>
+                <ion-item *ngFor="let element of data; let i = index; trackBy: trackElement">
+                    <ion-grid>
+                        <ion-row>
+                            <ion-col>
+                                <jsonforms-outlet
+                                        [uischema]="uiSchemas[i]"
+                                        [schema]="scopedSchema.items"
+                                        [path]="paths[i]"
+                                >
+                                </jsonforms-outlet>
+                            </ion-col>
+                            <ion-col col-1>
+                                <button ion-button color="light" (click)="delete(element)">
+                                    <ion-icon name="trash"></ion-icon>
+                                </button>
+                            </ion-col>
+                        </ion-row>
+                    </ion-grid>
+                </ion-item>
+            </ng-template>
+        </ion-list>
+    </div>
   `
 })
 export class ArrayControlRenderer extends JsonFormsControl {
@@ -45,18 +63,58 @@ export class ArrayControlRenderer extends JsonFormsControl {
     props: ControlProps;
     uiSchemas: UISchemaElement[] = [];
     paths: string[] = [];
+    ngRedux: NgRedux<JsonFormsState>;
 
-    constructor(ngRedux: NgRedux<JsonFormsState>) {
+    locale: string;
+
+    addItem: (path: string) => () => void;
+    removeItems: (path: string, toDelete: any[]) => () => void;
+
+    localeStrs = {
+        titleConfirmation: 'Törlés megerősítése',
+        messageConfirmDelete: 'Biztos törölni szeretné a kiválasztott elemet?',
+        buttonYes: 'Igen',
+        buttonCancel: 'Mégse'
+    };
+
+    constructor(
+        ngRedux: NgRedux<JsonFormsState>,
+        private alertCtrl: AlertController,
+        private localeService: LocaleService,
+        private translationService: TranslationService
+    ) {
         super(ngRedux);
+        this.ngRedux = ngRedux;
+    }
+
+    trackElement(_index: number, element: any) {
+        return _index;
     }
 
     addNew() {
-        console.log("addnew");
+        this.addItem(this.propsPath)();
     }
 
     mapAdditionalProps(props: ArrayControlProps) {
         this.props = props;
         this.propsPath = props.path;
+        const { addItem, removeItems } = mapDispatchToArrayControlProps(
+            this.ngRedux.dispatch,
+            {
+                uischema: this.uischema as ControlElement,
+                schema: this.schema
+            }
+        );
+        this.addItem = addItem;
+        this.removeItems = removeItems;
+
+        this.setLanguageValues();
+        this.generateItemSchemas();
+    }
+
+    generateItemSchemas() {
+        this.paths = [];
+        this.uiSchemas = [];
         if(this.data) {
             for(let i = 0; i < this.data.length; i++) {
                 this.uiSchemas.push(Generate.controlElement(undefined,
@@ -66,12 +124,34 @@ export class ArrayControlRenderer extends JsonFormsControl {
         }
     }
 
+    setLanguageValues() {
+        this.locale = getLocale(this.ngRedux.getState());
+        this.localeService.setDefaultLocale(this.locale);
+        if (this.locale) {
+            const pipe = new TranslatePipe(this.translationService);
+            Object.keys(this.localeStrs).map((key) => {
+                this.localeStrs[key] = pipe.transform(this.localeStrs[key], this.locale);
+            });
+        }
+    }
+
     getPath(index: number): string {
         return Paths.compose(this.propsPath, ''+index);
     }
 
-    delete(i: number) {
-        console.log(i);
+    delete(element: any) {
+        this.alertCtrl.create({
+            title: this.localeStrs['titleConfirmation'],
+            message: this.localeStrs['messageConfirmDelete'],
+            buttons: [
+                {
+                    text: this.localeStrs['buttonYes'],
+                    handler: () => {
+                        this.removeItems(this.propsPath, [element])();
+                    }
+                }, {text: this.localeStrs['buttonCancel']}
+            ]
+        }).present();
     }
 }
 
