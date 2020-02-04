@@ -33,6 +33,8 @@ import { AutoCompleteControlRenderer } from './controls/enum/autocomplete-contro
 import { ObjectControlRenderer } from './controls/object/object.control';
 import { ParamsService } from './services/ParamsService';
 import {ArrayControlRenderer} from "./controls/array/array.control";
+import {CalendarModule} from "ion2-calendar";
+import {DateModalComponent} from "./controls/date/modal/date-modal";
 
 const emptyL10NConfig: L10nConfig = {};
 
@@ -65,12 +67,15 @@ const emptyL10NConfig: L10nConfig = {};
     DetailPage,
 
     // other
-    LabelRenderer
+    LabelRenderer,
+
+    DateModalComponent
   ],
   imports: [
     IonicModule,
     IonicSelectableModule,
     JsonFormsModule,
+    CalendarModule,
     LocalizationModule,
     LocaleValidationModule.forRoot(),
     TranslationModule.forRoot(emptyL10NConfig)
@@ -111,7 +116,9 @@ const emptyL10NConfig: L10nConfig = {};
     DetailPage,
 
     // other
-    LabelRenderer
+    LabelRenderer,
+
+    DateModalComponent
   ],
   providers: [ParamsService]
 })

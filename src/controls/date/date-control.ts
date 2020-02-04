@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { NgRedux } from '@angular-redux/store';
 import {
   getLocale,
@@ -8,7 +8,9 @@ import {
   rankWith
 } from 'jsonforms/packages/core';
 import { JsonFormsControl } from 'jsonforms/packages/angular';
-import { DateTime } from 'ionic-angular';
+import {ModalController} from 'ionic-angular';
+import {Moment} from "moment";
+import {DateModalComponent} from "./modal/date-modal";
 
 const formats: { [locale: string]: string } = {
   'ar-SA': 'dd/MM/yy',
@@ -224,39 +226,50 @@ const formats: { [locale: string]: string } = {
 };
 
 const getLocaleDateString = (locale: string): string =>
-  formats[locale] || 'dd/MM/yyyy';
+  formats[locale] || 'yyyy-MM-dd';
 
 @Component({
   selector: 'jsonforms-date-control',
   template: `
-    <ion-item no-padding no-lines>
-      <ion-label floating>{{ label }}</ion-label>
-      <ion-label stacked *ngIf="error" color="error">{{ error }}</ion-label>
-      <ion-datetime
-        #date
-        [displayFormat]="dateFormat"
-        [pickerFormat]="dateFormat"
-        (ionChange)="onChange($event)"
-      ></ion-datetime>
-    </ion-item>
+      <ion-item no-padding no-lines (click)="openPicker()">
+        <ion-label stacked>{{ label }}</ion-label>
+        <ion-label l10nTranslate>{{data ? (data | date:dateFormat) : ('Válasszon' | translate:locale)}}</ion-label>
+      </ion-item>
   `
 })
 export class DateControlRenderer extends JsonFormsControl {
   private dateFormat: string;
-  private locale: string;
-  @ViewChild('date') datePicker: DateTime;
+  public locale: string;
 
-  constructor(ngRedux: NgRedux<JsonFormsState>) {
+  constructor(
+      ngRedux: NgRedux<JsonFormsState>,
+      private modalCtrl: ModalController
+  ) {
     super(ngRedux);
+  }
+
+  openPicker() {
+    let select = this.modalCtrl.create(DateModalComponent, {
+      title: this.label,
+      date: this.data,
+      canClear: true,
+      dateFormat: this.dateFormat
+    });
+    select.onDidDismiss((date: Moment, role: string) => {
+      if(role == 'done') {
+        this.handleChange(date ? date : undefined);
+      }
+    });
+    select.present();
   }
 
   mapAdditionalProps() {
     this.locale = getLocale(this.ngRedux.getState());
-    this.dateFormat = getLocaleDateString(this.locale).toUpperCase();
-    this.datePicker.setValue(this.data);
-    this.datePicker.displayFormat = this.dateFormat;
-    this.datePicker.pickerFormat = this.dateFormat;
-    this.datePicker._inputUpdated();
+    this.dateFormat = getLocaleDateString(this.locale);
+  }
+
+  handleChange($event: Moment) {
+    this.onChange({value: $event});
   }
 }
 

@@ -17,45 +17,40 @@ import {LocaleService, TranslatePipe, TranslationService} from "angular-l10n";
 
 @Component({
     selector: 'jsonforms-array-control',
+    styles: [`
+        .jsonforms-delete-btn {
+          position: absolute;
+          z-index: 9999;
+          top: 15px;
+          right: 35px;
+        }
+        .jsonforms-add-btn {
+            float: right;
+        }
+        .jsonforms-action-btn {
+            color: rgba(0, 0, 0, 0.54);
+        }
+    `],
     template: `
-    <div *ngIf="props && props.visible">
-        <ion-label>
-            <ion-grid>
-                <ion-row>
-                    <ion-col>{{label}}</ion-col>
-                    <ion-col col-1>
-                        <button ion-button color="light" (click)="addNew()">
-                            <ion-icon name="add"></ion-icon>
-                        </button>
-                    </ion-col>
-                </ion-row>
-            </ion-grid>
-        </ion-label>
-        <ion-list>
-            <ion-item *ngIf="(!data || (data && data.length==0)); else hasData">No data</ion-item>
-            <ng-template #hasData>
-                <ion-item *ngFor="let element of data; let i = index; trackBy: trackElement">
-                    <ion-grid>
-                        <ion-row>
-                            <ion-col>
-                                <jsonforms-outlet
-                                        [uischema]="uiSchemas[i]"
-                                        [schema]="scopedSchema.items"
-                                        [path]="paths[i]"
-                                >
-                                </jsonforms-outlet>
-                            </ion-col>
-                            <ion-col col-1>
-                                <button ion-button color="light" (click)="delete(element)">
-                                    <ion-icon name="trash"></ion-icon>
-                                </button>
-                            </ion-col>
-                        </ion-row>
-                    </ion-grid>
-                </ion-item>
-            </ng-template>
-        </ion-list>
-    </div>
+    <ion-list *ngIf="props && props.visible">
+        <ion-item>
+            <ion-label (click)="addNew()">
+                {{label}}
+                <ion-icon class="jsonforms-add-btn jsonforms-action-btn" name="add"></ion-icon>
+            </ion-label>                
+        </ion-item>
+        <ion-item *ngIf="(!data || (data && data.length==0)); else hasData">No data</ion-item>
+        <ng-template #hasData>
+            <ion-item *ngFor="let element of data; let i = index; trackBy: trackElement">
+                <jsonforms-outlet
+                    [uischema]="uiSchemas[i]"
+                    [schema]="scopedSchema.items"
+                    [path]="paths[i]"
+                ></jsonforms-outlet>
+                <ion-icon class="jsonforms-delete-btn jsonforms-action-btn" name="trash" (click)="delete(element)"></ion-icon>
+            </ion-item>
+        </ng-template>
+    </ion-list>
   `
 })
 export class ArrayControlRenderer extends JsonFormsControl {
