@@ -117,8 +117,7 @@ export class ArrayControlRenderer extends JsonFormsControl {
         this.uiSchemas = [];
         if(this.data) {
             for(let i = 0; i < this.data.length; i++) {
-                this.uiSchemas.push(Generate.controlElement(undefined,
-                    (<any>this.scopedSchema.items).type === 'object' ? `#/properties/${this.getPath(i)}` : '#'));
+                this.uiSchemas.push(Generate.controlElement(undefined, '#'));
                 this.paths.push(this.getPath(i));
             }
         }

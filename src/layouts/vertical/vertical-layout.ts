@@ -11,7 +11,7 @@ import { NgRedux } from '@angular-redux/store';
 @Component({
   selector: 'jsonforms-vertical-layout',
   template: `
-    <ion-list no-lines *ngFor="let element of uischema?.elements">
+    <ion-list no-lines *ngFor="let element of uischema?.elements; trackBy: trackElement">
       <jsonforms-outlet
         [uischema]="element"
         [path]="path"
@@ -23,6 +23,10 @@ import { NgRedux } from '@angular-redux/store';
 export class VerticalLayoutRenderer extends JsonFormsIonicLayout {
   constructor(ngRedux: NgRedux<JsonFormsState>) {
     super(ngRedux);
+  }
+
+  trackElement(_index: number, element: any) {
+    return _index;
   }
 }
 
