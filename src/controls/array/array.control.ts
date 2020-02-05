@@ -24,9 +24,6 @@ import {LocaleService, TranslatePipe, TranslationService} from "angular-l10n";
           top: 15px;
           right: 35px;
         }
-        .jsonforms-add-btn {
-            float: right;
-        }
         .jsonforms-action-btn {
             color: rgba(0, 0, 0, 0.54);
         }
@@ -34,12 +31,11 @@ import {LocaleService, TranslatePipe, TranslationService} from "angular-l10n";
     template: `
     <ion-list *ngIf="props && props.visible">
         <ion-item>
-            <ion-label (click)="addNew()">
+            <ion-label>
                 {{label}}
-                <ion-icon class="jsonforms-add-btn jsonforms-action-btn" name="add"></ion-icon>
             </ion-label>                
         </ion-item>
-        <ion-item *ngIf="(!data || (data && data.length==0)); else hasData">No data</ion-item>
+        <ion-item *ngIf="(!data || (data && data.length==0)); else hasData">{{'Nincs adat' | translate:locale}}</ion-item>
         <ng-template #hasData>
             <ion-item *ngFor="let element of data; let i = index; trackBy: trackElement">
                 <jsonforms-outlet
@@ -50,6 +46,11 @@ import {LocaleService, TranslatePipe, TranslationService} from "angular-l10n";
                 <ion-icon class="jsonforms-delete-btn jsonforms-action-btn" name="trash" (click)="delete(element)"></ion-icon>
             </ion-item>
         </ng-template>
+        <ion-item >
+            <button ion-button (click)="addNew()" full>
+                <span><ion-icon name="add"></ion-icon> {{label}}</span>
+            </button>
+        </ion-item>
     </ion-list>
   `
 })
