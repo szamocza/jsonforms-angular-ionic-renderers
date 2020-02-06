@@ -17,7 +17,6 @@ import { JsonFormsControl } from 'jsonforms/packages/angular';
         type="text"
         (ionChange)="onChange($event)"
         [value]="getValue()"
-        placeholder="{{ description }}"
         [id]="id"
         [formControl]="form"
         [type]="getType()"

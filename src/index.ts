@@ -37,6 +37,10 @@ import {
   horizontalLayoutTester
 } from './layouts/horizontal/horizontal-layout';
 import {
+  GridLayoutRenderer,
+  gridLayoutTester
+} from './layouts/grid/grid-layout';
+import {
   VerticalLayoutRenderer,
   verticalLayoutTester
 } from './layouts/vertical/vertical-layout';
@@ -137,6 +141,7 @@ export const ionicRenderers: { tester: any; renderer: any }[] = [
 
   // layouts
   { tester: horizontalLayoutTester, renderer: HorizontalLayoutRenderer },
+  { tester: gridLayoutTester, renderer: GridLayoutRenderer },
   { tester: verticalLayoutTester, renderer: VerticalLayoutRenderer },
   { tester: categorizationTester, renderer: CategorizationTabLayoutRenderer },
   { tester: groupTester, renderer: GroupLayoutRenderer },

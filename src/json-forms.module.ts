@@ -35,6 +35,7 @@ import { ParamsService } from './services/ParamsService';
 import {ArrayControlRenderer} from "./controls/array/array.control";
 import {CalendarModule} from "ion2-calendar";
 import {DateModalComponent} from "./controls/date/modal/date-modal";
+import {GridLayoutRenderer} from "./layouts/grid/grid-layout";
 
 const emptyL10NConfig: L10nConfig = {};
 
@@ -55,6 +56,7 @@ const emptyL10NConfig: L10nConfig = {};
 
     // layouts
     HorizontalLayoutRenderer,
+    GridLayoutRenderer,
     VerticalLayoutRenderer,
     CategorizationTabLayoutRenderer,
     CategorizationMenuLayoutRenderer,
@@ -104,6 +106,7 @@ const emptyL10NConfig: L10nConfig = {};
 
     // layouts
     HorizontalLayoutRenderer,
+    GridLayoutRenderer,
     VerticalLayoutRenderer,
     CategorizationMenuLayoutRenderer,
     CategorizationTabLayoutRenderer,
