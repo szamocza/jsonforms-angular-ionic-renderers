@@ -1,5 +1,5 @@
 import {NgRedux} from '@angular-redux/store';
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {JsonFormsControl} from 'jsonforms/packages/angular';
 import {
     ArrayControlProps, ControlElement,
@@ -9,8 +9,8 @@ import {
     JsonFormsState, mapDispatchToArrayControlProps,
     or, Paths,
     RankedTester,
-    rankWith,
-    UISchemaElement
+    rankWith, Resolve,
+    UISchemaElement, update
 } from 'jsonforms/packages/core';
 import {AlertController} from "ionic-angular";
 import {LocaleService, TranslatePipe, TranslationService} from "angular-l10n";
@@ -18,20 +18,27 @@ import {LocaleService, TranslatePipe, TranslationService} from "angular-l10n";
 @Component({
     selector: 'jsonforms-array-control',
     styles: [`
+        .jsonforms-up-btn {
+            right: 50px;
+        }
+        .jsonforms-down-btn {
+            right: 65px;
+        }
         .jsonforms-delete-btn {
-          position: absolute;
-          z-index: 9999;
-          top: 15px;
           right: 35px;
         }
         .jsonforms-action-btn {
+            top: 15px;
             color: rgba(0, 0, 0, 0.54);
+            position: absolute;
+            z-index: 9999;
         }
     `],
     template: `
     <ion-list *ngIf="props && props.visible">
         <ion-item>
-            <ion-label>
+            <ion-label (click)="addNew()">
+                <ion-icon name="add"></ion-icon>
                 {{label}}
             </ion-label>                
         </ion-item>
@@ -43,18 +50,18 @@ import {LocaleService, TranslatePipe, TranslationService} from "angular-l10n";
                     [schema]="scopedSchema.items"
                     [path]="paths[i]"
                 ></jsonforms-outlet>
-                <ion-icon class="jsonforms-delete-btn jsonforms-action-btn" name="trash" (click)="delete(element)"></ion-icon>
+                <ion-icon class="jsonforms-up-btn jsonforms-action-btn" name="arrow-up" 
+                          (click)="orderArray(i, true)"></ion-icon>
+                <ion-icon class="jsonforms-down-btn jsonforms-action-btn" name="arrow-down" 
+                          (click)="orderArray(i, false)"></ion-icon>
+                <ion-icon class="jsonforms-delete-btn jsonforms-action-btn" name="trash" 
+                          (click)="delete(element)"></ion-icon>
             </ion-item>
         </ng-template>
-        <ion-item >
-            <button ion-button (click)="addNew()" full>
-                <span><ion-icon name="add"></ion-icon> {{label}}</span>
-            </button>
-        </ion-item>
     </ion-list>
   `
 })
-export class ArrayControlRenderer extends JsonFormsControl {
+export class ArrayControlRenderer extends JsonFormsControl implements OnInit {
     propsPath: string;
     props: ControlProps;
     uiSchemas: UISchemaElement[] = [];
@@ -83,6 +90,13 @@ export class ArrayControlRenderer extends JsonFormsControl {
         this.ngRedux = ngRedux;
     }
 
+    ngOnInit(): void {
+        super.ngOnInit();
+        if(!(this.data && this.data.length>0)) {
+            this.addNew();
+        }
+    }
+
     trackElement(_index: number, element: any) {
         return _index;
     }
@@ -106,6 +120,62 @@ export class ArrayControlRenderer extends JsonFormsControl {
 
         this.setLanguageValues();
         this.generateItemSchemas();
+        this.addNewItemAutomatically();
+    }
+
+    orderArray(index: number, up: boolean) {
+        let ownProps = {
+            uischema: this.uischema as ControlElement,
+            schema: this.schema
+        };
+        this.ngRedux.dispatch(
+            update(this.propsPath, array => {
+                const schemaPath = ownProps.uischema.scope + '/items';
+                const resolvedSchema = Resolve.schema(ownProps.schema, schemaPath);
+                if(up && index > 0) {
+                    [array[index-1], array[index]] = [array[index], array[index-1]];
+                } else if(!up && index + 1 < array.length) {
+                    [array[index+1], array[index]] = [array[index], array[index+1]];
+                }
+
+                return array;
+            })
+        );
+    }
+
+    /**
+     * hozzáad egy új elemet ha valami változott
+     */
+    addNewItemAutomatically() {
+        if(this.data) {
+            let length = this.data.length;
+            if(length>0) {
+                let lastElem = this.data[length-1];
+                if(this.checkNotNull(lastElem)) {
+                    console.log(lastElem);
+                    this.addNew();
+                }
+            }
+        }
+    }
+
+    checkNotNull(lastElem: any): boolean {
+        if(!lastElem) return false;
+        if(lastElem.constructor !== Object && !Array.isArray(lastElem) && lastElem ) {
+            // ha nem tömb és nem objektum és nem null
+            return true;
+        } else if(lastElem.constructor === Object && Object.keys(lastElem).length != 0) {
+            // ha objektum és van eleme
+            for(let i in lastElem) {
+                if(lastElem.hasOwnProperty(i) && this.checkNotNull(lastElem[i])) {
+                    return true;
+                }
+            }
+            return false;
+        } else if(Array.isArray(lastElem) && lastElem && lastElem.length>0) {
+            // ha tömb és az utolsó eleme ki van töltve
+            return this.checkNotNull(lastElem[lastElem.length - 1]);
+        }
     }
 
     generateItemSchemas() {
