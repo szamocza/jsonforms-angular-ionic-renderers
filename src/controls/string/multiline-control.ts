@@ -14,7 +14,8 @@ import { JsonFormsControl } from 'jsonforms/packages/angular';
     <ion-item no-padding no-lines text-wrap [hidden]="hidden">
       <ion-label floating>{{ label }}</ion-label>
       <ion-label stacked *ngIf="error" color="error">{{ error }}</ion-label>
-      <ion-textarea
+      <ion-textarea 
+        autosize
         type="text"
         (ionChange)="onChange($event)"
         [value]="getValue()"

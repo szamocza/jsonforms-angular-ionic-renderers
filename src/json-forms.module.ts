@@ -36,6 +36,7 @@ import {ArrayControlRenderer} from "./controls/array/array.control";
 import {CalendarModule} from "ion2-calendar";
 import {DateModalComponent} from "./controls/date/modal/date-modal";
 import {GridLayoutRenderer} from "./layouts/grid/grid-layout";
+import {AutosizeDirective} from "./directives/autosize";
 
 const emptyL10NConfig: L10nConfig = {};
 
@@ -71,7 +72,9 @@ const emptyL10NConfig: L10nConfig = {};
     // other
     LabelRenderer,
 
-    DateModalComponent
+    DateModalComponent,
+
+    AutosizeDirective
   ],
   imports: [
     IonicModule,
