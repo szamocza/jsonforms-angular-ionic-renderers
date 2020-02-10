@@ -17,7 +17,7 @@ import { L10nDecimalPipe, LocaleService, LocaleValidation } from 'angular-l10n';
 @Component({
   selector: 'jsonforms-number-control',
   template: `
-    <ion-item no-padding no-lines [hidden]="hidden">
+    <ion-item no-padding no-lines [hidden]="hidden" [ngStyle]="uischema && uischema.options && uischema.options.style">
       <ion-label stacked>{{ label }}</ion-label>
       <ion-label stacked *ngIf="error" color="error">{{ error }}</ion-label>
       <ion-input

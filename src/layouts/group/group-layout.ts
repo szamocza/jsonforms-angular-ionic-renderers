@@ -13,10 +13,10 @@ import { JsonFormsIonicLayout } from '../JsonFormsIonicLayout';
 @Component({
   selector: 'jsonforms-group-layout',
   template: `
-    <ion-card>
+    <ion-card [ngStyle]="uischema && uischema.options && uischema.options.style">
       <ion-card-header> {{ label }} </ion-card-header>
       <ion-card-content>
-        <div *ngFor="let element of uischema?.elements">
+        <div *ngFor="let element of uischema?.elements" [ngStyle]="uischema && uischema.options && uischema.options.style">
           <jsonforms-outlet
             [uischema]="element"
             [path]="path"

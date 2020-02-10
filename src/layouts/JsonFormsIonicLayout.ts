@@ -31,6 +31,18 @@ export class JsonFormsIonicLayout extends JsonFormsBaseRenderer<Layout>
         const props = mapStateToLayoutProps(state, ownProps);
         this.uischema = props.uischema as Layout;
         this.schema = props.schema;
+
+        // if the layout has style but its element doesn't have one, than it get it's inherited style
+        if(this.uischema && this.uischema.options && this.uischema.options.style && this.uischema && this.uischema.elements) {
+          this.uischema.elements.map((element) => {
+            if(element) {
+              if(!element.options) element.options = {};
+              if(!element.options.style) element.options.style = this.uischema.options.style;
+            }
+            return element;
+          });
+        }
+
         this.initializers.forEach(initializer => initializer(props));
       });
   }

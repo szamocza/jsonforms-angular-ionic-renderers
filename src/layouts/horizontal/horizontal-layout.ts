@@ -11,9 +11,9 @@ import { NgRedux } from '@angular-redux/store';
 @Component({
   selector: 'jsonforms-horizontal-layout',
   template: `
-    <ion-grid>
+    <ion-grid [ngStyle]="uischema && uischema.options && uischema.options.style">
       <ion-row>
-        <ion-col *ngFor="let element of uischema?.elements">
+        <ion-col *ngFor="let element of uischema?.elements" [ngStyle]="uischema && uischema.options && uischema.options.style">
           <jsonforms-outlet
             [uischema]="element"
             [schema]="schema"

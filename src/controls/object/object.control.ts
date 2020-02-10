@@ -37,8 +37,8 @@ import {
 @Component({
   selector: 'jsonforms-object-control',
   template: `
-    <ion-card>
-      <ion-card-content>
+    <ion-card [ngStyle]="uischema && uischema.options && uischema.options.style">
+      <ion-card-content [ngStyle]="uischema && uischema.options && uischema.options.style">
         <jsonforms-outlet
           [uischema]="detailUiSchema"
           [schema]="scopedSchema"

@@ -35,7 +35,7 @@ import {
 @Component({
   selector: 'RangeControlRenderer',
   template: `
-    <ion-item no-padding [hidden]="hidden">
+    <ion-item no-padding [hidden]="hidden" [ngStyle]="uischema && uischema.options && uischema.options.style">
       <ion-label stacked>{{ label }}</ion-label>
       <ion-range
         [ngModel]="data || scopedSchema.default"

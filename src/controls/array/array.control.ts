@@ -35,7 +35,7 @@ import {LocaleService, TranslatePipe, TranslationService} from "angular-l10n";
         }
     `],
     template: `
-    <ion-list *ngIf="props && props.visible">
+    <ion-list *ngIf="props && props.visible" [ngStyle]="uischema && uischema.options && uischema.options.style">
         <ion-item>
             <ion-label (click)="addNew()">
                 <ion-icon name="add"></ion-icon>
@@ -44,7 +44,8 @@ import {LocaleService, TranslatePipe, TranslationService} from "angular-l10n";
         </ion-item>
         <ion-item *ngIf="(!data || (data && data.length==0)); else hasData">{{'Nincs adat' | translate:locale}}</ion-item>
         <ng-template #hasData>
-            <ion-item *ngFor="let element of data; let i = index; trackBy: trackElement">
+            <ion-item *ngFor="let element of data; let i = index; trackBy: trackElement" 
+                      [ngStyle]="uischema && uischema.options && uischema.options.style">
                 <jsonforms-outlet
                     [uischema]="uiSchemas[i]"
                     [schema]="scopedSchema.items"
@@ -183,7 +184,12 @@ export class ArrayControlRenderer extends JsonFormsControl implements OnInit {
         this.uiSchemas = [];
         if(this.data) {
             for(let i = 0; i < this.data.length; i++) {
-                this.uiSchemas.push(Generate.controlElement(undefined, '#'));
+                let childUiSchema = Generate.controlElement(undefined, '#');
+                if(this.uischema && this.uischema.options && this.uischema.options.style) {
+                    if(!childUiSchema.options) childUiSchema.options = {};
+                    if(!childUiSchema.options.style) childUiSchema.options.style = this.uischema.options.style;
+                }
+                this.uiSchemas.push(childUiSchema);
                 this.paths.push(this.getPath(i));
             }
         }

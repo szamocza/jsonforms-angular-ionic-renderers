@@ -51,7 +51,8 @@ import { NgRedux } from '@angular-redux/store';
         `
     ],
     template: `
-    <div class="grid-layout-wrapper" [ngClass]="{'bordered': label}">
+    <div class="grid-layout-wrapper" [ngClass]="{'bordered': label}" 
+         [ngStyle]="uischema && uischema.options && uischema.options.style">
         <div class="grid-label">{{ label }}</div>
         <div class="grid-wrapper">
             <div *ngFor="let element of uischema?.elements">

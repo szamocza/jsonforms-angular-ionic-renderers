@@ -11,7 +11,7 @@ import { JsonFormsControl } from 'jsonforms/packages/angular';
 @Component({
   selector: 'jsonforms-boolean-control',
   template: `
-    <ion-item no-padding [hidden]="hidden">
+    <ion-item no-padding [hidden]="hidden" [ngStyle]="uischema && uischema.options && uischema.options.style">
       <ion-label>{{ label }}</ion-label>
       <ion-label stacked *ngIf="error" color="error">{{ error }}</ion-label>
       <ion-checkbox

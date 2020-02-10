@@ -11,7 +11,7 @@ import { JsonFormsControl } from 'jsonforms/packages/angular';
 @Component({
   selector: 'jsonforms-string-control',
   template: `
-    <ion-item no-padding no-lines [hidden]="hidden">
+    <ion-item no-padding no-lines [hidden]="hidden" [ngStyle]="uischema && uischema.options && uischema.options.style">
       <ion-label floating>{{ label }}</ion-label>
       <ion-input
         type="text"
