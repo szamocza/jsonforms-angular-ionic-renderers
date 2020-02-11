@@ -57,6 +57,7 @@
     "jsonforms": "git+https://github.com/szamocza/jsonforms.git#ionic-v3",
     "@angular/core": "^5.2.10",
     "angular-l10n": "^4.0.0",
+    "angular2-signaturepad": "^2.11.0",
     "ion2-calendar": "^2.2.0",
     "ionic-angular": "3.9.2",
     "ionic-selectable": "^3.0.3",

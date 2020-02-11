@@ -37,6 +37,9 @@ import {CalendarModule} from "ion2-calendar";
 import {DateModalComponent} from "./controls/date/modal/date-modal";
 import {GridLayoutRenderer} from "./layouts/grid/grid-layout";
 import {AutosizeDirective} from "./directives/autosize";
+import {SignatureControlRenderer} from "./controls/string/signature-control";
+import {SignatureModalComponent} from "./controls/string/modal/signature-modal";
+import {SignaturePadModule} from "angular2-signaturepad";
 
 const emptyL10NConfig: L10nConfig = {};
 
@@ -71,13 +74,16 @@ const emptyL10NConfig: L10nConfig = {};
 
     // other
     LabelRenderer,
+    SignatureControlRenderer,
 
     DateModalComponent,
+    SignatureModalComponent,
 
     AutosizeDirective
   ],
   imports: [
     IonicModule,
+    SignaturePadModule,
     IonicSelectableModule,
     JsonFormsModule,
     CalendarModule,
@@ -123,8 +129,10 @@ const emptyL10NConfig: L10nConfig = {};
 
     // other
     LabelRenderer,
+    SignatureControlRenderer,
 
-    DateModalComponent
+    DateModalComponent,
+    SignatureModalComponent
   ],
   providers: [ParamsService]
 })

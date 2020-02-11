@@ -64,6 +64,21 @@ export class ObjectControlRenderer extends JsonFormsControl {
       undefined,
       props.path
     );
+
+    if(this.detailUiSchema && this.detailUiSchema['elements'] && this.detailUiSchema['elements'].length) {
+      if(this.uischema && this.uischema.options) {
+        for(let i = 0; i < this.detailUiSchema['elements'].length; i++) {
+          let elem = this.detailUiSchema['elements'][i];
+          if(elem && !elem.options) elem.options = {};
+          if(this.uischema.options.signature && !elem.options.signature) {
+            elem.options.signature = this.uischema.options.signature;
+          }
+          if(this.uischema.options.style && !elem.options.style) {
+            elem.options.style = this.uischema.options.style;
+          }
+        }
+      }
+    }
   }
 }
 

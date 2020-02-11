@@ -184,9 +184,14 @@ export class ArrayControlRenderer extends JsonFormsControl implements OnInit {
         if(this.data) {
             for(let i = 0; i < this.data.length; i++) {
                 let childUiSchema = Generate.controlElement(undefined, '#');
-                if(this.uischema && this.uischema.options && this.uischema.options.style) {
-                    if(!childUiSchema.options) childUiSchema.options = {};
-                    if(!childUiSchema.options.style) childUiSchema.options.style = this.uischema.options.style;
+                if(!childUiSchema.options) childUiSchema.options = {};
+                if(this.uischema && this.uischema.options) {
+                    if(this.uischema.options.signature && !childUiSchema.options.signature) {
+                        childUiSchema.options.signature = this.uischema.options.signature;
+                    }
+                    if(this.uischema.options.style && !childUiSchema.options.style) {
+                        childUiSchema.options.style = this.uischema.options.style;
+                    }
                 }
                 this.uiSchemas.push(childUiSchema);
                 this.paths.push(this.getPath(i));

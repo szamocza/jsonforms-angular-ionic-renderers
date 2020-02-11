@@ -59,6 +59,7 @@ import {
   objectControlTester
 } from './controls/object/object.control';
 import {ArrayControlRenderer, arrayControlTester} from "./controls/array/array.control";
+import {SignatureControlRenderer, signatureControlTester} from "./controls/string/signature-control";
 
 export {
   booleanControlTester,
@@ -148,5 +149,7 @@ export const ionicRenderers: { tester: any; renderer: any }[] = [
 
   // other
   { tester: listWithDetailTester, renderer: ListWithDetailControl },
-  { tester: labelTester, renderer: LabelRenderer }
+  { tester: labelTester, renderer: LabelRenderer },
+  { tester: signatureControlTester, renderer: SignatureControlRenderer },
+
 ];
