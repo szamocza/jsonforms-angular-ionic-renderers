@@ -19,10 +19,10 @@ import {LocaleService, TranslatePipe, TranslationService} from "angular-l10n";
     selector: 'jsonforms-array-control',
     styles: [`
         .jsonforms-up-btn {
-            right: 50px;
+            right: 60px;
         }
         .jsonforms-down-btn {
-            right: 65px;
+            right: 85px;
         }
         .jsonforms-delete-btn {
           right: 35px;
