@@ -1,4 +1,4 @@
-import {Directive, ElementRef, OnDestroy, OnInit} from '@angular/core';
+import {Directive, ElementRef, Input, OnDestroy, OnInit} from '@angular/core';
 import "rxjs/add/operator/debounceTime";
 import {Subject} from "rxjs/Subject";
 import {merge} from "rxjs/observable/merge";
@@ -16,45 +16,48 @@ export function autosizeAll() {
     selector: '[autosize]'
 })
 export class AutosizeDirective implements OnInit, OnDestroy {
+    @Input() noAutoSize: boolean = false;
     private subs: Subscriptions = new Subscriptions();
     private to: number;
 
     constructor(private element: ElementRef) {}
 
     ngOnInit() {
-        this.to = setTimeout(() => {
-            this.to = undefined;
+        if(!this.noAutoSize) {
+            this.to = setTimeout(() => {
+                this.to = undefined;
 
-            let textarea: HTMLTextAreaElement = this.element.nativeElement.querySelector('textarea');
-            if(!textarea) {
-                throw new Error("Element must be or have textarea tag!");
-            }
-
-            if(!textarea.classList.contains('autosizedTextarea')) {
-                textarea.style.cssText = 'height:auto; padding:0';
-                textarea.rows = 1;
-                textarea.classList.add('autosizedTextarea');
-                if(textarea.value) {
-                    textarea.style.cssText = 'height:' + textarea.scrollHeight + 'px; padding:0';
+                let textarea: HTMLTextAreaElement = this.element.nativeElement.querySelector('textarea');
+                if(!textarea) {
+                    throw new Error("Element must be or have textarea tag!");
                 }
-            }
 
-            this.subs.add(merge(
-                from([null]),
-                fromEvent(textarea, 'keyup'),
-                fromEvent(textarea, 'change'),
-                autosizeSubject
-            )
-                .debounceTime(10)
-                .subscribe(() => {
+                if(!textarea.classList.contains('autosizedTextarea')) {
                     textarea.style.cssText = 'height:auto; padding:0';
-                    // for box-sizing other than "content-box" use:
-                    // el.style.cssText = '-moz-box-sizing:content-box';
+                    textarea.rows = 1;
+                    textarea.classList.add('autosizedTextarea');
                     if(textarea.value) {
                         textarea.style.cssText = 'height:' + textarea.scrollHeight + 'px; padding:0';
                     }
-                }));
-        });
+                }
+
+                this.subs.add(merge(
+                    from([null]),
+                    fromEvent(textarea, 'keyup'),
+                    fromEvent(textarea, 'change'),
+                    autosizeSubject
+                )
+                    .debounceTime(10)
+                    .subscribe(() => {
+                        textarea.style.cssText = 'height:auto; padding:0';
+                        // for box-sizing other than "content-box" use:
+                        // el.style.cssText = '-moz-box-sizing:content-box';
+                        if(textarea.value) {
+                            textarea.style.cssText = 'height:' + textarea.scrollHeight + 'px; padding:0';
+                        }
+                    }));
+            });
+        }
     }
 
     ngOnDestroy() {

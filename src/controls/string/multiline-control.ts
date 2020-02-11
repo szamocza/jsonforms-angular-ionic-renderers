@@ -15,7 +15,7 @@ import { JsonFormsControl } from 'jsonforms/packages/angular';
       <ion-label floating>{{ label }}</ion-label>
       <ion-label stacked *ngIf="error" color="error">{{ error }}</ion-label>
       <ion-textarea 
-        autosize
+        autosize [noAutoSize]="uischema && uischema.options && uischema.options.noAutoSize"
         type="text"
         (ionChange)="onChange($event)"
         [value]="getValue()"
