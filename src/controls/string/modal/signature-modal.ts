@@ -4,21 +4,38 @@ import {SignaturePad} from "angular2-signaturepad/signature-pad";
 
 export interface SignatureModalOptions {
     title: string;
-    canClear: boolean;
 }
 
 @Component({
     selector: 'date-modal',
+    styles: [
+        `
+            .signature-wrapper {
+                margin: 30px auto;
+                text-align: center;
+            }
+
+            .signature-pad-wrapper {
+                height: 300px;
+                width: auto;
+                border: 1px solid grey;
+                text-align: center;
+                margin: 0 auto;
+            }
+        `
+    ],
     template: `
     <ion-header>
         <ion-navbar>
-            <ion-title i18n>{{title}}</ion-title>
-            <ion-buttons end>
-                <button ion-button icon-only (click)="clear()" *ngIf="canClear">
-                    <ion-icon name="trash"></ion-icon>
-                </button>
+            <ion-buttons left>
                 <button ion-button icon-only (click)="close()">
                     <ion-icon name="close"></ion-icon>
+                </button>
+            </ion-buttons>
+            <ion-title i18n>{{title}}</ion-title>
+            <ion-buttons end>
+                <button ion-button icon-only (click)="sign()">
+                    <ion-icon name="create"></ion-icon>
                 </button>
             </ion-buttons>
         </ion-navbar>
@@ -41,15 +58,13 @@ export class SignatureModalComponent implements SignatureModalOptions, AfterView
     @ViewChild('contentWrapper') contentWrapper: any;
 
     public title: string;
-    public canClear: boolean;
     public canvasWidth: number = 300;
     public signature: string;
     public signaturePadOptions: Object = { // passed through to szimek/signature_pad constructor
         'minWidth': 1,
         'canvasWidth': this.canvasWidth,
-        'canvasHeight': 200
+        'canvasHeight': 300
     };
-
 
     ngAfterViewInit() {
         setTimeout(() => {
@@ -81,14 +96,11 @@ export class SignatureModalComponent implements SignatureModalOptions, AfterView
     }
 
     close() {
-        this.viewCtrl.dismiss(this.signature, 'cancel');
+        this.viewCtrl.dismiss(null, 'cancel');
     }
 
-    changed($event) {
-        this.viewCtrl.dismiss($event, 'done');
+    sign() {
+        this.viewCtrl.dismiss(this.signature, 'done');
     }
 
-    clear() {
-        this.viewCtrl.dismiss(null, 'done');
-    }
 }

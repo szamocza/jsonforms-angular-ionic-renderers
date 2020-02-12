@@ -15,13 +15,24 @@ import {SignatureModalComponent} from "./modal/signature-modal";
 
 @Component({
     selector: 'jsonforms-textarea-control',
+    styles: [
+        `
+            .sign-img {
+                width: 100px;
+                height: 100px;
+            }
+        `
+    ],
     template: `
-    <ion-item no-padding no-lines text-wrap [hidden]="hidden" 
-              [ngStyle]="uischema && uischema.options && uischema.options.style"
-              (click)="sign()"
-    >
-      <ion-label floating>{{ label }}</ion-label>
-    </ion-item>
+    <div (click)="sign()">
+        <ion-item no-padding no-lines text-wrap [hidden]="hidden" 
+                  [ngStyle]="uischema && uischema.options && uischema.options.style">
+          <ion-label>{{ label }}</ion-label>
+        </ion-item>
+        <div>
+            <img class="sign-img" [src]="data" />
+        </div>
+    </div>
   `
 })
 export class SignatureControlRenderer extends JsonFormsControl{
@@ -41,7 +52,7 @@ export class SignatureControlRenderer extends JsonFormsControl{
         });
         select.onDidDismiss((data: string, role: string) => {
             if(role == 'done') {
-                // todo
+                this.onChange({value: data});
             }
         });
         select.present();
