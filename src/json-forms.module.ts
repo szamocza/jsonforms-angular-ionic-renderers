@@ -2,12 +2,6 @@ import { NgModule } from '@angular/core';
 import { IonicModule } from 'ionic-angular';
 import { IonicSelectableModule } from 'ionic-selectable';
 import { JsonFormsModule } from 'jsonforms/packages/angular';
-import {
-  L10nConfig,
-  LocaleValidationModule,
-  LocalizationModule,
-  TranslationModule
-} from 'angular-l10n';
 
 import { BooleanCheckboxControlRenderer } from './controls/boolean/boolean-checkbox-control';
 import { BooleanToggleControlRenderer } from './controls/boolean/boolean-toggle-control';
@@ -40,8 +34,7 @@ import {AutosizeDirective} from "./directives/autosize";
 import {SignatureControlRenderer} from "./controls/string/signature-control";
 import {SignatureModalComponent} from "./controls/string/modal/signature-modal";
 import {SignaturePadModule} from "angular2-signaturepad";
-
-const emptyL10NConfig: L10nConfig = {};
+import {TranslateModule} from "@ngx-translate/core";
 
 @NgModule({
   declarations: [
@@ -87,17 +80,12 @@ const emptyL10NConfig: L10nConfig = {};
     IonicSelectableModule,
     JsonFormsModule,
     CalendarModule,
-    LocalizationModule,
-    LocaleValidationModule.forRoot(),
-    TranslationModule.forRoot(emptyL10NConfig)
+    TranslateModule.forRoot({})
   ],
   exports: [
     IonicModule,
     IonicSelectableModule,
     JsonFormsModule,
-    LocalizationModule,
-    LocaleValidationModule,
-    TranslationModule
   ],
   entryComponents: [
     // controls

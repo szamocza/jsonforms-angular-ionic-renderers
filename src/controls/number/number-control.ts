@@ -12,7 +12,6 @@ import {
   rankWith
 } from 'jsonforms/packages/core';
 import { JsonFormsControl } from 'jsonforms/packages/angular';
-import { L10nDecimalPipe, LocaleService, LocaleValidation } from 'angular-l10n';
 
 @Component({
   selector: 'jsonforms-number-control',
@@ -48,19 +47,14 @@ export class NumberControlRenderer extends JsonFormsControl {
   displayValue: string;
 
   constructor(
-    ngRedux: NgRedux<JsonFormsState>,
-    private localeService: LocaleService,
-    private localeValidation: LocaleValidation
+    ngRedux: NgRedux<JsonFormsState>
   ) {
     super(ngRedux);
   }
 
   getEventValue = (event: any) => {
     if (this.locale) {
-      const parsedNumber = this.localeValidation.parseNumber(
-        event.value,
-        this.locale
-      );
+      const parsedNumber = event.value;
       if (isNaN(parsedNumber)) {
         return null;
       }
@@ -80,17 +74,8 @@ export class NumberControlRenderer extends JsonFormsControl {
       this.min = props.scopedSchema.minimum;
       this.max = props.scopedSchema.maximum;
       this.step = props.scopedSchema.multipleOf || defaultStep;
-      // this doesn't seem to work reliably; an entered value will be formatted
-      // the 1st time when blurring out, but it doesn't work the 2nd time
-      // although the internal state seems correct
-      const pipe = new L10nDecimalPipe();
       this.locale = getLocale(this.ngRedux.getState());
-      this.localeService.setDefaultLocale(this.locale);
-      if (this.locale) {
-        this.displayValue = pipe.transform(props.data, this.locale);
-      } else {
-        this.displayValue = props.data;
-      }
+      this.displayValue = props.data;
     }
   }
 }

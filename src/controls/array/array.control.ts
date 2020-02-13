@@ -13,7 +13,6 @@ import {
     UISchemaElement, update
 } from 'jsonforms/packages/core';
 import {AlertController} from "ionic-angular";
-import {LocaleService, TranslatePipe, TranslationService} from "angular-l10n";
 
 @Component({
     selector: 'jsonforms-array-control',
@@ -83,9 +82,7 @@ export class ArrayControlRenderer extends JsonFormsControl implements OnInit {
 
     constructor(
         ngRedux: NgRedux<JsonFormsState>,
-        private alertCtrl: AlertController,
-        private localeService: LocaleService,
-        private translationService: TranslationService
+        private alertCtrl: AlertController
     ) {
         super(ngRedux);
         this.ngRedux = ngRedux;
@@ -201,13 +198,6 @@ export class ArrayControlRenderer extends JsonFormsControl implements OnInit {
 
     setLanguageValues() {
         this.locale = getLocale(this.ngRedux.getState());
-        this.localeService.setDefaultLocale(this.locale);
-        if (this.locale) {
-            const pipe = new TranslatePipe(this.translationService);
-            Object.keys(this.localeStrs).map((key) => {
-                this.localeStrs[key] = pipe.transform(this.localeStrs[key], this.locale);
-            });
-        }
     }
 
     getPath(index: number): string {
