@@ -30,10 +30,25 @@ import { NgRedux } from '@angular-redux/store';
                 align-items: end;
                 grid-template-columns: 25% 25% 25% 25%;
             }
+            .grid-wrapper.only-three {
+                grid-template-columns: 33.3% 33.3% 33.3%;
+            }
+            .grid-wrapper.only-two {
+                grid-template-columns: 50% 50%;
+            }
+            .grid-wrapper.only-one {
+                grid-template-columns: 100%;
+            }            
 
             @media screen and (max-width: 1024px) {
                 .grid-wrapper {
                     grid-template-columns: 33.3% 33.3% 33.3%;
+                }
+                .grid-wrapper.only-two {
+                    grid-template-columns: 50% 50%;
+                }
+                .grid-wrapper.only-one {
+                    grid-template-columns: 100%;
                 }
             }
 
@@ -41,9 +56,21 @@ import { NgRedux } from '@angular-redux/store';
                 .grid-wrapper {
                     grid-template-columns: 50% 50%;
                 }
+                .grid-wrapper.only-three {
+                    grid-template-columns: 50% 50%;
+                }
+                .grid-wrapper.only-one {
+                    grid-template-columns: 100%;
+                }
             }
             
             @media screen and (max-width: 500px) {
+                .grid-wrapper.only-three {
+                    grid-template-columns: 100%;
+                }
+                .grid-wrapper.only-two {
+                    grid-template-columns: 100%;
+                }
                 .grid-wrapper {
                     grid-template-columns: 100%;
                 }
@@ -54,7 +81,13 @@ import { NgRedux } from '@angular-redux/store';
     <div class="grid-layout-wrapper" [ngClass]="{'bordered': label}" 
          [ngStyle]="uischema && uischema.options && uischema.options.style">
         <div class="grid-label">{{ label }}</div>
-        <div class="grid-wrapper">
+        <div class="grid-wrapper" 
+             [ngClass]="{
+                'only-three': uischema && uischema.options && uischema.options.columns == 3,
+                'only-two': uischema && uischema.options && uischema.options.columns == 2,
+                'only-one': uischema && uischema.options && uischema.options.columns == 1
+             }"
+        >
             <div *ngFor="let element of uischema?.elements">
                 <jsonforms-outlet
                         [uischema]="element"
