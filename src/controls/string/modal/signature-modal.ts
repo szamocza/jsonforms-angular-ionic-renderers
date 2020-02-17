@@ -16,8 +16,8 @@ export interface SignatureModalOptions {
             }
 
             .signature-pad-wrapper {
-                height: 300px;
-                width: auto;
+                height: 100px;
+                width: 400px;
                 border: 1px solid grey;
                 text-align: center;
                 margin: 0 auto;
@@ -44,7 +44,11 @@ export interface SignatureModalOptions {
     <ion-content #contentWrapper class="ion-padding noselect">
         <div class="signature-wrapper">
             <ion-label position="stacked">Aláírás</ion-label>
-            <div class="signature-pad-wrapper" [ngStyle]="{'width': canvasWidth+'px'}">
+            <div class="signature-pad-wrapper" 
+                 [ngStyle]="{
+                    'width': width+'px',
+                    'height': height+'px'                    
+                }">
                 <signature-pad [options]="signaturePadOptions" (onBeginEvent)="drawStart()" 
                                (onEndEvent)="drawComplete()"
                 ></signature-pad>
@@ -58,21 +62,32 @@ export class SignatureModalComponent implements SignatureModalOptions, AfterView
     @ViewChild('contentWrapper') contentWrapper: any;
 
     public title: string;
-    public canvasWidth: number = 300;
+    public width: number = 400;
+    public height: number = 100;
     public signature: string;
-    public signaturePadOptions: Object = { // passed through to szimek/signature_pad constructor
-        'minWidth': 1,
-        'canvasWidth': this.canvasWidth,
-        'canvasHeight': 300
-    };
+    public signaturePadOptions: Object;
+
+    constructor(
+        navParams: NavParams,
+        private viewCtrl: ViewController
+    ) {
+        let params: SignatureModalOptions = navParams.data;
+        Object.assign(this, params);
+        this.signaturePadOptions = { // passed through to szimek/signature_pad constructor
+            'minWidth': 1,
+            'canvasWidth': this.width,
+            'canvasHeight': this.height
+        };
+    }
+
 
     ngAfterViewInit() {
         setTimeout(() => {
             // this.signaturePad is now available
             this.signaturePad.set('minWidth', 1); // set szimek/signature_pad options at runtime
             if(this.contentWrapper && this.contentWrapper.el && this.contentWrapper.el.clientWidth) {
-                this.canvasWidth = this.contentWrapper.el.clientWidth * 0.9;
-                this.signaturePad.set('canvasWidth', this.canvasWidth);
+                this.width = this.contentWrapper.el.clientWidth * 0.9;
+                this.signaturePad.set('canvasWidth', this.width);
             }
             this.signaturePad.clear(); // invoke functions from szimek/signature_pad API
         }, 100);
@@ -85,14 +100,6 @@ export class SignatureModalComponent implements SignatureModalOptions, AfterView
 
     drawStart() {
         // will be notified of szimek/signature_pad's onBegin event
-    }
-
-    constructor(
-        navParams: NavParams,
-        private viewCtrl: ViewController
-    ) {
-        let params: SignatureModalOptions = navParams.data;
-        Object.assign(this, params);
     }
 
     close() {

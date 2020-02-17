@@ -33,11 +33,17 @@ export class JsonFormsIonicLayout extends JsonFormsBaseRenderer<Layout>
         this.schema = props.schema;
 
         // if the layout has style but its element doesn't have one, than it get it's inherited style
-        if(this.uischema && this.uischema.options && this.uischema.options.style && this.uischema && this.uischema.elements) {
+        if(this.uischema && this.uischema.options && this.uischema && this.uischema.elements) {
           this.uischema.elements.map((element) => {
             if(element) {
               if(!element.options) element.options = {};
-              if(!element.options.style) element.options.style = this.uischema.options.style;
+              for(let key in this.uischema.options) {
+                if(this.uischema.options.hasOwnProperty(key)) {
+                  if(this.uischema.options[key] && !element.options[key]) {
+                      element.options[key] = this.uischema.options[key];
+                  }
+                }
+              }
             }
             return element;
           });

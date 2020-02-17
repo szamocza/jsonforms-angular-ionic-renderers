@@ -70,11 +70,12 @@ export class ObjectControlRenderer extends JsonFormsControl {
         for(let i = 0; i < this.detailUiSchema['elements'].length; i++) {
           let elem = this.detailUiSchema['elements'][i];
           if(elem && !elem.options) elem.options = {};
-          if(this.uischema.options.signature && !elem.options.signature) {
-            elem.options.signature = this.uischema.options.signature;
-          }
-          if(this.uischema.options.style && !elem.options.style) {
-            elem.options.style = this.uischema.options.style;
+          for(let key in this.uischema.options) {
+            if(this.uischema.options.hasOwnProperty(key)) {
+              if(this.uischema.options[key] && !elem.options[key]) {
+                elem.options[key] = this.uischema.options[key];
+              }
+            }
           }
         }
       }

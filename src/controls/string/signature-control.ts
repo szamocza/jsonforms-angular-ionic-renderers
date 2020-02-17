@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {
-    and,
+    and, ControlProps,
     formatIs,
     isStringControl,
     JsonFormsState,
@@ -18,8 +18,8 @@ import {SignatureModalComponent} from "./modal/signature-modal";
     styles: [
         `
             .sign-img {
-                width: 100px;
                 height: 100px;
+                width: 400px;
             }
         `
     ],
@@ -30,23 +30,44 @@ import {SignatureModalComponent} from "./modal/signature-modal";
           <ion-label>{{ label }}</ion-label>
         </ion-item>
         <div>
-            <img class="sign-img" [src]="data" />
+            <img class="sign-img"
+                 [ngStyle]="{
+                    'height': this.height + 'px',
+                    'width': this.width + 'px' 
+                 }"
+                 [src]="data" />
         </div>
     </div>
   `
 })
-export class SignatureControlRenderer extends JsonFormsControl{
+export class SignatureControlRenderer extends JsonFormsControl {
+    height: number = 100;
+    width: number = 400;
+
     constructor(
-                ngRedux: NgRedux<JsonFormsState>,
-                private modalCtrl: ModalController
+        ngRedux: NgRedux<JsonFormsState>,
+        private modalCtrl: ModalController
     ) {
         super(ngRedux);
     }
 
     getValue = () => this.data || '';
 
+    mapAdditionalProps(props: ControlProps) {
+        if (this.uischema.options) {
+            if(this.uischema.options.width) {
+                this.width = this.uischema.options.width;
+            }
+            if(this.uischema.options.height) {
+                this.height = this.uischema.options.height;
+            }
+        }
+    }
+
     sign() {
         let select = this.modalCtrl.create(SignatureModalComponent, {
+            width: this.width,
+            height: this.height,
             title: this.label,
             canClear: true,
         });
