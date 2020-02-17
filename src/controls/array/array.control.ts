@@ -145,17 +145,17 @@ export class ArrayControlRenderer extends JsonFormsControl implements OnInit {
      * hozzáad egy új elemet ha valami változott
      */
     addNewItemAutomatically() {
-        if(this.data) {
-            let length = this.data.length;
-            if(length>0) {
-                let lastElem = this.data[length-1];
-                if(this.checkNotNull(lastElem)) {
-                    setTimeout(() => {
+        setTimeout(() => {
+            if(this.data) {
+                let length = this.data.length;
+                if(length>0) {
+                    let lastElem = this.data[length-1];
+                    if(this.checkNotNull(lastElem)) {
                         this.addNew();
-                    });
+                    }
                 }
             }
-        }
+        });
     }
 
     checkNotNull(lastElem: any): boolean {
