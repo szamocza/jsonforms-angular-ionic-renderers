@@ -41,6 +41,10 @@ export class JsonFormsIonicLayout extends JsonFormsBaseRenderer<Layout>
                 if(this.uischema.options.hasOwnProperty(key)) {
                   if(this.uischema.options[key] && !element.options[key]) {
                       element.options[key] = this.uischema.options[key];
+                  } else if(this.uischema.options[key] && element.options[key]
+                          && this.uischema.options[key].constructor === Object
+                          && element.options[key].constructor === Object) {
+                      element.options[key] = {...this.uischema.options[key], ...element.options[key]};
                   }
                 }
               }

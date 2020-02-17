@@ -189,6 +189,10 @@ export class ArrayControlRenderer extends JsonFormsControl implements OnInit {
                         if(this.uischema.options.hasOwnProperty(key)) {
                             if(this.uischema.options[key] && !childUiSchema.options[key]) {
                                 childUiSchema.options[key] = this.uischema.options[key];
+                            } else if(this.uischema.options[key] && childUiSchema.options[key]
+                                    && this.uischema.options[key].constructor === Object
+                                    && childUiSchema.options[key].constructor === Object) {
+                                childUiSchema.options[key] = {...this.uischema.options[key], ...childUiSchema.options[key]};
                             }
                         }
                     }

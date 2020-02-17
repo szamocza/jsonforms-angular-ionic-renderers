@@ -74,6 +74,10 @@ export class ObjectControlRenderer extends JsonFormsControl {
             if(this.uischema.options.hasOwnProperty(key)) {
               if(this.uischema.options[key] && !elem.options[key]) {
                 elem.options[key] = this.uischema.options[key];
+              } else if(this.uischema.options[key] && elem.options[key]
+                  && this.uischema.options[key].constructor === Object
+                  && elem.options[key].constructor === Object) {
+                elem.options[key] = {...this.uischema.options[key], ...elem.options[key]};
               }
             }
           }
