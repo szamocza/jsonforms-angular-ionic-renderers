@@ -33,6 +33,9 @@ import {AlertController} from "ionic-angular";
             z-index: 9999;
         }
     `],
+    host: {
+        'class': 'array-control'
+    },
     template: `
     <ion-list *ngIf="props && props.visible" [ngStyle]="uischema && uischema.options && uischema.options.style">
         <ion-item>

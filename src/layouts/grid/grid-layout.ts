@@ -12,6 +12,9 @@ import { NgRedux } from '@angular-redux/store';
 
 @Component({
     selector: 'jsonforms-grid-layout',
+    host: {
+        'class': 'grid-layout-control'
+    },
     styles: [
         `   
             .bordered {

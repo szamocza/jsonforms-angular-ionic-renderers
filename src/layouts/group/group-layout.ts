@@ -12,6 +12,9 @@ import { JsonFormsIonicLayout } from '../JsonFormsIonicLayout';
 
 @Component({
   selector: 'jsonforms-group-layout',
+  host: {
+    'class': 'group-layout-control'
+  },
   template: `
     <ion-card [ngStyle]="uischema && uischema.options && uischema.options.style">
       <ion-card-header> {{ label }} </ion-card-header>
