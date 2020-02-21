@@ -11,14 +11,22 @@ import { JsonFormsControl } from 'jsonforms/packages/angular';
 @Component({
   selector: 'jsonforms-textarea-control',
   template: `
-    <ion-item no-padding no-lines text-wrap [hidden]="hidden" [ngStyle]="uischema && uischema.options && uischema.options.style">
+    <ion-item no-padding no-lines text-wrap [hidden]="hidden" 
+              [ngStyle]="uischema && uischema.options && uischema.options.style"
+              [ngClass]="{'filterOff': !filterOn}"
+    >
       <ion-label floating>{{ label }}</ion-label>
       <ion-label stacked *ngIf="error" color="error">{{ error }}</ion-label>
+      <button ion-button clear color="dark" type="button" item-left (click)="toggleFilterMode(uischema)"
+              *ngIf="filterMode && this.data">
+        <ion-icon name="lock"></ion-icon>
+      </button>
       <ion-textarea 
         autosize [noAutoSize]="uischema && uischema.options && uischema.options.noAutoSize"
         type="text"
         (ionChange)="onChange($event)"
         [value]="getValue()"
+        [disabled]="!filterOn"
         [id]="id"
         [formControl]="form"
       >

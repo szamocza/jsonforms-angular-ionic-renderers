@@ -37,10 +37,16 @@ import {AlertController} from "ionic-angular";
         'class': 'array-control'
     },
     template: `
-    <ion-list *ngIf="props && props.visible" [ngStyle]="uischema && uischema.options && uischema.options.style">
+    <ion-list *ngIf="props && props.visible" [ngStyle]="uischema && uischema.options && uischema.options.style"
+              [ngClass]="{'bordered': label, 'filterOff': !filterOn}" 
+    >
         <ion-item>
-            <ion-label (click)="addNew()">
-                <ion-icon name="add"></ion-icon>
+            <ion-label>
+                <ion-icon [ngStyle]="uischema && uischema.options && uischema.options.style" name="lock"
+                          (click)="$event.stopImmediatePropagation(); toggleFilterMode(uischema)" 
+                          *ngIf="filterMode && label"
+                ></ion-icon>
+                <ion-icon name="add" (click)="addNew()"></ion-icon>
                 {{label}}
             </ion-label>                
         </ion-item>

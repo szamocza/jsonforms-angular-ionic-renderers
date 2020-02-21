@@ -17,7 +17,7 @@ export class JsonFormsIonicLayout extends JsonFormsBaseRenderer<Layout>
   initializers: any[] = [];
 
   constructor(protected ngRedux: NgRedux<JsonFormsState>) {
-    super();
+    super(ngRedux);
   }
 
   ngOnInit() {

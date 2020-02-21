@@ -40,8 +40,14 @@ import {
     'class': 'object-control'
   },
   template: `
-    <ion-card [ngStyle]="uischema && uischema.options && uischema.options.style">
+    <ion-card [ngStyle]="uischema && uischema.options && uischema.options.style"
+              [ngClass]="{'filterOff': !filterOn}"
+    >
       <ion-card-content [ngStyle]="uischema && uischema.options && uischema.options.style">
+        <button ion-button clear color="dark" type="button" item-left (click)="toggleFilterMode(uischema)"
+                *ngIf="filterMode && this.data && label">
+          <ion-icon name="lock"></ion-icon>
+        </button>
         <jsonforms-outlet
           [uischema]="detailUiSchema"
           [schema]="scopedSchema"

@@ -11,12 +11,21 @@ import { JsonFormsControl } from 'jsonforms/packages/angular';
 @Component({
   selector: 'jsonforms-string-control',
   template: `
-    <ion-item no-padding no-lines [hidden]="hidden" [ngStyle]="uischema && uischema.options && uischema.options.style">
+    <ion-item no-padding no-lines 
+              [hidden]="hidden" 
+              [ngStyle]="uischema && uischema.options && uischema.options.style"
+              [ngClass]="{'filterOff': !filterOn}"
+    >
       <ion-label floating>{{ label }}</ion-label>
+      <button ion-button clear color="dark" type="button" item-left (click)="toggleFilterMode(uischema)" 
+              *ngIf="filterMode && this.data">
+        <ion-icon name="lock"></ion-icon>
+      </button>
       <ion-input
         type="text"
         (ionChange)="onChange($event)"
         [value]="getValue()"
+        [disabled]="!filterOn"
         [id]="id"
         [formControl]="form"
         [type]="getType()"
