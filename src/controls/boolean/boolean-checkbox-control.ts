@@ -39,7 +39,7 @@ import { JsonFormsControl } from 'jsonforms/packages/angular';
       <ion-label stacked *ngIf="error" color="error">{{ error }}</ion-label>
       <ion-checkbox
         [checked]="isChecked()"
-        (ionChange)="onChange($event)"
+        (ionChange)="changed($event)"
         [disabled]="!enabled"
         [id]="id"
       ></ion-checkbox>
@@ -51,6 +51,14 @@ export class BooleanCheckboxControlRenderer extends JsonFormsControl {
     super(ngRedux);
   }
   isChecked = () => this.data || false;
+
+  changed($event) {
+    if(this.filterMode && !this.filterOn) {
+      this.data = false;
+      $event.checked = false;
+    }
+    this.onChange($event);
+  }
 }
 
 export const booleanControlTester: RankedTester = rankWith(2, isBooleanControl);

@@ -18,14 +18,16 @@ import { JsonFormsControl } from 'jsonforms/packages/angular';
     >
       <ion-label floating>{{ label }}</ion-label>
       <button ion-button clear color="dark" type="button" item-left (click)="toggleFilterMode(uischema)" 
-              *ngIf="filterMode && label">
+              *ngIf="filterMode && label"
+              [ngStyle]="uischema && uischema.options && uischema.options.style"
+      >
         <ion-icon name="ios-funnel"></ion-icon>
       </button>
       <ion-input
         type="text"
         (ionChange)="onChange($event)"
         [value]="getValue()"
-        [disabled]="!filterOn"
+        [disabled]="filterMode && !filterOn"
         [id]="id"
         [formControl]="form"
         [type]="getType()"

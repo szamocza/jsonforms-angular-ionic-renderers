@@ -57,11 +57,11 @@ import {AlertController} from "ionic-angular";
                     [path]="paths[i]"
                 ></jsonforms-outlet>
                 <ion-icon class="jsonforms-up-btn jsonforms-action-btn" name="arrow-up" 
-                          (click)="orderArray(i, true)"></ion-icon>
+                          (click)="orderArray(i, true)" *ngIf="!filterMode"></ion-icon>
                 <ion-icon class="jsonforms-down-btn jsonforms-action-btn" name="arrow-down" 
-                          (click)="orderArray(i, false)"></ion-icon>
+                          (click)="orderArray(i, false)" *ngIf="!filterMode"></ion-icon>
                 <ion-icon class="jsonforms-delete-btn jsonforms-action-btn" name="trash" 
-                          (click)="delete(element)"></ion-icon>
+                          (click)="delete(element)" *ngIf="!filterMode"></ion-icon>
             </ion-item>
         </ng-template>
     </ion-list>
@@ -97,9 +97,7 @@ export class ArrayControlRenderer extends JsonFormsControl implements OnInit {
     ngOnInit(): void {
         super.ngOnInit();
         if(!(this.data && this.data.length>0)) {
-            if(!this.filterMode) {
-                this.addNew();
-            }
+            this.addNew();
         }
     }
 

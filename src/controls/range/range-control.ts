@@ -51,7 +51,7 @@ import {
         [min]="min"
         [step]="multipleOf"
         [id]="id"
-        [disabled]="!enabled"
+        [disabled]="!enabled || (filterOn && !filterMode)"
         [hidden]="hidden"
       >
         <ion-label range-left>{{ min }}</ion-label>

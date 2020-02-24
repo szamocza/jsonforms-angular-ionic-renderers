@@ -26,7 +26,7 @@ import { JsonFormsControl } from 'jsonforms/packages/angular';
         type="text"
         (ionChange)="onChange($event)"
         [value]="getValue()"
-        [disabled]="!filterOn"
+        [disabled]="filterMode && !filterOn"
         [id]="id"
         [formControl]="form"
       >

@@ -83,8 +83,7 @@ import { NgRedux } from '@angular-redux/store';
     template: `
     <div class="grid-layout-wrapper" 
          [ngClass]="{'bordered': label}" 
-         [ngStyle]="uischema && uischema.options && uischema.options.style"
-    >
+         [ngStyle]="uischema && uischema.options && uischema.options.style">
         <div class="grid-label" *ngIf="label">
             {{ label }}
         </div>
@@ -93,8 +92,7 @@ import { NgRedux } from '@angular-redux/store';
                 'only-three': uischema && uischema.options && uischema.options.columns == 3,
                 'only-two': uischema && uischema.options && uischema.options.columns == 2,
                 'only-one': uischema && uischema.options && uischema.options.columns == 1
-             }"
-        >
+             }">
             <div *ngFor="let element of uischema?.elements">
                 <jsonforms-outlet
                         [uischema]="element"

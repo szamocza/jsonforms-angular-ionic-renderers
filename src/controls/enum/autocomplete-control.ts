@@ -20,6 +20,7 @@ import { JsonFormsState } from 'jsonforms/packages/core';
         item-content
         [ngModel]="data"
         [items]="options"
+        [disabled]="filterMode && !filterOn"
         [canSearch]="true"
         (onChange)="onChange($event)"
       >
