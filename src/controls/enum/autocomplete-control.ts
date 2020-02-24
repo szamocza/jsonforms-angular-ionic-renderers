@@ -8,11 +8,11 @@ import { JsonFormsState } from 'jsonforms/packages/core';
   template: `
     <ion-item no-padding no-lines
               [ngStyle]="uischema && uischema.options && uischema.options.style"
-              [ngClass]="{'filterOff': !filterOn && filterMode && label}"
+              [ngClass]="{'filterOff': !filterOn && filterMode}"
     >
       <ion-label stacked>{{ label }}</ion-label>
       <button ion-button clear color="dark" type="button" item-left (click)="toggleFilterMode(uischema)"
-              *ngIf="filterMode && label">
+              *ngIf="filterMode">
         <ion-icon name="ios-funnel"></ion-icon>
       </button>
       <ion-label stacked *ngIf="error" color="error">{{ error }}</ion-label>

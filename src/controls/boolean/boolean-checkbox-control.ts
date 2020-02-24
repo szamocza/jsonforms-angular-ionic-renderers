@@ -24,13 +24,13 @@ import { JsonFormsControl } from 'jsonforms/packages/angular';
   template: `
     <ion-item no-padding [hidden]="hidden" 
               [ngStyle]="uischema && uischema.options && uischema.options.style"
-              [ngClass]="{'filterOff': !filterOn && filterMode && label}"
+              [ngClass]="{'filterOff': !filterOn && filterMode}"
     >
       <ion-label>
         <button ion-button tappable clear color="dark" type="button" item-left
                 class="check-filter-btn"
                 (click)="toggleFilterMode(uischema)"
-                *ngIf="filterMode && label"
+                *ngIf="filterMode"
                 [ngStyle]="uischema && uischema.options && uischema.options.style">
           <ion-icon name="ios-funnel"></ion-icon>
         </button>

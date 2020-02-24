@@ -96,9 +96,11 @@ export class ArrayControlRenderer extends JsonFormsControl implements OnInit {
 
     ngOnInit(): void {
         super.ngOnInit();
-        if(!(this.data && this.data.length>0)) {
-            this.addNew();
-        }
+        setTimeout(() => {
+            if(!(this.data && this.data.length>0)) {
+                this.addNew();
+            }
+        });
     }
 
     trackElement(_index: number, element: any) {
@@ -162,6 +164,8 @@ export class ArrayControlRenderer extends JsonFormsControl implements OnInit {
                         this.addNew();
                     }
                 }
+            } else if(!(this.data && this.data.length>0)) {
+                this.addNew();
             }
         });
     }
