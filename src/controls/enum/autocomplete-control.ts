@@ -6,8 +6,15 @@ import { JsonFormsState } from 'jsonforms/packages/core';
 @Component({
   selector: 'jsonforms-autocomplete-control',
   template: `
-    <ion-item no-padding no-lines>
+    <ion-item no-padding no-lines
+              [ngStyle]="uischema && uischema.options && uischema.options.style"
+              [ngClass]="{'filterOff': !filterOn && filterMode && label}"
+    >
       <ion-label stacked>{{ label }}</ion-label>
+      <button ion-button clear color="dark" type="button" item-left (click)="toggleFilterMode(uischema)"
+              *ngIf="filterMode && label">
+        <ion-icon name="ios-funnel"></ion-icon>
+      </button>
       <ion-label stacked *ngIf="error" color="error">{{ error }}</ion-label>
       <ionic-selectable
         item-content

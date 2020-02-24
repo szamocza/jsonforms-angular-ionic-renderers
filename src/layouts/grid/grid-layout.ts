@@ -82,14 +82,10 @@ import { NgRedux } from '@angular-redux/store';
     ],
     template: `
     <div class="grid-layout-wrapper" 
-         [ngClass]="{'bordered': label, 'filterOff': !filterOn}" 
+         [ngClass]="{'bordered': label}" 
          [ngStyle]="uischema && uischema.options && uischema.options.style"
     >
         <div class="grid-label" *ngIf="label">
-            <ion-icon [ngStyle]="uischema && uischema.options && uischema.options.style" name="lock"
-                      (click)="toggleFilterMode(uischema)" *ngIf="filterMode"
-                      style="padding-right: 10px;"
-            ></ion-icon>
             {{ label }}
         </div>
         <div class="grid-wrapper" 

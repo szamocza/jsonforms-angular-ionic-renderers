@@ -37,16 +37,13 @@ import {AlertController} from "ionic-angular";
         'class': 'array-control'
     },
     template: `
-    <ion-list *ngIf="props && props.visible" [ngStyle]="uischema && uischema.options && uischema.options.style"
-              [ngClass]="{'bordered': label, 'filterOff': !filterOn}" 
+    <ion-list *ngIf="props && props.visible" 
+              [ngStyle]="uischema && uischema.options && uischema.options.style"
+              [ngClass]="{'bordered': label}" 
     >
         <ion-item>
             <ion-label>
-                <ion-icon [ngStyle]="uischema && uischema.options && uischema.options.style" name="lock"
-                          (click)="$event.stopImmediatePropagation(); toggleFilterMode(uischema)" 
-                          *ngIf="filterMode && label"
-                ></ion-icon>
-                <ion-icon name="add" (click)="addNew()"></ion-icon>
+                <ion-icon name="add" *ngIf="!filterMode" (click)="addNew()"></ion-icon>
                 {{label}}
             </ion-label>                
         </ion-item>
@@ -100,7 +97,9 @@ export class ArrayControlRenderer extends JsonFormsControl implements OnInit {
     ngOnInit(): void {
         super.ngOnInit();
         if(!(this.data && this.data.length>0)) {
-            this.addNew();
+            if(!this.filterMode) {
+                this.addNew();
+            }
         }
     }
 
@@ -127,7 +126,9 @@ export class ArrayControlRenderer extends JsonFormsControl implements OnInit {
 
         this.setLanguageValues();
         this.generateItemSchemas();
-        this.addNewItemAutomatically();
+        if(!this.filterMode) {
+            this.addNewItemAutomatically();
+        }
     }
 
     orderArray(index: number, up: boolean) {

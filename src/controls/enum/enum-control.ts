@@ -11,8 +11,15 @@ import { JsonFormsControl } from 'jsonforms/packages/angular';
 @Component({
   selector: 'jsonforms-enum-control',
   template: `
-    <ion-item no-padding no-lines [ngStyle]="uischema && uischema.options && uischema.options.style">
+    <ion-item no-padding no-lines 
+              [ngStyle]="uischema && uischema.options && uischema.options.style"
+              [ngClass]="{'filterOff': !filterOn && filterMode && label}"
+    >
       <ion-label>{{ label }}</ion-label>
+      <button ion-button clear color="dark" type="button" item-left (click)="toggleFilterMode(uischema)"
+              *ngIf="filterMode && label">
+        <ion-icon name="ios-funnel"></ion-icon>
+      </button>
       <ion-label stacked *ngIf="error" color="error">{{ error }}</ion-label>
       <ion-select [ngModel]="data" (ionChange)="onChange($event)">
         <ion-option *ngFor="let option of options" value="{{ option }}">

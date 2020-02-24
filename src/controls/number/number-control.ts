@@ -16,7 +16,10 @@ import { JsonFormsControl } from 'jsonforms/packages/angular';
 @Component({
   selector: 'jsonforms-number-control',
   template: `
-    <ion-item no-padding no-lines [hidden]="hidden" [ngStyle]="uischema && uischema.options && uischema.options.style">
+    <ion-item no-padding no-lines [hidden]="hidden"
+              *ngIf="!filterMode"
+              [ngStyle]="uischema && uischema.options && uischema.options.style"
+    >
       <ion-label stacked>{{ label }}</ion-label>
       <ion-label stacked *ngIf="error" color="error">{{ error }}</ion-label>
       <ion-input

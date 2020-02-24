@@ -14,8 +14,19 @@ import { Toggle } from 'ionic-angular';
 @Component({
   selector: 'jsonforms-toggle-control',
   template: `
-    <ion-item no-padding [ngStyle]="uischema && uischema.options && uischema.options.style">
-      <ion-label>{{ label }}</ion-label>
+    <ion-item no-padding 
+              [ngStyle]="uischema && uischema.options && uischema.options.style"
+              [ngClass]="{'filterOff': !filterOn && filterMode && label}">
+      <ion-label>
+        <button ion-button tappable clear color="dark" type="button" item-left
+                class="check-filter-btn"
+                (click)="toggleFilterMode(uischema)"
+                *ngIf="filterMode && label"
+                [ngStyle]="uischema && uischema.options && uischema.options.style">
+          <ion-icon name="ios-funnel"></ion-icon>
+        </button>
+        {{ label }}
+      </ion-label>
       <ion-label stacked *ngIf="error" color="error">{{ error }}</ion-label>
       <ion-toggle
         [checked]="isChecked()"

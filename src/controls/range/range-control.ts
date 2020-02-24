@@ -35,8 +35,15 @@ import {
 @Component({
   selector: 'RangeControlRenderer',
   template: `
-    <ion-item no-padding [hidden]="hidden" [ngStyle]="uischema && uischema.options && uischema.options.style">
+    <ion-item no-padding [hidden]="hidden" 
+              [ngStyle]="uischema && uischema.options && uischema.options.style"
+              [ngClass]="{'filterOff': !filterOn && filterMode && label}"
+    >
       <ion-label stacked>{{ label }}</ion-label>
+      <button ion-button clear color="dark" type="button" item-left (click)="toggleFilterMode(uischema)"
+              *ngIf="filterMode && label">
+        <ion-icon name="ios-funnel"></ion-icon>
+      </button>
       <ion-range
         [ngModel]="data || scopedSchema.default"
         (ionChange)="onChange($event)"

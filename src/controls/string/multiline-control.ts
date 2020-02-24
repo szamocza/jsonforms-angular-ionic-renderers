@@ -13,13 +13,13 @@ import { JsonFormsControl } from 'jsonforms/packages/angular';
   template: `
     <ion-item no-padding no-lines text-wrap [hidden]="hidden" 
               [ngStyle]="uischema && uischema.options && uischema.options.style"
-              [ngClass]="{'filterOff': !filterOn}"
+              [ngClass]="{'filterOff': !filterOn && filterMode && label}"
     >
       <ion-label floating>{{ label }}</ion-label>
       <ion-label stacked *ngIf="error" color="error">{{ error }}</ion-label>
       <button ion-button clear color="dark" type="button" item-left (click)="toggleFilterMode(uischema)"
-              *ngIf="filterMode && this.data">
-        <ion-icon name="lock"></ion-icon>
+              *ngIf="filterMode && label">
+        <ion-icon name="ios-funnel"></ion-icon>
       </button>
       <ion-textarea 
         autosize [noAutoSize]="uischema && uischema.options && uischema.options.noAutoSize"
