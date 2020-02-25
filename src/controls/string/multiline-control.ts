@@ -19,7 +19,7 @@ import { JsonFormsControl } from 'jsonforms/packages/angular';
       <ion-label stacked *ngIf="error" color="error">{{ error }}</ion-label>
       <button ion-button clear color="dark" type="button" item-left (click)="toggleFilterMode(uischema)"
               *ngIf="filterMode">
-        <ion-icon name="ios-funnel"></ion-icon>
+        <ion-icon [name]="filterOn ? 'ios-funnel' : 'ios-funnel-outline'"></ion-icon>
       </button>
       <ion-textarea 
         autosize [noAutoSize]="uischema && uischema.options && uischema.options.noAutoSize"

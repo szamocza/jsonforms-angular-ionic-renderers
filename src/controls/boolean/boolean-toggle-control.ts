@@ -23,7 +23,7 @@ import { Toggle } from 'ionic-angular';
                 (click)="toggleFilterMode(uischema)"
                 *ngIf="filterMode && label"
                 [ngStyle]="uischema && uischema.options && uischema.options.style">
-          <ion-icon name="ios-funnel"></ion-icon>
+          <ion-icon [name]="filterOn ? 'ios-funnel' : 'ios-funnel-outline'"></ion-icon>
         </button>
         {{ label }}
       </ion-label>

@@ -13,7 +13,7 @@ import { JsonFormsState } from 'jsonforms/packages/core';
       <ion-label stacked>{{ label }}</ion-label>
       <button ion-button clear color="dark" type="button" item-left (click)="toggleFilterMode(uischema)"
               *ngIf="filterMode">
-        <ion-icon name="ios-funnel"></ion-icon>
+        <ion-icon [name]="filterOn ? 'ios-funnel' : 'ios-funnel-outline'"></ion-icon>
       </button>
       <ion-label stacked *ngIf="error" color="error">{{ error }}</ion-label>
       <ionic-selectable

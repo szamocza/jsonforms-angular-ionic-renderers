@@ -18,7 +18,7 @@ import { JsonFormsControl } from 'jsonforms/packages/angular';
       <ion-label>{{ label }}</ion-label>
       <button ion-button clear color="dark" type="button" item-left (click)="toggleFilterMode(uischema)"
               *ngIf="filterMode">
-        <ion-icon name="ios-funnel"></ion-icon>
+        <ion-icon [name]="filterOn ? 'ios-funnel' : 'ios-funnel-outline'"></ion-icon>
       </button>
       <ion-label stacked *ngIf="error" color="error">{{ error }}</ion-label>
       <ion-select [ngModel]="data" (ionChange)="onChange($event)" [disabled]="filterMode && !filterOn">
