@@ -236,7 +236,9 @@ const getLocaleDateString = (locale: string): string =>
                 *ngIf="!filterMode"
       >
         <ion-label stacked>{{ label }}</ion-label>
-        <ion-label l10nTranslate>{{data ? (data | date:dateFormat) : ('Válasszon' | translate:locale)}}</ion-label>
+        <ion-label style="margin-left: 4px !important;" l10nTranslate>
+          {{data ? (data | date:dateFormat) : ('Válasszon dátumot' | translate:locale)}}
+        </ion-label>
       </ion-item>
   `
 })
