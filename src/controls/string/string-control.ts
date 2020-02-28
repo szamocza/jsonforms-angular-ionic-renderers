@@ -7,6 +7,7 @@ import {
 } from 'jsonforms/packages/core';
 import { NgRedux } from '@angular-redux/store';
 import { JsonFormsControl } from 'jsonforms/packages/angular';
+import {TextInput} from "ionic-angular";
 
 @Component({
   selector: 'jsonforms-string-control',
@@ -23,7 +24,8 @@ import { JsonFormsControl } from 'jsonforms/packages/angular';
       >
         <ion-icon [name]="filterOn ? 'ios-funnel' : 'ios-funnel-outline'"></ion-icon>
       </button>
-      <ion-input
+      <ion-input #stringInput
+        (click)="inputClick(stringInput)"
         type="text"
         (ionChange)="onChange($event)"
         [value]="getValue()"
@@ -58,6 +60,15 @@ export class StringControlRenderer extends JsonFormsControl {
     }
     return 'text';
   };
+
+  inputClick(stringInput: TextInput) {
+    if(this.filterMode && !this.filterOn) {
+      this.toggleFilterMode(this.uischema);
+      setTimeout(() => {
+        stringInput.setFocus();
+      });
+    }
+  }
 }
 
 export const stringControlTester: RankedTester = rankWith(1, isStringControl);

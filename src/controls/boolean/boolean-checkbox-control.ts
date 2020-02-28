@@ -54,8 +54,7 @@ export class BooleanCheckboxControlRenderer extends JsonFormsControl {
 
   changed($event) {
     if(this.filterMode && !this.filterOn) {
-      this.data = false;
-      $event.checked = false;
+      this.toggleFilterMode(this.uischema);
     }
     this.onChange($event);
   }

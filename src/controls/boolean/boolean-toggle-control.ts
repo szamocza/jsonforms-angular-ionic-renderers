@@ -30,7 +30,7 @@ import { Toggle } from 'ionic-angular';
       <ion-label stacked *ngIf="error" color="error">{{ error }}</ion-label>
       <ion-toggle
         [checked]="isChecked()"
-        (ionChange)="onChange($event)"
+        (ionChange)="changed($event)"
         [disabled]="!enabled"
         [hidden]="hidden"
         [id]="id"
@@ -44,6 +44,13 @@ export class BooleanToggleControlRenderer extends JsonFormsControl {
   }
   isChecked = () => this.data || false;
   getEventValue = (toggle: Toggle) => toggle.value;
+
+  changed($event) {
+    if(this.filterMode && !this.filterOn) {
+      this.toggleFilterMode(this.uischema);
+    }
+    this.onChange($event);
+  }
 }
 
 export const booleanToggleControlTester: RankedTester = rankWith(
