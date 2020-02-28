@@ -7,6 +7,7 @@ import {
 } from 'jsonforms/packages/core';
 import { NgRedux } from '@angular-redux/store';
 import { JsonFormsControl } from 'jsonforms/packages/angular';
+import {TextInput} from "ionic-angular";
 
 @Component({
   selector: 'jsonforms-textarea-control',
@@ -21,7 +22,8 @@ import { JsonFormsControl } from 'jsonforms/packages/angular';
               *ngIf="filterMode">
         <ion-icon [name]="filterOn ? 'ios-funnel' : 'ios-funnel-outline'"></ion-icon>
       </button>
-      <ion-textarea 
+      <ion-textarea #stringText
+        (click)="inputClick(stringText)"
         autosize [noAutoSize]="uischema && uischema.options && uischema.options.noAutoSize"
         type="text"
         (ionChange)="onChange($event)"
@@ -39,6 +41,15 @@ export class MultilineControlRenderer extends JsonFormsControl {
     super(ngRedux);
   }
   getValue = () => this.data || '';
+
+  inputClick(stringText: TextInput) {
+    if(this.filterMode && !this.filterOn) {
+      this.toggleFilterMode(this.uischema);
+      setTimeout(() => {
+        stringText.setFocus();
+      });
+    }
+  }
 }
 
 export const multilineControlTester: RankedTester = rankWith(
