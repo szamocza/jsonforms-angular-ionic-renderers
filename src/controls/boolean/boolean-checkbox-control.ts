@@ -29,7 +29,7 @@ import { JsonFormsControl } from 'jsonforms/packages/angular';
       <ion-label>
         <button ion-button tappable clear color="dark" type="button" item-left
                 class="check-filter-btn"
-                (click)="toggleFilterMode(uischema)"
+                (click)="toggleFilterModeForChk(uischema)"
                 *ngIf="filterMode"
                 [ngStyle]="uischema && uischema.options && uischema.options.style">
           <ion-icon [name]="filterOn ? 'ios-funnel' : 'ios-funnel-outline'"></ion-icon>
@@ -51,6 +51,14 @@ export class BooleanCheckboxControlRenderer extends JsonFormsControl {
     super(ngRedux);
   }
   isChecked = () => this.data || false;
+
+  toggleFilterModeForChk(uischema) {
+    if(!this.data) {
+      this.data = false;
+      this.onChange({value: this.data});
+    }
+    this.toggleFilterMode(uischema);
+  }
 
   changed($event) {
     if(this.filterMode && !this.filterOn) {
