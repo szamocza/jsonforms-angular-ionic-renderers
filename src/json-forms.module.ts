@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { IonicModule } from 'ionic-angular';
 import { IonicSelectableModule } from 'ionic-selectable';
-import { JsonFormsModule } from 'jsonforms/packages/angular';
+import { JsonFormsModule } from 'jsonforms/packages/angular/lib';
 
 import { BooleanCheckboxControlRenderer } from './controls/boolean/boolean-checkbox-control';
 import { BooleanToggleControlRenderer } from './controls/boolean/boolean-toggle-control';
@@ -83,7 +83,6 @@ import {TranslateModule} from "@ngx-translate/core";
     TranslateModule.forRoot({})
   ],
   exports: [
-    IonicModule,
     IonicSelectableModule,
     JsonFormsModule,
   ],

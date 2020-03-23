@@ -16,7 +16,7 @@ import { CategoryRenderer } from './category/category';
 import { ParamsService } from '../../services/ParamsService';
 import { Tab, Tabs } from 'ionic-angular';
 
-interface CategoryRenderParams {
+export interface CategoryRenderParams {
   renderer: typeof CategoryRenderer;
   params: {
     category: {

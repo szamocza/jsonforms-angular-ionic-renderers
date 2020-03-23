@@ -5,7 +5,7 @@ import {
   mapStateToLayoutProps,
   UISchemaElement
 } from 'jsonforms/packages/core';
-import { JsonFormsBaseRenderer } from 'jsonforms/packages/angular';
+import { JsonFormsBaseRenderer } from 'jsonforms/packages/angular/lib';
 import { NgRedux } from '@angular-redux/store';
 import {Subscription} from "rxjs";
 
