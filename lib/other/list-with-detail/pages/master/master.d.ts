@@ -3,7 +3,7 @@ import { NavParams } from 'ionic-angular';
 import { AbstractMasterPage } from '../AbstractMasterPage';
 import { MasterItem } from '../../list-with-detail-control';
 import { ControlElement, JsonFormsState, JsonSchema } from 'jsonforms/packages/core';
-import { NgRedux } from '@angular-redux/store';
+import { NgRedux } from 'jsonforms/packages/angular/node_modules/@angular-redux/store';
 export declare class MasterPage extends AbstractMasterPage implements OnInit {
     navParams: NavParams;
     private ngRedux;

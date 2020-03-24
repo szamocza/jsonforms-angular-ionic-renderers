@@ -35,6 +35,7 @@ import {SignatureControlRenderer} from "./controls/string/signature-control";
 import {SignatureModalComponent} from "./controls/string/modal/signature-modal";
 import {SignaturePadModule} from "angular2-signaturepad";
 import {TranslateModule} from "@ngx-translate/core";
+import {NgReduxModule} from 'jsonforms/packages/angular/node_modules/@angular-redux/store';
 
 @NgModule({
   declarations: [
@@ -80,7 +81,8 @@ import {TranslateModule} from "@ngx-translate/core";
     IonicSelectableModule,
     JsonFormsModule,
     CalendarModule,
-    TranslateModule.forRoot({})
+    TranslateModule.forRoot({}),
+    NgReduxModule
   ],
   exports: [
     IonicSelectableModule,
