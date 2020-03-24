@@ -58,8 +58,8 @@ import {
   ObjectControlRenderer,
   objectControlTester
 } from './controls/object/object.control';
-import {ArrayControlRenderer, arrayControlTester} from "./controls/array/array.control";
 import {SignatureControlRenderer, signatureControlTester} from "./controls/string/signature-control";
+import {ListControlRenderer, listControlTester} from "./controls/list/list.control";
 
 export {
   booleanControlTester,
@@ -138,7 +138,8 @@ export const ionicRenderers: { tester: any; renderer: any }[] = [
   { tester: rangeControlTester, renderer: RangeControlRenderer },
   { tester: rankWith(3, isEnumControl), renderer: AutoCompleteControlRenderer },
   { tester: objectControlTester, renderer: ObjectControlRenderer },
-  { tester: arrayControlTester, renderer: ArrayControlRenderer },
+  // { tester: arrayControlTester, renderer: ArrayControlRenderer },
+  { tester: listControlTester, renderer: ListControlRenderer},
 
   // layouts
   { tester: horizontalLayoutTester, renderer: HorizontalLayoutRenderer },

@@ -35,6 +35,7 @@ import {SignatureControlRenderer} from "./controls/string/signature-control";
 import {SignatureModalComponent} from "./controls/string/modal/signature-modal";
 import {SignaturePadModule} from "angular2-signaturepad";
 import {TranslateModule} from "@ngx-translate/core";
+import {ListControlRenderer} from "./controls/list/list.control";
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import {TranslateModule} from "@ngx-translate/core";
     NumberControlRenderer,
     DateControlRenderer,
     EnumControlRenderer,
+    ListControlRenderer,
     RangeControlRenderer,
     AutoCompleteControlRenderer,
     ObjectControlRenderer,
@@ -95,6 +97,7 @@ import {TranslateModule} from "@ngx-translate/core";
     NumberControlRenderer,
     DateControlRenderer,
     EnumControlRenderer,
+    ListControlRenderer,
     RangeControlRenderer,
     AutoCompleteControlRenderer,
     ObjectControlRenderer,
