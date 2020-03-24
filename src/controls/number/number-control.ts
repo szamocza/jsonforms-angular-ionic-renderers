@@ -1,4 +1,4 @@
-import isEmpty from 'lodash-es/isEmpty';
+import isEmpty from 'lodash/isEmpty';
 import { Component } from '@angular/core';
 import { NgRedux } from '@angular-redux/store';
 import {
