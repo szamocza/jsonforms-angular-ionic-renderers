@@ -1,5 +1,5 @@
 const merge = require('webpack-merge');
-const baseConfig = require('../../webpack/webpack.build.base.js');
+const baseConfig = require('./webpack.build.base.js');
 
 module.exports = merge(baseConfig, {
     output: {
@@ -7,7 +7,7 @@ module.exports = merge(baseConfig, {
         library: "JSONFormsIonic"
       },
       externals: {
-          '@jsonforms/core': 'JSONFormsCore',
-          '@jsonforms/angular': 'JSONFormsAngular',
+          'jsonforms/core': 'JSONFormsCore',
+          'jsonforms/angular': 'JSONFormsAngular',
     },
 });

@@ -60,7 +60,7 @@ export class DateModalComponent implements SiteDateModalOptions {
         this.viewCtrl.dismiss(null, 'cancel');
     }
 
-    changed($event) {
+    changed($event: any) {
         this.viewCtrl.dismiss($event, 'done');
     }
 

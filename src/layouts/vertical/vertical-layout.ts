@@ -31,7 +31,7 @@ export class VerticalLayoutRenderer extends JsonFormsIonicLayout {
     super(ngRedux);
   }
 
-  trackElement(_index: number, element: any) {
+  trackElement(_index: number) {
     return _index;
   }
 }

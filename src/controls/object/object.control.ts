@@ -68,10 +68,10 @@ export class ObjectControlRenderer extends JsonFormsControl {
       props.path
     );
 
-    if(this.detailUiSchema && this.detailUiSchema['elements'] && this.detailUiSchema['elements'].length) {
+    if(this.detailUiSchema && (<any>this.detailUiSchema)['elements'] && (<any>this.detailUiSchema)['elements'].length) {
       if(this.uischema && this.uischema.options) {
-        for(let i = 0; i < this.detailUiSchema['elements'].length; i++) {
-          let elem = this.detailUiSchema['elements'][i];
+        for(let i = 0; i < (<any>this.detailUiSchema)['elements'].length; i++) {
+          let elem = (<any>this.detailUiSchema)['elements'][i];
           if(elem && !elem.options) elem.options = {};
           for(let key in this.uischema.options) {
             if(this.uischema.options.hasOwnProperty(key)) {

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { IonicModule } from 'ionic-angular';
 import { IonicSelectableModule } from 'ionic-selectable';
-import { JsonFormsModule } from 'jsonforms/packages/angular/lib';
+import { JsonFormsModule } from 'jsonforms/packages/angular';
 
 import { BooleanCheckboxControlRenderer } from './controls/boolean/boolean-checkbox-control';
 import { BooleanToggleControlRenderer } from './controls/boolean/boolean-toggle-control';
@@ -35,7 +35,6 @@ import {SignatureControlRenderer} from "./controls/string/signature-control";
 import {SignatureModalComponent} from "./controls/string/modal/signature-modal";
 import {SignaturePadModule} from "angular2-signaturepad";
 import {TranslateModule} from "@ngx-translate/core";
-import {NgReduxModule} from "@angular-redux/store";
 
 @NgModule({
   declarations: [
@@ -81,8 +80,7 @@ import {NgReduxModule} from "@angular-redux/store";
     IonicSelectableModule,
     JsonFormsModule,
     CalendarModule,
-    TranslateModule.forRoot({}),
-    NgReduxModule
+    TranslateModule.forRoot({})
   ],
   exports: [
     IonicSelectableModule,

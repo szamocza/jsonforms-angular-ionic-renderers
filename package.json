@@ -16,7 +16,7 @@
   "main": "./lib/index.js",
   "typings": "./lib/index.d.ts",
   "scripts": {
-    "bundle": "../../node_modules/.bin/webpack --config ./webpack.build.js --env=production --display-error-details",
+    "bundle": "./node_modules/.bin/webpack --config ./webpack.build.js --env=production --display-error-details",
     "build": "./node_modules/.bin/tsc",
     "ngc": "ngc",
     "build-prod": "rm -rf aot dist && npm run ngc",
@@ -65,6 +65,8 @@
     "ionic-selectable": "^3.0.3",
     "ionicons": "3.0.0",
     "json-refs": "^3.0.10",
+    "lodash-es": "^4.17.15",
+    "@types/lodash-es": "^4.17.3",
     "moment": "^2.24.0",
     "redux": "^3.0.0",
     "rxjs": "5.5.7",
@@ -92,6 +94,10 @@
     "request": "^2.88.0",
     "ts-loader": "^5.3.3",
     "ts-node": "^7.0.1",
-    "webpack-dev-server": "^3.1.14"
+    "webpack": "^4.0.1",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.1.14",
+    "webpack-merge": "^4.2.2",
+    "tslint-loader": "^3.5.4"
   }
 }

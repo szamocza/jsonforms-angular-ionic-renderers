@@ -53,6 +53,7 @@ export class SignatureControlRenderer extends JsonFormsControl {
 
     getValue = () => this.data || '';
 
+    // @ts-ignore
     mapAdditionalProps(props: ControlProps) {
         if (this.uischema.options) {
             if(this.uischema.options.width) {

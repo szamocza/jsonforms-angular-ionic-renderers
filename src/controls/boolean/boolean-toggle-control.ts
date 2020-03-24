@@ -45,7 +45,7 @@ export class BooleanToggleControlRenderer extends JsonFormsControl {
   isChecked = () => this.data || false;
   getEventValue = (toggle: Toggle) => toggle.value;
 
-  changed($event) {
+  changed($event: any) {
     if(this.filterMode && !this.filterOn) {
       this.toggleFilterMode(this.uischema);
     }

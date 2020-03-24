@@ -52,7 +52,7 @@ export class BooleanCheckboxControlRenderer extends JsonFormsControl {
   }
   isChecked = () => this.data || false;
 
-  toggleFilterModeForChk(uischema) {
+  toggleFilterModeForChk(uischema: any) {
     if(!this.data) {
       this.data = false;
       this.onChange({value: this.data});
@@ -60,7 +60,7 @@ export class BooleanCheckboxControlRenderer extends JsonFormsControl {
     this.toggleFilterMode(uischema);
   }
 
-  changed($event) {
+  changed($event: any) {
     if(this.filterMode && !this.filterOn) {
       this.toggleFilterMode(this.uischema);
     }

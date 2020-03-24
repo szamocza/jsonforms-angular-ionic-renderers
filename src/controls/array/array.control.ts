@@ -9,7 +9,7 @@ import {
     JsonFormsState, mapDispatchToArrayControlProps,
     or, Paths,
     RankedTester,
-    rankWith, Resolve,
+    rankWith,
     UISchemaElement, update
 } from 'jsonforms/packages/core';
 import {AlertController} from "ionic-angular";
@@ -103,7 +103,7 @@ export class ArrayControlRenderer extends JsonFormsControl implements OnInit {
         });
     }
 
-    trackElement(_index: number, element: any) {
+    trackElement(_index: number) {
         return _index;
     }
 
@@ -132,14 +132,8 @@ export class ArrayControlRenderer extends JsonFormsControl implements OnInit {
     }
 
     orderArray(index: number, up: boolean) {
-        let ownProps = {
-            uischema: this.uischema as ControlElement,
-            schema: this.schema
-        };
         this.ngRedux.dispatch(
             update(this.propsPath, array => {
-                const schemaPath = ownProps.uischema.scope + '/items';
-                const resolvedSchema = Resolve.schema(ownProps.schema, schemaPath);
                 if(up && index > 0) {
                     [array[index-1], array[index]] = [array[index], array[index-1]];
                 } else if(!up && index + 1 < array.length) {
