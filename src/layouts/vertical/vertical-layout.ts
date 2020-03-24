@@ -6,7 +6,7 @@ import {
   uiTypeIs
 } from 'jsonforms/packages/core';
 import { JsonFormsIonicLayout } from '../JsonFormsIonicLayout';
-import { NgRedux } from 'jsonforms/packages/angular/node_modules/@angular-redux/store';
+import { NgRedux } from '@angular-redux/store';
 
 @Component({
   selector: 'jsonforms-vertical-layout',
@@ -28,7 +28,7 @@ import { NgRedux } from 'jsonforms/packages/angular/node_modules/@angular-redux/
 })
 export class VerticalLayoutRenderer extends JsonFormsIonicLayout {
   constructor(ngRedux: NgRedux<JsonFormsState>) {
-    super(ngRedux);
+    super(<any>ngRedux);
   }
 
   trackElement(_index: number) {

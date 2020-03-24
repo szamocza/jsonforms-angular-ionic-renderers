@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NgRedux } from 'jsonforms/packages/angular/node_modules/@angular-redux/store';
+import { NgRedux } from '@angular-redux/store';
 import {
   isBooleanControl,
   JsonFormsState,
@@ -48,7 +48,7 @@ import { JsonFormsControl } from 'jsonforms/packages/angular';
 })
 export class BooleanCheckboxControlRenderer extends JsonFormsControl {
   constructor(ngRedux: NgRedux<JsonFormsState>) {
-    super(ngRedux);
+    super(<any>ngRedux);
   }
   isChecked = () => this.data || false;
 

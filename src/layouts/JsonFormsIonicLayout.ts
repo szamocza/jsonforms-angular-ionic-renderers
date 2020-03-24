@@ -6,7 +6,7 @@ import {
   UISchemaElement
 } from 'jsonforms/packages/core';
 import { JsonFormsBaseRenderer } from 'jsonforms/packages/angular';
-import { NgRedux } from 'jsonforms/packages/angular/node_modules/@angular-redux/store';
+import { NgRedux } from '@angular-redux/store';
 import {Subscription} from "rxjs";
 
 export class JsonFormsIonicLayout extends JsonFormsBaseRenderer<Layout>
@@ -17,7 +17,7 @@ export class JsonFormsIonicLayout extends JsonFormsBaseRenderer<Layout>
   initializers: any[] = [];
 
   constructor(protected ngRedux: NgRedux<JsonFormsState>) {
-    super(ngRedux);
+    super(<any>ngRedux);
   }
 
   ngOnInit() {

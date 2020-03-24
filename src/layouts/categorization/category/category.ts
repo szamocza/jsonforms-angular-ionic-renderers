@@ -4,7 +4,7 @@ import { NavParams } from 'ionic-angular';
 import {Category, JsonFormsState, UISchemaElement} from 'jsonforms/packages/core';
 import { JsonFormsBaseRenderer } from 'jsonforms/packages/angular';
 import { ParamsService } from '../../../services/ParamsService';
-import { NgRedux } from 'jsonforms/packages/angular/node_modules/@angular-redux/store';
+import { NgRedux } from '@angular-redux/store';
 
 @Component({
   selector: 'jsonforms-category',
@@ -20,7 +20,7 @@ export class CategoryRenderer extends JsonFormsBaseRenderer<Category> {
   elements: any[];
 
   constructor(navParams: NavParams, private paramsService: ParamsService, ngRedux: NgRedux<JsonFormsState>) {
-    super(ngRedux);
+    super(<any>ngRedux);
     const { label, uischema, schema, path } = navParams.get('category');
     this.label = label;
     this.elements = uischema.elements.map((el: UISchemaElement) => ({

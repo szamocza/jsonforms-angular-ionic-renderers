@@ -72,7 +72,6 @@ export class ArrayControlRenderer extends JsonFormsControl implements OnInit {
     props: ControlProps;
     uiSchemas: UISchemaElement[] = [];
     paths: string[] = [];
-    ngRedux: NgRedux<JsonFormsState>;
 
     locale: string;
 
@@ -90,8 +89,7 @@ export class ArrayControlRenderer extends JsonFormsControl implements OnInit {
         ngRedux: NgRedux<JsonFormsState>,
         private alertCtrl: AlertController
     ) {
-        super(ngRedux);
-        this.ngRedux = ngRedux;
+        super(<any>ngRedux);
     }
 
     ngOnInit(): void {

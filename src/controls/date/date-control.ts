@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NgRedux } from 'jsonforms/packages/angular/node_modules/@angular-redux/store';
+import { NgRedux } from '@angular-redux/store';
 import {
   getLocale,
   isDateControl,
@@ -250,7 +250,7 @@ export class DateControlRenderer extends JsonFormsControl {
       ngRedux: NgRedux<JsonFormsState>,
       private modalCtrl: ModalController
   ) {
-    super(ngRedux);
+    super(<any>ngRedux);
   }
 
   openPicker() {

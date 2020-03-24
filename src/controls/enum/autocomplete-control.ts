@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { JsonFormsControl } from 'jsonforms/packages/angular';
-import { NgRedux } from 'jsonforms/packages/angular/node_modules/@angular-redux/store';
+import { NgRedux } from '@angular-redux/store';
 import { JsonFormsState } from 'jsonforms/packages/core';
 
 @Component({
@@ -36,7 +36,7 @@ export class AutoCompleteControlRenderer extends JsonFormsControl {
   options: any[];
 
   constructor(ngRedux: NgRedux<JsonFormsState>) {
-    super(ngRedux);
+    super(<any>ngRedux);
   }
 
   mapAdditionalProps() {

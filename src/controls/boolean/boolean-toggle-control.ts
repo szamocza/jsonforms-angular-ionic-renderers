@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NgRedux } from 'jsonforms/packages/angular/node_modules/@angular-redux/store';
+import { NgRedux } from '@angular-redux/store';
 import {
   and,
   isBooleanControl,
@@ -40,7 +40,7 @@ import { Toggle } from 'ionic-angular';
 })
 export class BooleanToggleControlRenderer extends JsonFormsControl {
   constructor(ngRedux: NgRedux<JsonFormsState>) {
-    super(ngRedux);
+    super(<any>ngRedux);
   }
   isChecked = () => this.data || false;
   getEventValue = (toggle: Toggle) => toggle.value;

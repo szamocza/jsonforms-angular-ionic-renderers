@@ -1,6 +1,6 @@
 import isEmpty from 'lodash/isEmpty';
 import { Component } from '@angular/core';
-import { NgRedux } from 'jsonforms/packages/angular/node_modules/@angular-redux/store';
+import { NgRedux } from '@angular-redux/store';
 import {
   ControlProps,
   getLocale,
@@ -52,7 +52,7 @@ export class NumberControlRenderer extends JsonFormsControl {
   constructor(
     ngRedux: NgRedux<JsonFormsState>
   ) {
-    super(ngRedux);
+    super(<any>ngRedux);
   }
 
   getEventValue = (event: any) => {

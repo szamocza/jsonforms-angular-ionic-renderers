@@ -8,7 +8,7 @@ import {
     RankedTester,
     rankWith
 } from 'jsonforms/packages/core';
-import { NgRedux } from 'jsonforms/packages/angular/node_modules/@angular-redux/store';
+import { NgRedux } from '@angular-redux/store';
 import {JsonFormsControl} from 'jsonforms/packages/angular';
 import {ModalController} from "ionic-angular";
 import {SignatureModalComponent} from "./modal/signature-modal";
@@ -48,7 +48,7 @@ export class SignatureControlRenderer extends JsonFormsControl {
         ngRedux: NgRedux<JsonFormsState>,
         private modalCtrl: ModalController
     ) {
-        super(ngRedux);
+        super(<any>ngRedux);
     }
 
     getValue = () => this.data || '';

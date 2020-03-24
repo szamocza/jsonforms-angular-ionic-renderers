@@ -5,7 +5,7 @@ import {
   RankedTester,
   rankWith
 } from 'jsonforms/packages/core';
-import { NgRedux } from 'jsonforms/packages/angular/node_modules/@angular-redux/store';
+import { NgRedux } from '@angular-redux/store';
 import { JsonFormsControl } from 'jsonforms/packages/angular';
 import {TextInput} from "ionic-angular";
 
@@ -38,7 +38,7 @@ import {TextInput} from "ionic-angular";
 })
 export class MultilineControlRenderer extends JsonFormsControl {
   constructor(ngRedux: NgRedux<JsonFormsState>) {
-    super(ngRedux);
+    super(<any>ngRedux);
   }
   getValue = () => this.data || '';
 

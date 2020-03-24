@@ -7,7 +7,7 @@ import {
   rankWith,
   uiTypeIs
 } from 'jsonforms/packages/core';
-import { NgRedux } from 'jsonforms/packages/angular/node_modules/@angular-redux/store';
+import { NgRedux } from '@angular-redux/store';
 import { JsonFormsIonicLayout } from '../../layouts/JsonFormsIonicLayout';
 
 @Component({
@@ -22,7 +22,7 @@ export class LabelRenderer extends JsonFormsIonicLayout {
   label: string;
 
   constructor(ngRedux: NgRedux<JsonFormsState>) {
-    super(ngRedux);
+    super(<any>ngRedux);
     this.initializers.push((props: JsonFormsProps) => {
       const labelEl = props.uischema as LabelElement;
       this.label = labelEl.text;

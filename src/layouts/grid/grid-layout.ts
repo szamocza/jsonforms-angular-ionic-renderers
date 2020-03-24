@@ -8,7 +8,7 @@ import {
     uiTypeIs
 } from 'jsonforms/packages/core';
 import { JsonFormsIonicLayout } from '../JsonFormsIonicLayout';
-import { NgRedux } from 'jsonforms/packages/angular/node_modules/@angular-redux/store';
+import { NgRedux } from '@angular-redux/store';
 
 @Component({
     selector: 'jsonforms-grid-layout',
@@ -109,7 +109,7 @@ export class GridLayoutRenderer extends JsonFormsIonicLayout {
     label: string;
 
     constructor(ngRedux: NgRedux<JsonFormsState>) {
-        super(ngRedux);
+        super(<any>ngRedux);
         this.initializers.push((props: JsonFormsProps) => {
             this.label = (props.uischema as GroupLayout).label;
         });

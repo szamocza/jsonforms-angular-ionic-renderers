@@ -9,7 +9,6 @@ export declare class ArrayControlRenderer extends JsonFormsControl implements On
     props: ControlProps;
     uiSchemas: UISchemaElement[];
     paths: string[];
-    ngRedux: NgRedux<JsonFormsState>;
     locale: string;
     addItem: (path: string) => () => void;
     removeItems: (path: string, toDelete: any[]) => () => void;

@@ -22,7 +22,7 @@
   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
   THE SOFTWARE.
 */
-import { NgRedux } from 'jsonforms/packages/angular/node_modules/@angular-redux/store';
+import { NgRedux } from '@angular-redux/store';
 import { Component } from '@angular/core';
 import { JsonFormsControl } from 'jsonforms/packages/angular';
 import {
@@ -57,7 +57,7 @@ export class ObjectControlRenderer extends JsonFormsControl {
   detailUiSchema: UISchemaElement;
 
   constructor(ngRedux: NgRedux<JsonFormsState>) {
-    super(ngRedux);
+    super(<any>ngRedux);
   }
 
   mapAdditionalProps(props: ControlProps) {

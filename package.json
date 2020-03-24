@@ -45,6 +45,7 @@
     "babel": "inherit"
   },
   "dependencies": {
+    "@angular-redux/store": "^7.1.1",
     "@angular/animations": "^5.2.10",
     "@angular/common": "^5.2.10",
     "@angular/compiler": "^5.2.10",
