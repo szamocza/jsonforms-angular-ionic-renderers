@@ -1,6 +1,6 @@
 import isEmpty from 'lodash/isEmpty';
 import { Component } from '@angular/core';
-import { NgRedux } from '@angular-redux/store';
+import { NgRedux } from 'jsonforms/packages/angular/node_modules/@angular-redux/store';
 import {
   ControlProps,
   getLocale,

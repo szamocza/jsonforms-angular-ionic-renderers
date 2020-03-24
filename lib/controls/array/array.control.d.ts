@@ -1,4 +1,4 @@
-import { NgRedux } from '@angular-redux/store';
+import { NgRedux } from 'jsonforms/packages/angular/node_modules/@angular-redux/store';
 import { OnInit } from '@angular/core';
 import { JsonFormsControl } from 'jsonforms/packages/angular';
 import { ArrayControlProps, ControlProps, JsonFormsState, RankedTester, UISchemaElement } from 'jsonforms/packages/core';

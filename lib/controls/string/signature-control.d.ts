@@ -1,5 +1,5 @@
 import { ControlProps, JsonFormsState, RankedTester } from 'jsonforms/packages/core';
-import { NgRedux } from '@angular-redux/store';
+import { NgRedux } from 'jsonforms/packages/angular/node_modules/@angular-redux/store';
 import { JsonFormsControl } from 'jsonforms/packages/angular';
 import { ModalController } from "ionic-angular";
 export declare class SignatureControlRenderer extends JsonFormsControl {

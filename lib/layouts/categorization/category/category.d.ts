@@ -2,7 +2,7 @@ import { NavParams } from 'ionic-angular';
 import { Category, JsonFormsState } from 'jsonforms/packages/core';
 import { JsonFormsBaseRenderer } from 'jsonforms/packages/angular';
 import { ParamsService } from '../../../services/ParamsService';
-import { NgRedux } from "@angular-redux/store";
+import { NgRedux } from 'jsonforms/packages/angular/node_modules/@angular-redux/store';
 export declare class CategoryRenderer extends JsonFormsBaseRenderer<Category> {
     private paramsService;
     static CATEGORY_KEY: string;

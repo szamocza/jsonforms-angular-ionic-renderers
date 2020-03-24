@@ -7,7 +7,7 @@ import {
   rankWith,
   uiTypeIs
 } from 'jsonforms/packages/core';
-import { NgRedux } from '@angular-redux/store';
+import { NgRedux } from 'jsonforms/packages/angular/node_modules/@angular-redux/store';
 import { JsonFormsIonicLayout } from '../../layouts/JsonFormsIonicLayout';
 
 @Component({

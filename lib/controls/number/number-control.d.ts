@@ -1,4 +1,4 @@
-import { NgRedux } from '@angular-redux/store';
+import { NgRedux } from 'jsonforms/packages/angular/node_modules/@angular-redux/store';
 import { ControlProps, JsonFormsState, RankedTester } from 'jsonforms/packages/core';
 import { JsonFormsControl } from 'jsonforms/packages/angular';
 export declare class NumberControlRenderer extends JsonFormsControl {

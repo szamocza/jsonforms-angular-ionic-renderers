@@ -8,7 +8,7 @@ import {
     uiTypeIs
 } from 'jsonforms/packages/core';
 import { JsonFormsIonicLayout } from '../JsonFormsIonicLayout';
-import { NgRedux } from '@angular-redux/store';
+import { NgRedux } from 'jsonforms/packages/angular/node_modules/@angular-redux/store';
 
 @Component({
     selector: 'jsonforms-grid-layout',

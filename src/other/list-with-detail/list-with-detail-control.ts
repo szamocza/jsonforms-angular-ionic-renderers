@@ -16,7 +16,7 @@ import {
 } from 'jsonforms/packages/core';
 import { JsonFormsControl } from 'jsonforms/packages/angular';
 import { Nav, Platform } from 'ionic-angular';
-import { NgRedux } from '@angular-redux/store';
+import { NgRedux } from 'jsonforms/packages/angular/node_modules/@angular-redux/store';
 import { MasterPage } from './pages/master/master';
 import { DetailPage } from './pages/detail/detail';
 import { removeSchemaKeywords } from '../../common';

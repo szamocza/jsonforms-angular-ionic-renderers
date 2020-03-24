@@ -1,7 +1,7 @@
 import { JsonFormsState, JsonSchema, RankedTester, UISchemaElement } from 'jsonforms/packages/core';
 import { JsonFormsControl } from 'jsonforms/packages/angular';
 import { Nav, Platform } from 'ionic-angular';
-import { NgRedux } from '@angular-redux/store';
+import { NgRedux } from 'jsonforms/packages/angular/node_modules/@angular-redux/store';
 export interface MasterItem {
     label: string;
     data: any;

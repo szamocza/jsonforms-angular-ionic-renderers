@@ -1,5 +1,5 @@
 import { Category, JsonFormsState, JsonSchema, RankedTester } from 'jsonforms/packages/core';
-import { NgRedux } from '@angular-redux/store';
+import { NgRedux } from 'jsonforms/packages/angular/node_modules/@angular-redux/store';
 import { JsonFormsIonicLayout } from '../JsonFormsIonicLayout';
 import { CategoryRenderer } from './category/category';
 import { ParamsService } from '../../services/ParamsService';

@@ -11,7 +11,7 @@ import {
 import { Component, ViewChild } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { CategoryRenderer } from './category/category';
-import { NgRedux } from '@angular-redux/store';
+import { NgRedux } from 'jsonforms/packages/angular/node_modules/@angular-redux/store';
 import { JsonFormsIonicLayout } from '../JsonFormsIonicLayout';
 
 @Component({

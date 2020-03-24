@@ -4,7 +4,7 @@ import { NavParams } from 'ionic-angular';
 import {Category, JsonFormsState, UISchemaElement} from 'jsonforms/packages/core';
 import { JsonFormsBaseRenderer } from 'jsonforms/packages/angular';
 import { ParamsService } from '../../../services/ParamsService';
-import {NgRedux} from "@angular-redux/store";
+import { NgRedux } from 'jsonforms/packages/angular/node_modules/@angular-redux/store';
 
 @Component({
   selector: 'jsonforms-category',

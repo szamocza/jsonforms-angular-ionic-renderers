@@ -1,5 +1,5 @@
 import { JsonFormsState, RankedTester } from 'jsonforms/packages/core';
-import { NgRedux } from '@angular-redux/store';
+import { NgRedux } from 'jsonforms/packages/angular/node_modules/@angular-redux/store';
 import { JsonFormsIonicLayout } from '../JsonFormsIonicLayout';
 export declare class GroupLayoutRenderer extends JsonFormsIonicLayout {
     label: string;
