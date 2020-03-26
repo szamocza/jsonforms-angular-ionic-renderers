@@ -29,6 +29,7 @@ import {TextInput} from "ionic-angular";
         (ionChange)="onChange($event)"
         [value]="getValue()"
         [disabled]="filterMode && !filterOn"
+        [readonly]="readonly"
         [id]="id"
         [formControl]="form"
       >

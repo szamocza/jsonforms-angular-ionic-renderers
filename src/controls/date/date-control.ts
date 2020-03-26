@@ -230,13 +230,20 @@ const getLocaleDateString = (locale: string): string =>
 
 @Component({
   selector: 'jsonforms-date-control',
+  styles: [
+    `
+        .left-margined {
+          margin-left: 4px;
+        }
+    `
+  ],
   template: `
-      <ion-item no-padding no-lines (click)="openPicker()" 
+      <ion-item no-padding no-lines (click)="!readonly && openPicker()" 
                 [ngStyle]="uischema && uischema.options && uischema.options.style"
                 *ngIf="!filterMode"
       >
         <ion-label stacked>{{ label }}</ion-label>
-        <ion-label style="margin-left: 4px !important;" l10nTranslate>
+        <ion-label class="left-margined" l10nTranslate>
           {{data ? (data | date:dateFormat) : ('Válasszon dátumot' | translate:locale)}}
         </ion-label>
       </ion-item>

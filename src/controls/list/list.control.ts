@@ -20,7 +20,7 @@ import {AlertController} from "ionic-angular";
                   [ngStyle]="uischema && uischema.options && uischema.options.style"
                   [ngClass]="{'bordered': label}"
         >
-            <ion-item>
+            <ion-item *ngIf="!readonly">
                 <ion-label>
                     <ion-icon name="add" *ngIf="!filterMode" (click)="addNew()"></ion-icon>
                     {{label}}
@@ -36,11 +36,11 @@ import {AlertController} from "ionic-angular";
                             [path]="paths[i]"
                     ></jsonforms-outlet>
                     <ion-icon class="jsonforms-up-btn jsonforms-action-btn" name="arrow-up"
-                              (click)="orderArray(i, true)" *ngIf="!filterMode"></ion-icon>
+                              (click)="orderArray(i, true)" *ngIf="!filterMode && !readonly"></ion-icon>
                     <ion-icon class="jsonforms-down-btn jsonforms-action-btn" name="arrow-down"
-                              (click)="orderArray(i, false)" *ngIf="!filterMode"></ion-icon>
+                              (click)="orderArray(i, false)" *ngIf="!filterMode && !readonly"></ion-icon>
                     <ion-icon class="jsonforms-delete-btn jsonforms-action-btn" name="trash"
-                              (click)="delete(element)" *ngIf="!filterMode"></ion-icon>
+                              (click)="delete(element)" *ngIf="!filterMode && !readonly"></ion-icon>
                 </ion-item>
             </ng-template>
         </ion-list>

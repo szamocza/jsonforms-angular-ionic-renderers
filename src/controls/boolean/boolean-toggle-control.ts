@@ -31,7 +31,7 @@ import { Toggle } from 'ionic-angular';
       <ion-toggle
         [checked]="isChecked()"
         (ionChange)="changed($event)"
-        [disabled]="!enabled"
+        [disabled]="!enabled || readonly"
         [hidden]="hidden"
         [id]="id"
       ></ion-toggle>

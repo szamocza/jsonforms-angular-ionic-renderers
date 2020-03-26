@@ -40,7 +40,7 @@ import { JsonFormsControl } from 'jsonforms/packages/angular';
       <ion-checkbox
         [checked]="isChecked()"
         (ionChange)="changed($event)"
-        [disabled]="!enabled"
+        [disabled]="!enabled || readonly"
         [id]="id"
       ></ion-checkbox>
     </ion-item>

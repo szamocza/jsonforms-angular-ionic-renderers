@@ -34,8 +34,8 @@ import { JsonFormsControl } from 'jsonforms/packages/angular';
         [min]="min"
         [max]="max"
         [step]="step"
-        [disabled]="!enabled"
-        [readonly]="!enabled"
+        [disabled]="!enabled || readonly"
+        [readonly]="!enabled || readonly"
         (ionBlur)="onChange($event)"
       >
       </ion-input>

@@ -30,6 +30,7 @@ import {TextInput} from "ionic-angular";
         (ionChange)="onChange($event)"
         [value]="getValue()"
         [disabled]="filterMode && !filterOn"
+        [readonly]="readonly"
         [id]="id"
         [formControl]="form"
         [type]="getType()"
@@ -62,7 +63,7 @@ export class StringControlRenderer extends JsonFormsControl {
   };
 
   inputClick(stringInput: TextInput) {
-    if(this.filterMode && !this.filterOn) {
+    if(this.filterMode && !this.filterOn && !this.readonly) {
       this.toggleFilterMode(this.uischema);
       setTimeout(() => {
         stringInput.setFocus();
