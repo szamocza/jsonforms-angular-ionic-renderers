@@ -36,7 +36,7 @@ import {TextInput} from "ionic-angular";
         [type]="getType()"
       >
       </ion-input>
-      <ion-label stacked *ngIf="error" color="error">{{ error }}</ion-label>
+      <ion-label stacked *ngIf="error" color="error">{{ error | translate }}</ion-label>
     </ion-item>
   `
 })

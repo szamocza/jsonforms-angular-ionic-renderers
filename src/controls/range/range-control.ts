@@ -57,7 +57,7 @@ import {
         <ion-label range-left>{{ min }}</ion-label>
         <ion-label range-right>{{ max }}</ion-label>
       </ion-range>
-      <ion-label stacked *ngIf="error" color="error">{{ error }}</ion-label>
+      <ion-label stacked *ngIf="error" color="error">{{ error | translate }}</ion-label>
     </ion-item>
   `
 })

@@ -27,7 +27,7 @@ import { Toggle } from 'ionic-angular';
         </button>
         {{ label }}
       </ion-label>
-      <ion-label stacked *ngIf="error" color="error">{{ error }}</ion-label>
+      <ion-label stacked *ngIf="error" color="error">{{ error | translate }}</ion-label>
       <ion-toggle
         [checked]="isChecked()"
         (ionChange)="changed($event)"

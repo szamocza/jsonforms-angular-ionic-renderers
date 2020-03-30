@@ -21,7 +21,7 @@ import { JsonFormsControl } from 'jsonforms/packages/angular';
               [ngStyle]="uischema && uischema.options && uischema.options.style"
     >
       <ion-label stacked>{{ label }}</ion-label>
-      <ion-label stacked *ngIf="error" color="error">{{ error }}</ion-label>
+      <ion-label stacked *ngIf="error" color="error">{{ error | translate }}</ion-label>
       <ion-input
         type="text"
         placeholder="{{ description }}"

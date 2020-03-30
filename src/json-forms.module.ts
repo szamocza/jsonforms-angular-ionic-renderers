@@ -34,8 +34,13 @@ import {AutosizeDirective} from "./directives/autosize";
 import {SignatureControlRenderer} from "./controls/string/signature-control";
 import {SignatureModalComponent} from "./controls/string/modal/signature-modal";
 import {SignaturePadModule} from "angular2-signaturepad";
-import {TranslateModule} from "@ngx-translate/core";
+import {TranslateModule, TranslateService} from "@ngx-translate/core";
 import {ListControlRenderer} from "./controls/list/list.control";
+import {registerLocaleData} from "@angular/common";
+import localeHu from '@angular/common/locales/hu';
+import localeEn from '@angular/common/locales/en';
+import {I18nService} from "./services/i18n.service";
+
 
 @NgModule({
   declarations: [
@@ -124,6 +129,14 @@ import {ListControlRenderer} from "./controls/list/list.control";
     DateModalComponent,
     SignatureModalComponent
   ],
-  providers: [ParamsService]
+  providers: [ParamsService, I18nService]
 })
-export class JsonFormsIonicModule {}
+export class JsonFormsIonicModule {
+  constructor(translateService: TranslateService, i18nService: I18nService) {
+    registerLocaleData(localeHu, 'hu');
+    registerLocaleData(localeEn, 'en');
+    console.debug(translateService, i18nService);
+
+  }
+
+}
