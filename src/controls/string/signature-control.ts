@@ -28,7 +28,7 @@ import {SignatureModalComponent} from "./modal/signature-modal";
     <div (click)="!readonly && sign()" *ngIf="!filterMode">
         <ion-item no-padding no-lines text-wrap [hidden]="hidden" 
                   [ngStyle]="uischema && uischema.options && uischema.options.style">
-          <ion-label>{{ label }}</ion-label>
+          <ion-label [color]="required ? 'danger' : 'medium'">{{ label }}</ion-label>
         </ion-item>
         <div>
             <img class="sign-img"

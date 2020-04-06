@@ -39,7 +39,7 @@ import {
               [ngStyle]="uischema && uischema.options && uischema.options.style"
               [ngClass]="{'filterOff': !filterOn && filterMode}"
     >
-      <ion-label stacked>{{ label }}</ion-label>
+      <ion-label stacked [color]="required ? 'danger' : 'medium'">{{ label }}</ion-label>
       <button ion-button clear color="dark" type="button" item-left (click)="toggleFilterMode(uischema)"
               *ngIf="filterMode">
         <ion-icon [name]="filterOn ? 'ios-funnel' : 'ios-funnel-outline'"></ion-icon>
@@ -57,7 +57,7 @@ import {
         <ion-label range-left>{{ min }}</ion-label>
         <ion-label range-right>{{ max }}</ion-label>
       </ion-range>
-      <ion-label stacked *ngIf="error" color="error">{{ error | translate }}</ion-label>
+      <ion-label stacked *ngIf="error" color="danger">{{ error | translate }}</ion-label>
     </ion-item>
   `
 })

@@ -16,8 +16,8 @@ import {TextInput} from "ionic-angular";
               [ngStyle]="uischema && uischema.options && uischema.options.style"
               [ngClass]="{'filterOff': !filterOn && filterMode}"
     >
-      <ion-label floating>{{ label }}</ion-label>
-      <ion-label stacked *ngIf="error" color="error">{{ error | translate }}</ion-label>
+      <ion-label floating [color]="required ? 'danger' : 'medium'">{{ label }}</ion-label>
+      <ion-label stacked *ngIf="error" color="danger">{{ error | translate }}</ion-label>
       <button ion-button clear color="dark" type="button" item-left (click)="toggleFilterMode(uischema)"
               *ngIf="filterMode">
         <ion-icon [name]="filterOn ? 'ios-funnel' : 'ios-funnel-outline'"></ion-icon>
