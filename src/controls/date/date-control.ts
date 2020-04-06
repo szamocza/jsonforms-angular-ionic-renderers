@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 import { NgRedux } from '@angular-redux/store';
 import {
   getLocale,
@@ -243,13 +243,15 @@ const getLocaleDateString = (locale: string): string =>
                 *ngIf="!filterMode"
       >
         <ion-label stacked>{{ label }}</ion-label>
-        <ion-label class="left-margined" l10nTranslate>
+        <ion-label #dateOpener tabindex="0" role="button" (keyup.enter)="!readonly && openPicker()" 
+                   class="left-margined" l10nTranslate>
           {{data ? (data | date:dateFormat) : ('Válasszon dátumot' | translate:locale)}}
         </ion-label>
       </ion-item>
   `
 })
 export class DateControlRenderer extends JsonFormsControl {
+  @ViewChild('dateOpener') dateOpener: any;
   private dateFormat: string;
   public locale: string;
 
@@ -270,6 +272,11 @@ export class DateControlRenderer extends JsonFormsControl {
     select.onDidDismiss((date: Moment, role: string) => {
       if(role == 'done') {
         this.handleChange(date ? date : undefined);
+      }
+      if(this.dateOpener && this.dateOpener.nativeElement) {
+        setTimeout(() => {
+          this.dateOpener.nativeElement.focus();
+        }, 100);
       }
     });
     select.present();

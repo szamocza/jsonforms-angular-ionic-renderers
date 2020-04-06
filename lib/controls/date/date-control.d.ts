@@ -5,6 +5,7 @@ import { ModalController } from 'ionic-angular';
 import { Moment } from "moment";
 export declare class DateControlRenderer extends JsonFormsControl {
     private modalCtrl;
+    dateOpener: any;
     private dateFormat;
     locale: string;
     constructor(ngRedux: NgRedux<JsonFormsState>, modalCtrl: ModalController);

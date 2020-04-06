@@ -15,10 +15,6 @@ export declare class I18nService {
         hu: i18n_hu;
         en: i18n_en;
     };
-    /**
-     * Az aktuálisan használt tényleges nyelv
-     * (nem feltétlen egyezik meg a felasználó által beállított értékkel)
-     */
     static lang: string;
     constructor(translate: TranslateService, events: Events);
     setLang(lang: string): void;
