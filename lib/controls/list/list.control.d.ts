@@ -28,7 +28,7 @@ export declare class ListControlRenderer extends JsonFormsControl implements OnI
      * hozzáad egy új elemet ha valami változott
      */
     addNewItemAutomatically(): void;
-    checkNotNull(lastElem: any): boolean;
+    checkNotNull(lastElem: any, field: string, defaults: any): boolean;
     generateItemSchemas(): void;
     setLanguageValues(): void;
     getPath(index: number): string;

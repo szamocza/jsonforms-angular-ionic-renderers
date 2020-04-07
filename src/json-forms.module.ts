@@ -26,7 +26,6 @@ import { CategorizationTabLayoutRenderer } from './layouts/categorization/catego
 import { AutoCompleteControlRenderer } from './controls/enum/autocomplete-control';
 import { ObjectControlRenderer } from './controls/object/object.control';
 import { ParamsService } from './services/ParamsService';
-import {ArrayControlRenderer} from "./controls/array/array.control";
 import {CalendarModule} from "ion2-calendar";
 import {DateModalComponent} from "./controls/date/modal/date-modal";
 import {GridLayoutRenderer} from "./layouts/grid/grid-layout";
@@ -56,7 +55,6 @@ import {I18nService} from "./services/i18n.service";
     RangeControlRenderer,
     AutoCompleteControlRenderer,
     ObjectControlRenderer,
-    ArrayControlRenderer,
 
     // layouts
     HorizontalLayoutRenderer,
@@ -106,7 +104,6 @@ import {I18nService} from "./services/i18n.service";
     RangeControlRenderer,
     AutoCompleteControlRenderer,
     ObjectControlRenderer,
-    ArrayControlRenderer,
 
     // layouts
     HorizontalLayoutRenderer,

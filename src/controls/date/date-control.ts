@@ -242,7 +242,7 @@ const getLocaleDateString = (locale: string): string =>
                 [ngStyle]="uischema && uischema.options && uischema.options.style"
                 *ngIf="!filterMode"
       >
-        <ion-label stacked [color]="required ? 'danger' : 'medium'">{{ label }}</ion-label>
+        <ion-label stacked [color]="required&&!data ? 'danger' : 'medium'">{{ label }}</ion-label>
         <ion-label #dateOpener tabindex="0" role="button" (keyup.enter)="!readonly && openPicker()" 
                    class="left-margined" l10nTranslate>
           {{data ? (data | date:dateFormat) : ('Válasszon dátumot' | translate:locale)}}

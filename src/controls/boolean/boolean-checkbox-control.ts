@@ -26,7 +26,7 @@ import { JsonFormsControl } from 'jsonforms/packages/angular';
               [ngStyle]="uischema && uischema.options && uischema.options.style"
               [ngClass]="{'filterOff': !filterOn && filterMode}"
     >
-      <ion-label [color]="required ? 'danger' : 'medium'">
+      <ion-label [color]="required&&!data ? 'danger' : 'medium'">
         <button ion-button tappable clear color="dark" type="button" item-left
                 class="check-filter-btn"
                 (click)="toggleFilterModeForChk(uischema)"

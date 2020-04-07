@@ -131,7 +131,7 @@ export class ListControlRenderer extends JsonFormsControl  implements OnInit {
                 let length = this.data.length;
                 if(length>0) {
                     let lastElem = this.data[length-1];
-                    if(this.checkNotNull(lastElem)) {
+                    if(this.checkNotNull(lastElem, null, this.ngRedux.getState().jsonforms.defaults.defaults)) {
                         this.addNew();
                     }
                 }
@@ -141,22 +141,23 @@ export class ListControlRenderer extends JsonFormsControl  implements OnInit {
         });
     }
 
-    checkNotNull(lastElem: any): boolean {
+    checkNotNull(lastElem: any, field: string, defaults: any): boolean {
         if(!lastElem) return false;
-        if(lastElem.constructor !== Object && !Array.isArray(lastElem) && lastElem ) {
+        if(lastElem.constructor !== Object && !Array.isArray(lastElem) && lastElem &&
+                (!defaults || (defaults && lastElem != defaults[field]))) {
             // ha nem tömb és nem objektum és nem null
             return true;
         } else if(lastElem.constructor === Object && Object.keys(lastElem).length != 0) {
             // ha objektum és van eleme
             for(let i in lastElem) {
-                if(lastElem.hasOwnProperty(i) && this.checkNotNull(lastElem[i])) {
+                if(lastElem.hasOwnProperty(i) && this.checkNotNull(lastElem[i], i, defaults)) {
                     return true;
                 }
             }
             return false;
         } else if(Array.isArray(lastElem) && lastElem && lastElem.length>0) {
             // ha tömb és az utolsó eleme ki van töltve
-            return this.checkNotNull(lastElem[lastElem.length - 1]);
+            return this.checkNotNull(lastElem[lastElem.length - 1], field, defaults);
         }
     }
 

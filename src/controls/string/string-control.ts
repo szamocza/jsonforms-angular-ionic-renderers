@@ -17,7 +17,7 @@ import {TextInput} from "ionic-angular";
               [ngStyle]="uischema && uischema.options && uischema.options.style"
               [ngClass]="{'filterOff': !filterOn && filterMode}"
     >
-      <ion-label floating [color]="required ? 'danger' : 'medium'">{{ label }}</ion-label>
+      <ion-label floating [color]="required&&!data ? 'danger' : 'medium'">{{ label }}</ion-label>
       <button ion-button clear color="dark" type="button" item-left (click)="toggleFilterMode(uischema)" 
               *ngIf="filterMode"
               [ngStyle]="uischema && uischema.options && uischema.options.style"
