@@ -288,7 +288,7 @@ export class DateControlRenderer extends JsonFormsControl {
   }
 
   handleChange($event: Moment) {
-    this.onChange({value: $event});
+    this.onChange({value: $event.format("YYYY-MM-DD")});
   }
 }
 
