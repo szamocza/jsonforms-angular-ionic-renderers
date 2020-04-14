@@ -15,6 +15,26 @@ import {AlertController} from "ionic-angular";
 
 @Component({
     selector: 'jsonforms-list-control',
+    styles: [`
+        .jsonforms-up-btn {
+            right: 60px;
+        }
+        .jsonforms-down-btn {
+            right: 85px;
+        }
+        .jsonforms-delete-btn {
+            right: 35px;
+        }
+        .jsonforms-action-btn {
+            top: 15px;
+            color: rgba(0, 0, 0, 0.54);
+            position: absolute;
+            z-index: 9999;
+        }
+    `],
+    host: {
+        'class': 'array-control'
+    },
     template: `
         <ion-list *ngIf="props && props.visible"
                   [ngStyle]="uischema && uischema.options && uischema.options.style"
