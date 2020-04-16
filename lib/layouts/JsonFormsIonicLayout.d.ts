@@ -6,9 +6,11 @@ import { Subscription } from "rxjs";
 export declare class JsonFormsIonicLayout extends JsonFormsBaseRenderer<Layout> implements OnInit, OnDestroy {
     protected ngRedux: NgRedux<JsonFormsState>;
     path: string;
+    visible: boolean;
     elements: UISchemaElement[];
     subscription: Subscription;
     initializers: any[];
+    hidden: boolean;
     constructor(ngRedux: NgRedux<JsonFormsState>);
     ngOnInit(): void;
     ngOnDestroy(): void;

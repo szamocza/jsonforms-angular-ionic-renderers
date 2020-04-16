@@ -81,7 +81,7 @@ import { NgRedux } from '@angular-redux/store';
         `
     ],
     template: `
-    <div class="grid-layout-wrapper" 
+    <div class="grid-layout-wrapper" [hidden]="hidden"
          [ngClass]="{'bordered': label}" 
          [ngStyle]="uischema && uischema.options && uischema.options.style">
         <div class="grid-label" *ngIf="label">

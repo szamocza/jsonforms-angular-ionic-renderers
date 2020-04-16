@@ -12,9 +12,12 @@ import {Subscription} from "rxjs";
 export class JsonFormsIonicLayout extends JsonFormsBaseRenderer<Layout>
   implements OnInit, OnDestroy {
   @Input() path: string;
+  @Input() visible: boolean;
   elements: UISchemaElement[];
   subscription: Subscription;
   initializers: any[] = [];
+
+  hidden: boolean;
 
   constructor(protected ngRedux: NgRedux<JsonFormsState>) {
     super(<any>ngRedux);
@@ -31,6 +34,7 @@ export class JsonFormsIonicLayout extends JsonFormsBaseRenderer<Layout>
         const props = mapStateToLayoutProps(state, ownProps);
         this.uischema = props.uischema as Layout;
         this.schema = props.schema;
+        this.hidden = !props.visible;
 
         // if the layout has style but its element doesn't have one, than it get it's inherited style
         if(this.uischema && this.uischema.options && this.uischema && this.uischema.elements) {
