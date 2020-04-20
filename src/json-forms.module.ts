@@ -39,7 +39,7 @@ import {registerLocaleData} from "@angular/common";
 import localeHu from '@angular/common/locales/hu';
 import localeEn from '@angular/common/locales/en';
 import {I18nService} from "./services/i18n.service";
-
+import {DateTimeControlRenderer} from "./controls/date-time/date-time-control";
 
 @NgModule({
   declarations: [
@@ -50,6 +50,7 @@ import {I18nService} from "./services/i18n.service";
     MultilineControlRenderer,
     NumberControlRenderer,
     DateControlRenderer,
+    DateTimeControlRenderer,
     EnumControlRenderer,
     ListControlRenderer,
     RangeControlRenderer,
@@ -99,6 +100,7 @@ import {I18nService} from "./services/i18n.service";
     MultilineControlRenderer,
     NumberControlRenderer,
     DateControlRenderer,
+    DateTimeControlRenderer,
     EnumControlRenderer,
     ListControlRenderer,
     RangeControlRenderer,
