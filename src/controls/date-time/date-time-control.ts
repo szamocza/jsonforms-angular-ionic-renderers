@@ -71,6 +71,8 @@ export class DateTimeControlRenderer extends JsonFormsControl implements OnInit 
     private dateFormat: string;
     public locale: string;
 
+    public moment: any;
+
     public timePickerId: string;
 
     public picker: any;
@@ -80,20 +82,16 @@ export class DateTimeControlRenderer extends JsonFormsControl implements OnInit 
         private modalCtrl: ModalController
     ) {
         super(<any>ngRedux);
+        this.moment = require("moment");
+        if ("default" in this.moment) {
+            this.moment = this.moment["default"];
+        }
         this.timePickerId = this.generateID();
     }
 
     generateID = function () {
         return '_' + Math.random().toString(36).substr(2, 9);
     };
-
-    newMoment() {
-        let moment = require("moment");
-        if ("default" in moment) {
-            moment = moment["default"];
-        }
-        return moment();
-    }
 
     ngOnInit(): void {
         super.ngOnInit();
@@ -104,6 +102,7 @@ export class DateTimeControlRenderer extends JsonFormsControl implements OnInit 
 
             this.picker = new NJTimePicker({
                 targetID: this.timePickerId,
+                minutes: [0, 15, 20, 30, 45, 50],
                 texts: {
                     header: i18n['Válasszon időpontot'],
                     hours: i18n['Óra'],
@@ -123,7 +122,9 @@ export class DateTimeControlRenderer extends JsonFormsControl implements OnInit 
         this.picker.on("btn-" + saveBtnText.toLocaleLowerCase(), () => {
             let value: {hours: string, minutes: string, fullResult: string} = this.picker.getValue();
             if(!this.data) {
-                this.data = this.newMoment();
+                this.data = this.moment();
+            } else {
+                this.data = this.moment(this.data);
             }
             this.data.set({hour:Number(value.hours),minute:Number(value.minutes),second:0,millisecond:0});
             this.handleChange(this.data);
@@ -142,8 +143,9 @@ export class DateTimeControlRenderer extends JsonFormsControl implements OnInit 
     }
 
     openDatePicker() {
-        let date = this.data ? this.data : undefined;
-        if(date) {
+        let date = undefined;
+        if(this.data) {
+            date = this.moment(this.data);
             date.set({hour:0,minute:0,second:0,millisecond:0});
         }
 
@@ -179,7 +181,7 @@ export class DateTimeControlRenderer extends JsonFormsControl implements OnInit 
     }
 
     handleChange($event: Moment) {
-        this.onChange({value: $event});
+        this.onChange({value: $event.toISOString()});
     }
 
     openTimePicker() {
@@ -190,7 +192,7 @@ export class DateTimeControlRenderer extends JsonFormsControl implements OnInit 
         if(!this.data) {
             return "-";
         }
-        return this.data.format('HH:mm');
+        return this.moment(this.data).format('HH:mm');
     }
 }
 
