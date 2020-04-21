@@ -20,7 +20,7 @@ const getLocaleDateString = (locale: string): string => formats[locale] || 'yyyy
 @Component({
     selector: 'jsonforms-date-control',
     styleUrls: [
-        'assets/njtimepicker/njtimepicker.css'
+        'assets/njtimepicker/njtimepicker.min.css'
     ],
     styles: [
     `
