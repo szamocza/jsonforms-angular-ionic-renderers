@@ -12,16 +12,12 @@ import {ModalController} from 'ionic-angular';
 import {Moment} from "moment";
 import {DateModalComponent} from "../date/modal/date-modal";
 import {formats} from "../../common";
-import {i18n} from "../../services/i18n.service";
+import {TimeModalComponent} from "./modal/time-modal";
 
-const NJTimePicker = require('nj-timepicker');
 const getLocaleDateString = (locale: string): string => formats[locale] || 'yyyy-MM-dd';
 
 @Component({
     selector: 'jsonforms-date-control',
-    styleUrls: [
-        'assets/njtimepicker/njtimepicker.min.css'
-    ],
     styles: [
     `
         .left-margined {
@@ -50,12 +46,15 @@ const getLocaleDateString = (locale: string): string => formats[locale] || 'yyyy
                     </ion-item> 
                 </ion-col>
                 <ion-col>
-                    <ion-item no-padding no-lines
+                    <ion-item no-padding no-lines (click)="!readonly && openTimePicker()"
                               [ngStyle]="uischema && uischema.options && uischema.options.style"
                               *ngIf="!filterMode"
                     >
-                        <ion-label stacked [color]="required&&!data ? 'danger' : 'medium'">{{ ('Válasszon időpontot' | translate:locale) }}</ion-label>
-                        <ion-label [id]="timePickerId" item-content #timeOpener tabindex="0" role="button" (keyup.enter)="!readonly && openTimePicker()"
+                        <ion-label stacked [color]="required&&!data ? 'danger' : 'medium'">
+                            {{ ('Válasszon időpontot' | translate:locale) }}
+                        </ion-label>
+                        <ion-label item-content tabindex="0" role="button" 
+                                   (keyup.enter)="!readonly && openTimePicker()"
                                    class="left-margined" l10nTranslate>
                             {{ getTime() }}
                         </ion-label>
@@ -67,15 +66,10 @@ const getLocaleDateString = (locale: string): string => formats[locale] || 'yyyy
 })
 export class DateTimeControlRenderer extends JsonFormsControl implements OnInit {
     @ViewChild('dateOpener') dateOpener: any;
-    @ViewChild('timeOpener') timeOpener: any;
     private dateFormat: string;
     public locale: string;
 
     public moment: any;
-
-    public timePickerId: string;
-
-    public picker: any;
 
     constructor(
         ngRedux: NgRedux<JsonFormsState>,
@@ -86,65 +80,51 @@ export class DateTimeControlRenderer extends JsonFormsControl implements OnInit 
         if ("default" in this.moment) {
             this.moment = this.moment["default"];
         }
-        this.timePickerId = this.generateID();
     }
-
-    generateID = function () {
-        return '_' + Math.random().toString(36).substr(2, 9);
-    };
 
     ngOnInit(): void {
         super.ngOnInit();
-        setTimeout(() => {
-            let saveBtnText = i18n['Mentés'];
-            let clearBtnText = i18n['Törlés'];
-            let closeBtnText = i18n['Bezárás'];
-
-            this.picker = new NJTimePicker({
-                targetID: this.timePickerId,
-                minutes: [0, 15, 20, 30, 45, 50],
-                texts: {
-                    header: i18n['Válasszon időpontot'],
-                    hours: i18n['Óra'],
-                    minutes: i18n['Perc'],
-                    save: saveBtnText,
-                    clear: clearBtnText,
-                    close: closeBtnText
-                },
-                format: 24
-            });
-
-            this.initTimePickerBtns(saveBtnText, clearBtnText, closeBtnText);
-        });
     }
 
-    initTimePickerBtns(saveBtnText: string, clearBtnText: string, closeBtnText: string) {
-        this.picker.on("btn-" + saveBtnText.toLocaleLowerCase(), () => {
-            let value: {hours: string, minutes: string, fullResult: string} = this.picker.getValue();
-            if(!this.data) {
-                this.data = this.moment();
-            } else {
-                this.data = this.moment(this.data);
+    openTimePicker() {
+        let select = this.modalCtrl.create(TimeModalComponent, {
+            title: this.label,
+            canClear: true,
+            selectedHour: this.data ? this.moment(this.data).format("HH") : null,
+            selectedMinute: this.data ? this.moment(this.data).format("mm") : null
+        }, {
+            cssClass: 'time-modal'
+        });
+        select.onDidDismiss((date: {hours: string, minutes: string}, role: string) => {
+            if(role == 'done') {
+                if(date) {
+                    if(!this.data) {
+                        this.data = this.moment();
+                    } else {
+                        this.data = this.moment(this.data);
+                    }
+                    this.data.set({hour:Number(date.hours),minute:Number(date.minutes),second:0,millisecond:0});
+                    this.handleChange(this.data);
+                } else {
+                    this.handleChange(undefined);
+                }
             }
-            this.data.set({hour:Number(value.hours),minute:Number(value.minutes),second:0,millisecond:0});
-            this.handleChange(this.data);
-            this.picker.hide();
+            if(this.dateOpener && this.dateOpener.nativeElement) {
+                setTimeout(() => {
+                    this.dateOpener.nativeElement.focus();
+                }, 100);
+            }
         });
-
-        this.picker.on("btn-" + clearBtnText.toLocaleLowerCase(), () => {
-            this.picker.setValue({});
-            this.picker.hide();
-            this.handleChange(undefined);
-        });
-
-        this.picker.on("btn-" + closeBtnText.toLocaleLowerCase(), () => {
-            this.picker.hide();
-        });
+        select.present();
     }
 
     openDatePicker() {
         let date = undefined;
+        let oldHour = 0;
+        let oldMinute = 0;
         if(this.data) {
+            oldHour = this.moment(this.data).format("HH");
+            oldMinute = this.moment(this.data).format("mm");
             date = this.moment(this.data);
             date.set({hour:0,minute:0,second:0,millisecond:0});
         }
@@ -158,11 +138,14 @@ export class DateTimeControlRenderer extends JsonFormsControl implements OnInit 
         select.onDidDismiss((date: Moment, role: string) => {
             if(role == 'done') {
                 if(date) {
-                    let value: {hours: string, minutes: string, fullResult: string} = this.picker.getValue();
-                    date.set({hour:Number(value.hours),minute:Number(value.minutes),second:0,millisecond:0});
+                    date.set({
+                        hour: Number(oldHour),
+                        minute: Number(oldMinute),
+                        second:0,
+                        millisecond:0
+                    });
                     this.handleChange(date);
                 } else {
-                    this.picker.setValue({});
                     this.handleChange(undefined);
                 }
             }
@@ -181,11 +164,7 @@ export class DateTimeControlRenderer extends JsonFormsControl implements OnInit 
     }
 
     handleChange($event: Moment) {
-        this.onChange({value: $event.toISOString()});
-    }
-
-    openTimePicker() {
-        this.picker.show();
+        this.onChange({value: $event ? $event.toISOString() : undefined});
     }
 
     getTime() {

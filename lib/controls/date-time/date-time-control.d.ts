@@ -7,20 +7,15 @@ import { Moment } from "moment";
 export declare class DateTimeControlRenderer extends JsonFormsControl implements OnInit {
     private modalCtrl;
     dateOpener: any;
-    timeOpener: any;
     private dateFormat;
     locale: string;
     moment: any;
-    timePickerId: string;
-    picker: any;
     constructor(ngRedux: NgRedux<JsonFormsState>, modalCtrl: ModalController);
-    generateID: () => string;
     ngOnInit(): void;
-    initTimePickerBtns(saveBtnText: string, clearBtnText: string, closeBtnText: string): void;
+    openTimePicker(): void;
     openDatePicker(): void;
     mapAdditionalProps(): void;
     handleChange($event: Moment): void;
-    openTimePicker(): void;
     getTime(): any;
 }
 export declare const dateTimeControlTester: RankedTester;

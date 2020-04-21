@@ -40,6 +40,7 @@ import localeHu from '@angular/common/locales/hu';
 import localeEn from '@angular/common/locales/en';
 import {I18nService} from "./services/i18n.service";
 import {DateTimeControlRenderer} from "./controls/date-time/date-time-control";
+import {TimeModalComponent} from "./controls/date-time/modal/time-modal";
 
 @NgModule({
   declarations: [
@@ -76,6 +77,7 @@ import {DateTimeControlRenderer} from "./controls/date-time/date-time-control";
     SignatureControlRenderer,
 
     DateModalComponent,
+    TimeModalComponent,
     SignatureModalComponent,
 
     AutosizeDirective
@@ -126,6 +128,7 @@ import {DateTimeControlRenderer} from "./controls/date-time/date-time-control";
     SignatureControlRenderer,
 
     DateModalComponent,
+    TimeModalComponent,
     SignatureModalComponent
   ],
   providers: [ParamsService, I18nService]
