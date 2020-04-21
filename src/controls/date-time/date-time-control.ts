@@ -143,7 +143,9 @@ export class DateTimeControlRenderer extends JsonFormsControl implements OnInit 
 
     openDatePicker() {
         let date = this.data ? this.data : undefined;
-        date.set({hour:0,minute:0,second:0,millisecond:0});
+        if(date) {
+            date.set({hour:0,minute:0,second:0,millisecond:0});
+        }
 
         let select = this.modalCtrl.create(DateModalComponent, {
             title: this.label,
