@@ -41,6 +41,7 @@ import localeEn from '@angular/common/locales/en';
 import {I18nService} from "./services/i18n.service";
 import {DateTimeControlRenderer} from "./controls/date-time/date-time-control";
 import {TimeModalComponent} from "./controls/date-time/modal/time-modal";
+import {RadioControlRenderer} from "./controls/radio/radio-control";
 
 @NgModule({
   declarations: [
@@ -80,7 +81,8 @@ import {TimeModalComponent} from "./controls/date-time/modal/time-modal";
     TimeModalComponent,
     SignatureModalComponent,
 
-    AutosizeDirective
+    AutosizeDirective,
+    RadioControlRenderer
   ],
   imports: [
     IonicModule,
@@ -129,7 +131,8 @@ import {TimeModalComponent} from "./controls/date-time/modal/time-modal";
 
     DateModalComponent,
     TimeModalComponent,
-    SignatureModalComponent
+    SignatureModalComponent,
+    RadioControlRenderer
   ],
   providers: [ParamsService, I18nService]
 })

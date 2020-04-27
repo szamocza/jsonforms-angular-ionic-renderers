@@ -61,6 +61,7 @@ import {
 import {SignatureControlRenderer, signatureControlTester} from "./controls/string/signature-control";
 import {ListControlRenderer, listControlTester} from "./controls/list/list.control";
 import {DateTimeControlRenderer, dateTimeControlTester} from "./controls/date-time/date-time-control";
+import {RadioControlRenderer, radioControlTester} from "./controls/radio/radio-control";
 
 export {
   booleanControlTester,
@@ -90,6 +91,10 @@ export {
   dateTimeControlTester,
     DateTimeControlRenderer
 } from './controls/date-time/date-time-control';
+export {
+  radioControlTester,
+  RadioControlRenderer
+} from "./controls/radio/radio-control";
 export {
   enumControlTester,
   EnumControlRenderer
@@ -143,6 +148,7 @@ export const ionicRenderers: { tester: any; renderer: any }[] = [
   { tester: enumControlTester, renderer: EnumControlRenderer },
   { tester: rangeControlTester, renderer: RangeControlRenderer },
   { tester: rankWith(3, isEnumControl), renderer: AutoCompleteControlRenderer },
+  { tester: radioControlTester, renderer: RadioControlRenderer },
   { tester: objectControlTester, renderer: ObjectControlRenderer },
   { tester: listControlTester, renderer: ListControlRenderer},
 
