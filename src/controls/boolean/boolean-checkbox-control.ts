@@ -34,6 +34,8 @@ import { JsonFormsControl } from 'jsonforms/packages/angular';
                 [ngStyle]="uischema && uischema.options && uischema.options.style">
           <ion-icon [name]="filterOn ? 'ios-funnel' : 'ios-funnel-outline'"></ion-icon>
         </button>
+        <img *ngIf="uischema && uischema.options && uischema.options.pictureUri" 
+             [src]="uischema.options.pictureUri" height="42" width="42" />
         {{ label }}
       </ion-label>
       <ion-label stacked *ngIf="error" color="danger">{{ error | translate }}</ion-label>
