@@ -20,7 +20,7 @@ import {and, isEnumControl, JsonFormsState, RankedTester, rankWith, schemaMatche
         
       <ion-item no-padding *ngFor="let option of options">
           <ion-label>{{ option }}</ion-label>
-          <ion-radio value="{{option}}" (ionSelect)="onChange($event)"
+          <ion-radio item-left value="{{option}}" (ionSelect)="onChange($event)"
                      [disabled]="readonly || (filterMode && !filterOn)"
           ></ion-radio>
       </ion-item>  
