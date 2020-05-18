@@ -17,11 +17,17 @@ import {TimeModalComponent} from "./modal/time-modal";
 const getLocaleDateString = (locale: string): string => formats[locale] || 'yyyy-MM-dd';
 
 @Component({
-    selector: 'jsonforms-date-control',
+    selector: 'jsonforms-date-time-control',
     styles: [
     `
         .left-margined {
           margin-left: 4px;
+        }
+        .date-label, .time-label {
+            font-size: 11px;
+        }
+        .date-label.no-error, .time-label.no-error {
+            color: #999;
         }
     `
     ],
@@ -29,7 +35,9 @@ const getLocaleDateString = (locale: string): string => formats[locale] || 'yyyy
         <ion-grid>
             <ion-row>
                 <ion-col>
-                    <ion-label stacked [color]="required&&!data ? 'danger' : 'medium'">{{ label }}</ion-label>                    
+                    <ion-label class="date-label"
+                               [ngClass]="{'no-error': !(required&&!data)}" 
+                            stacked [color]="required&&!data ? 'danger' : 'medium'">{{ label }}</ion-label>                    
                 </ion-col>
             </ion-row>
             <ion-row>
@@ -38,7 +46,9 @@ const getLocaleDateString = (locale: string): string => formats[locale] || 'yyyy
                               [ngStyle]="uischema && uischema.options && uischema.options.style"
                               *ngIf="!filterMode"
                     >
-                        <ion-label stacked [color]="required&&!data ? 'danger' : 'medium'">{{ ('Válasszon dátumot' | translate:locale) }}</ion-label>
+                        <ion-label class="date-label"
+                                   [ngClass]="{'no-error': !(required&&!data)}" 
+                                stacked [color]="required&&!data ? 'danger' : 'medium'">{{ ('Válasszon dátumot' | translate:locale) }}</ion-label>
                         <ion-label item-content #dateOpener tabindex="0" role="button" (keyup.enter)="!readonly && openDatePicker()"
                                    class="left-margined" l10nTranslate>
                             {{data ? (data | date:dateFormat) : '-'}}
@@ -50,7 +60,9 @@ const getLocaleDateString = (locale: string): string => formats[locale] || 'yyyy
                               [ngStyle]="uischema && uischema.options && uischema.options.style"
                               *ngIf="!filterMode"
                     >
-                        <ion-label stacked [color]="required&&!data ? 'danger' : 'medium'">
+                        <ion-label class="time-label"
+                                   [ngClass]="{'no-error': !(required&&!data)}" 
+                                stacked [color]="required&&!data ? 'danger' : 'medium'">
                             {{ ('Válasszon időpontot' | translate:locale) }}
                         </ion-label>
                         <ion-label item-content tabindex="0" role="button" 

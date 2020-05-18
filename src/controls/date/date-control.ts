@@ -22,6 +22,12 @@ const getLocaleDateString = (locale: string): string => formats[locale] || 'yyyy
         .left-margined {
           margin-left: 4px;
         }
+        .date-label {
+          font-size: 11px;
+        }
+        .date-label.no-error {
+          color: #999;
+        }
     `
   ],
   template: `
@@ -29,7 +35,9 @@ const getLocaleDateString = (locale: string): string => formats[locale] || 'yyyy
                 [ngStyle]="uischema && uischema.options && uischema.options.style"
                 *ngIf="!filterMode"
       >
-        <ion-label stacked [color]="required&&!data ? 'danger' : 'medium'">{{ label }}</ion-label>
+        <ion-label stacked [color]="required&&!data ? 'danger' : 'medium'" class="date-label"
+                   [ngClass]="{'no-error': !(required&&!data)}"
+        >{{ label }}</ion-label>
         <ion-label #dateOpener tabindex="0" role="button" (keyup.enter)="!readonly && openPicker()" 
                    class="left-margined" l10nTranslate>
           {{data ? (data | date:dateFormat) : ('Válasszon dátumot' | translate:locale)}}
@@ -75,7 +83,7 @@ export class DateControlRenderer extends JsonFormsControl {
   }
 
   handleChange($event: Moment) {
-    this.onChange({value: $event.format("YYYY-MM-DD")});
+    this.onChange({value: $event != null ? $event.format("YYYY-MM-DD") : null});
   }
 }
 

@@ -15,6 +15,7 @@ import { JsonFormsState } from 'jsonforms/packages/core';
               *ngIf="filterMode">
         <ion-icon [name]="filterOn ? 'ios-funnel' : 'ios-funnel-outline'"></ion-icon>
       </button>
+      <ion-label stacked *ngIf="error" color="danger">{{ error | translate }}</ion-label>
       <ionic-selectable
         [canClear]="true"
         clearButtonText="{{'Clear' | translate}}"
