@@ -21,11 +21,14 @@ import { JsonFormsState } from 'jsonforms/packages/core';
         [ngModel]="data"
         [items]="options"
         [disabled]="readonly || (filterMode && !filterOn)"
-        [canSearch]="true"
+        [canSearch]="options && options.length >= 5"
         (onChange)="onChange($event)"
       >
         <ng-template ionicSelectablePlaceholderTemplate>
-          {{ description }}
+          -
+        </ng-template>
+        <ng-template ionicSelectableTitleTemplate>
+          <span text-wrap>{{ label }}</span>
         </ng-template>
       </ionic-selectable>
     </ion-item>
