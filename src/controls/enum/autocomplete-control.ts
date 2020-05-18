@@ -17,6 +17,7 @@ import { JsonFormsState } from 'jsonforms/packages/core';
       </button>
       <ion-label stacked *ngIf="error" color="danger">{{ error | translate }}</ion-label>
       <ionic-selectable
+        [canClear]="true"
         item-content
         [ngModel]="data"
         [items]="options"
