@@ -42,6 +42,7 @@ import {I18nService} from "./services/i18n.service";
 import {DateTimeControlRenderer} from "./controls/date-time/date-time-control";
 import {TimeModalComponent} from "./controls/date-time/modal/time-modal";
 import {RadioControlRenderer} from "./controls/radio/radio-control";
+import {SimpleNumberControlRenderer} from "./controls/number/simple-number-control";
 
 @NgModule({
   declarations: [
@@ -82,7 +83,8 @@ import {RadioControlRenderer} from "./controls/radio/radio-control";
     SignatureModalComponent,
 
     AutosizeDirective,
-    RadioControlRenderer
+    RadioControlRenderer,
+    SimpleNumberControlRenderer
   ],
   imports: [
     IonicModule,
@@ -132,7 +134,8 @@ import {RadioControlRenderer} from "./controls/radio/radio-control";
     DateModalComponent,
     TimeModalComponent,
     SignatureModalComponent,
-    RadioControlRenderer
+    RadioControlRenderer,
+    SimpleNumberControlRenderer
   ],
   providers: [ParamsService, I18nService]
 })

@@ -30,7 +30,7 @@ import {
   RangeControlRenderer,
   rangeControlTester
 } from './controls/range/range-control';
-import { isEnumControl, rankWith } from 'jsonforms/packages/core';
+import {isEnumControl, isNumberControl, rankWith} from 'jsonforms/packages/core';
 import { AutoCompleteControlRenderer } from './controls/enum/autocomplete-control';
 import {
   HorizontalLayoutRenderer,
@@ -62,6 +62,7 @@ import {SignatureControlRenderer, signatureControlTester} from "./controls/strin
 import {ListControlRenderer, listControlTester} from "./controls/list/list.control";
 import {DateTimeControlRenderer, dateTimeControlTester} from "./controls/date-time/date-time-control";
 import {RadioControlRenderer, radioControlTester} from "./controls/radio/radio-control";
+import {SimpleNumberControlRenderer} from "./controls/number/simple-number-control";
 
 export {
   booleanControlTester,
@@ -124,6 +125,7 @@ export {
 } from './layouts/categorization/categorization-tab-layout';
 export { CategoryRenderer } from './layouts/categorization/category/category';
 export { groupTester, GroupLayoutRenderer } from './layouts/group/group-layout';
+export {SimpleNumberControlRenderer} from "./controls/number/simple-number-control";
 
 export {
   listWithDetailTester,
@@ -143,6 +145,7 @@ export const ionicRenderers: { tester: any; renderer: any }[] = [
   { tester: stringControlTester, renderer: StringControlRenderer },
   { tester: multilineControlTester, renderer: MultilineControlRenderer },
   { tester: numberControlTester, renderer: NumberControlRenderer },
+  { tester: rankWith(3, isNumberControl), renderer: SimpleNumberControlRenderer },
   { tester: dateControlTester, renderer: DateControlRenderer },
   { tester: dateTimeControlTester, renderer: DateTimeControlRenderer },
   { tester: enumControlTester, renderer: EnumControlRenderer },
