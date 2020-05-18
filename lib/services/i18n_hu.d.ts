@@ -7,4 +7,7 @@ export declare class i18n_hu {
     'Válasszon időpontot': string;
     'Óra': string;
     'Perc': string;
+    'should be string': string;
+    'should be equal to one of the allowed values': string;
+    'Clear': string;
 }
