@@ -106,7 +106,9 @@ export class ListControlRenderer extends JsonFormsControl  implements OnInit {
     }
 
     addNew() {
-        this.addItem(this.propsPath)();
+        if(!this.readonly) {
+            this.addItem(this.propsPath)();
+        }
     }
 
     mapAdditionalProps(props: ArrayControlProps) {
