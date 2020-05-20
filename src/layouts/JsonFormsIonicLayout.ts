@@ -1,23 +1,20 @@
-import { Input, OnDestroy, OnInit } from '@angular/core';
-import {
-  JsonFormsState,
-  Layout,
-  mapStateToLayoutProps,
-  UISchemaElement
-} from 'jsonforms/packages/core';
-import { JsonFormsBaseRenderer } from 'jsonforms/packages/angular';
-import { NgRedux } from '@angular-redux/store';
+import {Input, OnDestroy, OnInit} from '@angular/core';
+import {JsonFormsState, Layout, mapStateToLayoutProps, UISchemaElement} from 'jsonforms/packages/core';
+import {JsonFormsBaseRenderer} from 'jsonforms/packages/angular';
+import {NgRedux} from '@angular-redux/store';
 import {Subscription} from "rxjs";
 
 export class JsonFormsIonicLayout extends JsonFormsBaseRenderer<Layout>
   implements OnInit, OnDestroy {
   @Input() path: string;
   @Input() visible: boolean;
+  @Input() disabled: boolean;
   elements: UISchemaElement[];
   subscription: Subscription;
   initializers: any[] = [];
 
   hidden: boolean;
+  enabled: boolean;
 
   constructor(protected ngRedux: NgRedux<JsonFormsState>) {
     super(<any>ngRedux);
@@ -35,6 +32,7 @@ export class JsonFormsIonicLayout extends JsonFormsBaseRenderer<Layout>
         this.uischema = props.uischema as Layout;
         this.schema = props.schema;
         this.hidden = !props.visible;
+        this.enabled = props.enabled;
 
         // if the layout has style but its element doesn't have one, than it get it's inherited style
         if(this.uischema && this.uischema.options && this.uischema && this.uischema.elements) {

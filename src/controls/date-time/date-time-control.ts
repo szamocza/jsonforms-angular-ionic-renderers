@@ -32,7 +32,7 @@ const getLocaleDateString = (locale: string): string => formats[locale] || 'yyyy
     `
     ],
     template: `
-        <ion-grid>
+        <ion-grid [hidden]="hidden">
             <ion-row>
                 <ion-col>
                     <ion-label class="date-label"

@@ -6,7 +6,7 @@ import { JsonFormsState } from 'jsonforms/packages/core';
 @Component({
   selector: 'jsonforms-autocomplete-control',
   template: `
-    <ion-item no-padding no-lines
+    <ion-item no-padding no-lines [hidden]="hidden"
               [ngStyle]="uischema && uischema.options && uischema.options.style"
               [ngClass]="{'filterOff': !filterOn && filterMode}"
     >

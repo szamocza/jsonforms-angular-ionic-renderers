@@ -6,7 +6,7 @@ import {and, isEnumControl, JsonFormsState, RankedTester, rankWith, schemaMatche
 @Component({
     selector: 'jsonforms-radio-control',
     template: `
-    <ion-list radio-group [(ngModel)]="data"  
+    <ion-list radio-group [(ngModel)]="data"   [hidden]="hidden"
               [ngStyle]="uischema && uischema.options && uischema.options.style"
               [ngClass]="{'filterOff': !filterOn && filterMode}"
               [disabled]="readonly || (filterMode && !filterOn)"

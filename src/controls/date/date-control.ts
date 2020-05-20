@@ -34,6 +34,7 @@ const getLocaleDateString = (locale: string): string => formats[locale] || 'yyyy
       <ion-item no-padding no-lines (click)="!readonly && openPicker()" 
                 [ngStyle]="uischema && uischema.options && uischema.options.style"
                 *ngIf="!filterMode"
+                [hidden]="hidden"
       >
         <ion-label stacked [color]="required&&!data ? 'danger' : 'medium'" class="date-label"
                    [ngClass]="{'no-error': !(required&&!data)}"

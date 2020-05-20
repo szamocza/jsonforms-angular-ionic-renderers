@@ -7,10 +7,12 @@ export declare class JsonFormsIonicLayout extends JsonFormsBaseRenderer<Layout> 
     protected ngRedux: NgRedux<JsonFormsState>;
     path: string;
     visible: boolean;
+    disabled: boolean;
     elements: UISchemaElement[];
     subscription: Subscription;
     initializers: any[];
     hidden: boolean;
+    enabled: boolean;
     constructor(ngRedux: NgRedux<JsonFormsState>);
     ngOnInit(): void;
     ngOnDestroy(): void;
