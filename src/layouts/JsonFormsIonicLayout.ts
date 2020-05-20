@@ -40,13 +40,9 @@ export class JsonFormsIonicLayout extends JsonFormsBaseRenderer<Layout>
         this.hidden = !props.visible;
         this.enabled = props.enabled;
 
-        console.log(state);
-        console.log(ownProps);
-        console.log(props);
-        console.log(this.uischema);
         let scope: string = this.uischema && (<any>this.uischema).scope;
-        if(this.uischema && this.uischema.selector && scope) {
-          let selectorVal = this.uischema.selector(scope);
+        if(this.selector && scope) {
+          let selectorVal = this.selector(scope);
           if(selectorVal != null) {
               this.visible = selectorVal != FieldPhaseSelector.HIDDEN;
               this.hidden = selectorVal == FieldPhaseSelector.HIDDEN;
