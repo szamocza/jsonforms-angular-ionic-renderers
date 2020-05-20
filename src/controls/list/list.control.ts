@@ -41,9 +41,9 @@ import {AlertController} from "ionic-angular";
                   [ngClass]="{'bordered': label}"
                   [hidden]="hidden"
         >
-            <ion-item *ngIf="!readonly">
+            <ion-item>
                 <ion-label>
-                    <ion-icon name="add" *ngIf="!filterMode" (click)="addNew()"></ion-icon>
+                    <ion-icon name="add" *ngIf="!filterMode && !readonly" (click)="addNew()"></ion-icon>
                     {{label}}
                 </ion-label>
             </ion-item>
