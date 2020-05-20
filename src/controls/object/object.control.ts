@@ -40,7 +40,7 @@ import {
     'class': 'object-control'
   },
   template: `
-    <ion-card [ngStyle]="uischema && uischema.options && uischema.options.style">
+    <ion-card [ngStyle]="uischema && uischema.options && uischema.options.style"  [hidden]="hidden">
       <ion-card-content [ngStyle]="uischema && uischema.options && uischema.options.style">
         <jsonforms-outlet
           [uischema]="detailUiSchema"

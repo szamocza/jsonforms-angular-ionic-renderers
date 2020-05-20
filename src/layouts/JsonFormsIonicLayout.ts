@@ -1,5 +1,11 @@
 import {Input, OnDestroy, OnInit} from '@angular/core';
-import {JsonFormsState, Layout, mapStateToLayoutProps, UISchemaElement} from 'jsonforms/packages/core';
+import {
+    FieldPhaseSelector,
+    JsonFormsState,
+    Layout,
+    mapStateToLayoutProps,
+    UISchemaElement
+} from 'jsonforms/packages/core';
 import {JsonFormsBaseRenderer} from 'jsonforms/packages/angular';
 import {NgRedux} from '@angular-redux/store';
 import {Subscription} from "rxjs";
@@ -33,6 +39,18 @@ export class JsonFormsIonicLayout extends JsonFormsBaseRenderer<Layout>
         this.schema = props.schema;
         this.hidden = !props.visible;
         this.enabled = props.enabled;
+
+        let scope: string = this.uischema && (<any>this.uischema).scope;
+        if(this.uischema && this.uischema.selector && scope) {
+          let selectorVal = this.uischema.selector(scope);
+          if(selectorVal != null) {
+              this.visible = selectorVal != FieldPhaseSelector.HIDDEN;
+              this.hidden = selectorVal == FieldPhaseSelector.HIDDEN;
+              this.enabled = selectorVal == FieldPhaseSelector.EDITABLE;
+              this.disabled = selectorVal == FieldPhaseSelector.READONLY;
+              this.readonly = selectorVal == FieldPhaseSelector.READONLY;
+          }
+        }
 
         // if the layout has style but its element doesn't have one, than it get it's inherited style
         if(this.uischema && this.uischema.options && this.uischema && this.uischema.elements) {

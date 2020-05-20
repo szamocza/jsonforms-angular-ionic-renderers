@@ -25,7 +25,7 @@ import {SignatureModalComponent} from "./modal/signature-modal";
         `
     ],
     template: `
-    <div (click)="!readonly && sign()" *ngIf="!filterMode">
+    <div (click)="!readonly && sign()" *ngIf="!filterMode" [hidden]="hidden">
         <ion-item no-padding no-lines text-wrap [hidden]="hidden" 
                   [ngStyle]="uischema && uischema.options && uischema.options.style">
           <ion-label [color]="required&&!data ? 'danger' : 'medium'">{{ label }}</ion-label>

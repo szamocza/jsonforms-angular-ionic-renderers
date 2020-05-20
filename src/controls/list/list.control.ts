@@ -39,6 +39,7 @@ import {AlertController} from "ionic-angular";
         <ion-list *ngIf="props && props.visible"
                   [ngStyle]="uischema && uischema.options && uischema.options.style"
                   [ngClass]="{'bordered': label}"
+                  [hidden]="hidden"
         >
             <ion-item *ngIf="!readonly">
                 <ion-label>
