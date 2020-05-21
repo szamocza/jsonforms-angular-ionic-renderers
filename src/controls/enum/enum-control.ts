@@ -13,7 +13,7 @@ import { JsonFormsControl } from 'jsonforms/packages/angular';
   template: `
     <ion-item no-padding no-lines 
               [ngStyle]="uischema && uischema.options && uischema.options.style"
-              [ngClass]="{'filterOff': !filterOn && filterMode}"
+              [ngClass]="{'filterOff': !filterOn && filterMode, 'readonly': readonly}"
     >
       <ion-label [color]="required&&!data ? 'danger' : 'medium'">{{ label }}</ion-label>
       <button ion-button clear color="dark" type="button" item-left (click)="toggleFilterMode(uischema)"

@@ -16,7 +16,7 @@ import { Toggle } from 'ionic-angular';
   template: `
     <ion-item no-padding [hidden]="hidden"
               [ngStyle]="uischema && uischema.options && uischema.options.style"
-              [ngClass]="{'filterOff': !filterOn && filterMode && label}">
+              [ngClass]="{'filterOff': !filterOn && filterMode && label, 'readonly': readonly}">
       <ion-label [color]="required&&!data ? 'danger' : 'medium'">
         <button ion-button tappable clear color="dark" type="button" item-left
                 class="check-filter-btn"

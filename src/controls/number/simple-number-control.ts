@@ -24,6 +24,7 @@ import {TextInput} from "ionic-angular";
       <ion-input #numberInput
         (click)="inputClick(numberInput)"
         type="number"
+        [ngClass]="{'readonly': readonly}"
         (ionChange)="onChange($event)"
         [disabled]="filterMode && !filterOn"
         [readonly]="readonly"

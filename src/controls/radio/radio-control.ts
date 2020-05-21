@@ -8,7 +8,7 @@ import {and, isEnumControl, JsonFormsState, RankedTester, rankWith, schemaMatche
     template: `
     <ion-list radio-group [(ngModel)]="data"   [hidden]="hidden"
               [ngStyle]="uischema && uischema.options && uischema.options.style"
-              [ngClass]="{'filterOff': !filterOn && filterMode}"
+              [ngClass]="{'filterOff': !filterOn && filterMode,'readonly': readonly}"
               [disabled]="readonly || (filterMode && !filterOn)"
     >
       <ion-label [color]="required&&!data ? 'danger' : 'medium'">{{ label }}</ion-label>

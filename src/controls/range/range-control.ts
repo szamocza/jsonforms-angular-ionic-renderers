@@ -37,7 +37,7 @@ import {
   template: `
     <ion-item no-padding [hidden]="hidden" 
               [ngStyle]="uischema && uischema.options && uischema.options.style"
-              [ngClass]="{'filterOff': !filterOn && filterMode}"
+              [ngClass]="{'filterOff': !filterOn && filterMode, 'readonly': readonly}"
     >
       <ion-label stacked [color]="required&&!data ? 'danger' : 'medium'">{{ label }}</ion-label>
       <button ion-button clear color="dark" type="button" item-left (click)="toggleFilterMode(uischema)"

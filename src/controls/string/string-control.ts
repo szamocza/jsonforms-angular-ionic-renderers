@@ -15,7 +15,7 @@ import {TextInput} from "ionic-angular";
     <ion-item no-padding no-lines 
               [hidden]="hidden" 
               [ngStyle]="uischema && uischema.options && uischema.options.style"
-              [ngClass]="{'filterOff': !filterOn && filterMode}"
+              [ngClass]="{'filterOff': !filterOn && filterMode, 'readonly': readonly}"
     >
       <ion-label [ngClass]="{'has-errors': error}" floating [color]="required&&!data ? 'danger' : 'medium'">
         {{ label }}
@@ -32,6 +32,7 @@ import {TextInput} from "ionic-angular";
         (ionChange)="onChange($event)"
         [value]="getValue()"
         [disabled]="filterMode && !filterOn"
+        [ngClass]="{'readonly': readonly}" 
         [readonly]="readonly"
         [id]="id"
         [formControl]="form"

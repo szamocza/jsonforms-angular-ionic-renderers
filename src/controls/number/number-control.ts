@@ -25,6 +25,7 @@ import { JsonFormsControl } from 'jsonforms/packages/angular';
       <ion-input
         type="text"
         placeholder="{{ description }}"
+        [ngClass]="{'readonly': readonly}"
         [id]="id"
         [value]="
           displayValue !== undefined && displayValue !== null

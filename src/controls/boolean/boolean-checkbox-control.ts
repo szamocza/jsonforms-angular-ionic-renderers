@@ -24,7 +24,7 @@ import { JsonFormsControl } from 'jsonforms/packages/angular';
   template: `
     <ion-item no-padding [hidden]="hidden" 
               [ngStyle]="uischema && uischema.options && uischema.options.style"
-              [ngClass]="{'filterOff': !filterOn && filterMode}"
+              [ngClass]="{'filterOff': !filterOn && filterMode, 'readonly': readonly}"
     >
       <ion-label [color]="required&&!data ? 'danger' : 'medium'">
         <button ion-button tappable clear color="dark" type="button" item-left

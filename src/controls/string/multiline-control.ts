@@ -14,7 +14,7 @@ import {TextInput} from "ionic-angular";
   template: `
     <ion-item no-padding no-lines text-wrap [hidden]="hidden" 
               [ngStyle]="uischema && uischema.options && uischema.options.style"
-              [ngClass]="{'filterOff': !filterOn && filterMode}"
+              [ngClass]="{'filterOff': !filterOn && filterMode, 'readonly': readonly}"
     >
       <ion-label [ngClass]="{'has-errors': error}" floating [color]="required&&!data ? 'danger' : 'medium'">{{ label }}</ion-label>
       <ion-label stacked *ngIf="error" color="danger">{{ error | translate }}</ion-label>
@@ -28,6 +28,7 @@ import {TextInput} from "ionic-angular";
         type="text"
         (ionChange)="onChange($event)"
         [value]="getValue()"
+        [ngClass]="{'readonly': readonly}"
         [disabled]="filterMode && !filterOn"
         [readonly]="readonly"
         [id]="id"

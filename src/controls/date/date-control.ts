@@ -33,6 +33,7 @@ const getLocaleDateString = (locale: string): string => formats[locale] || 'yyyy
   template: `
       <ion-item no-padding no-lines (click)="!readonly && openPicker()" 
                 [ngStyle]="uischema && uischema.options && uischema.options.style"
+                [ngClass]="{'readonly': readonly}"
                 *ngIf="!filterMode"
                 [hidden]="hidden"
       >
@@ -40,7 +41,8 @@ const getLocaleDateString = (locale: string): string => formats[locale] || 'yyyy
                    [ngClass]="{'no-error': !(required&&!data)}"
         >{{ label }}</ion-label>
         <ion-label #dateOpener tabindex="0" role="button" (keyup.enter)="!readonly && openPicker()" 
-                   class="left-margined" l10nTranslate>
+                   class="left-margined" l10nTranslate
+                    [ngClass]="{'readonly': readonly}">
           {{data ? (data | date:dateFormat) : ('Válasszon dátumot' | translate:locale)}}
         </ion-label>
       </ion-item>
