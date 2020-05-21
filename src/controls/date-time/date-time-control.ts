@@ -23,11 +23,11 @@ const getLocaleDateString = (locale: string): string => formats[locale] || 'yyyy
         .left-margined {
           margin-left: 4px;
         }
-        .date-label {
-            font-size: 11px;
-        }
         .date-label.no-error {
             color: #999;
+        }
+        ion-col {
+            padding: 0;
         }
     `
     ],
