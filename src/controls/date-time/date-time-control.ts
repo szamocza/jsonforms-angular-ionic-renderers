@@ -23,10 +23,10 @@ const getLocaleDateString = (locale: string): string => formats[locale] || 'yyyy
         .left-margined {
           margin-left: 4px;
         }
-        .date-label, .time-label {
+        .date-label {
             font-size: 11px;
         }
-        .date-label.no-error, .time-label.no-error {
+        .date-label.no-error {
             color: #999;
         }
     `
@@ -46,9 +46,6 @@ const getLocaleDateString = (locale: string): string => formats[locale] || 'yyyy
                               [ngStyle]="uischema && uischema.options && uischema.options.style"
                               *ngIf="!filterMode"
                     >
-                        <ion-label class="date-label"
-                                   [ngClass]="{'no-error': !(required&&!data)}" 
-                                stacked [color]="required&&!data ? 'danger' : 'medium'">{{ ('Válasszon dátumot' | translate:locale) }}</ion-label>
                         <ion-label item-content #dateOpener tabindex="0" role="button" (keyup.enter)="!readonly && openDatePicker()"
                                    class="left-margined" l10nTranslate
                                     [ngClass]="{'readonly': readonly}">
@@ -61,11 +58,6 @@ const getLocaleDateString = (locale: string): string => formats[locale] || 'yyyy
                               [ngStyle]="uischema && uischema.options && uischema.options.style"
                               *ngIf="!filterMode"
                     >
-                        <ion-label class="time-label"
-                                   [ngClass]="{'no-error': !(required&&!data)}" 
-                                stacked [color]="required&&!data ? 'danger' : 'medium'">
-                            {{ ('Válasszon időpontot' | translate:locale) }}
-                        </ion-label>
                         <ion-label item-content tabindex="0" role="button" 
                                    (keyup.enter)="!readonly && openTimePicker()"
                                    class="left-margined" l10nTranslate

@@ -109,5 +109,6 @@ export class TimeModalComponent implements TimeModalOptions {
 
     selectMinute(m: string) {
         this.selectedMinute = m;
+        this.save();
     }
 }
