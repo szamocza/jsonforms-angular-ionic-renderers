@@ -14,7 +14,9 @@ import { NgRedux } from '@angular-redux/store';
     'class': 'vertical-layout-control'
   },
   template: `
-    <div [ngStyle]="uischema && uischema.options && uischema.options.style" [hidden]="hidden">
+    <div [ngStyle]="uischema && uischema.options && uischema.options.style"
+         class="{{scopeClazz}}"
+         [hidden]="hidden">
       <ion-list no-lines *ngFor="let element of uischema?.elements; trackBy: trackElement"
                 [ngStyle]="uischema && uischema.options && uischema.options.style">
         <jsonforms-outlet

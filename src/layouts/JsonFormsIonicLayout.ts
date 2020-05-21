@@ -22,6 +22,8 @@ export class JsonFormsIonicLayout extends JsonFormsBaseRenderer<Layout>
   hidden: boolean;
   enabled: boolean;
 
+  scopeClazz: string = "";
+
   constructor(protected ngRedux: NgRedux<JsonFormsState>) {
     super(<any>ngRedux);
   }
@@ -41,6 +43,7 @@ export class JsonFormsIonicLayout extends JsonFormsBaseRenderer<Layout>
         this.enabled = props.enabled;
 
         let scope: string = this.uischema && (<any>this.uischema).scope;
+        this.setScopeClazz(scope);
         if(this.selector && scope) {
           let selectorVal = this.selector(scope);
           if(selectorVal != null) {
@@ -75,6 +78,15 @@ export class JsonFormsIonicLayout extends JsonFormsBaseRenderer<Layout>
 
         this.initializers.forEach(initializer => initializer(props));
       });
+  }
+
+  setScopeClazz(scope: string) {
+    if(scope) {
+        let scopeInfo = scope.split('@');
+        if(scopeInfo != null && scopeInfo.length>1) {
+            this.scopeClazz = scopeInfo[1];
+        }
+    }
   }
 
   ngOnDestroy() {

@@ -16,7 +16,9 @@ import { JsonFormsIonicLayout } from '../JsonFormsIonicLayout';
     'class': 'group-layout-control'
   },
   template: `
-    <ion-card [ngStyle]="uischema && uischema.options && uischema.options.style" [hidden]="hidden">
+    <ion-card [ngStyle]="uischema && uischema.options && uischema.options.style"
+              class="{{scopeClazz}}"
+              [hidden]="hidden">
       <ion-card-header> {{ label }} </ion-card-header>
       <ion-card-content>
         <div *ngFor="let element of uischema?.elements" [ngStyle]="uischema && uischema.options && uischema.options.style">

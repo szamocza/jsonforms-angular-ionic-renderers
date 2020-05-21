@@ -14,7 +14,9 @@ import { NgRedux } from '@angular-redux/store';
     'class': 'horizontal-layout-control'
   },
   template: `
-    <ion-grid [ngStyle]="uischema && uischema.options && uischema.options.style" [hidden]="hidden">
+    <ion-grid [ngStyle]="uischema && uischema.options && uischema.options.style"
+              class="{{scopeClazz}}"
+              [hidden]="hidden">
       <ion-row>
         <ion-col *ngFor="let element of uischema?.elements" [ngStyle]="uischema && uischema.options && uischema.options.style">
           <jsonforms-outlet
