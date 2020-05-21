@@ -43,16 +43,21 @@ export class JsonFormsIonicLayout extends JsonFormsBaseRenderer<Layout>
         this.enabled = props.enabled;
 
         let scope: string = this.uischema && (<any>this.uischema).scope;
-        this.setScopeClazz(scope);
-        if(this.selector && scope) {
-          let selectorVal = this.selector(scope);
-          if(selectorVal != null) {
-              this.visible = selectorVal != FieldPhaseSelector.HIDDEN;
-              this.hidden = selectorVal == FieldPhaseSelector.HIDDEN;
-              this.disabled = this.disabled || selectorVal == FieldPhaseSelector.READONLY;
-              this.readonly = this.readonly || selectorVal == FieldPhaseSelector.READONLY;
-              this.enabled = !this.disabled;
-          }
+        if(scope) {
+            let scopeInfo = scope.split('@');
+            if(scopeInfo != null) {
+                this.setScopeClazz(scopeInfo);
+                if(this.selector && scopeInfo.length>0) {
+                    let selectorVal = this.selector(scopeInfo[0]);
+                    if(selectorVal != null) {
+                        this.visible = selectorVal != FieldPhaseSelector.HIDDEN;
+                        this.hidden = selectorVal == FieldPhaseSelector.HIDDEN;
+                        this.disabled = this.disabled || selectorVal == FieldPhaseSelector.READONLY;
+                        this.readonly = this.readonly || selectorVal == FieldPhaseSelector.READONLY;
+                        this.enabled = !this.disabled;
+                    }
+                }
+            }
         }
 
         // if the layout has style but its element doesn't have one, than it get it's inherited style
@@ -80,12 +85,9 @@ export class JsonFormsIonicLayout extends JsonFormsBaseRenderer<Layout>
       });
   }
 
-  setScopeClazz(scope: string) {
-    if(scope) {
-        let scopeInfo = scope.split('@');
-        if(scopeInfo != null && scopeInfo.length>1) {
-            this.scopeClazz = scopeInfo[1];
-        }
+  setScopeClazz(scopeInfo: string[]) {
+    if(scopeInfo.length>1) {
+        this.scopeClazz = scopeInfo[1];
     }
   }
 

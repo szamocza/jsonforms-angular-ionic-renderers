@@ -16,6 +16,6 @@ export declare class JsonFormsIonicLayout extends JsonFormsBaseRenderer<Layout> 
     scopeClazz: string;
     constructor(ngRedux: NgRedux<JsonFormsState>);
     ngOnInit(): void;
-    setScopeClazz(scope: string): void;
+    setScopeClazz(scopeInfo: string[]): void;
     ngOnDestroy(): void;
 }
