@@ -14,6 +14,7 @@ export declare class DateTimeControlRenderer extends JsonFormsControl implements
     ngOnInit(): void;
     openTimePicker(): void;
     openDatePicker(): void;
+    focusDatePicker(): void;
     mapAdditionalProps(): void;
     handleChange($event: Moment): void;
     getTime(): any;

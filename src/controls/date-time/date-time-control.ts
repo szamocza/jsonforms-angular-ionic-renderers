@@ -151,17 +151,24 @@ export class DateTimeControlRenderer extends JsonFormsControl implements OnInit 
                         millisecond:0
                     });
                     this.handleChange(date);
+                    setTimeout(() => this.openTimePicker(), 150);
                 } else {
                     this.handleChange(undefined);
+                    this.focusDatePicker();
                 }
-            }
-            if(this.dateOpener && this.dateOpener.nativeElement) {
-                setTimeout(() => {
-                    this.dateOpener.nativeElement.focus();
-                }, 100);
+            } else {
+                this.focusDatePicker();
             }
         });
         select.present();
+    }
+
+    focusDatePicker() {
+        if(this.dateOpener && this.dateOpener.nativeElement) {
+            setTimeout(() => {
+                this.dateOpener.nativeElement.focus();
+            }, 100);
+        }
     }
 
     mapAdditionalProps() {
