@@ -21,6 +21,7 @@ export interface SignatureModalOptions {
                 border: 1px solid grey;
                 text-align: center;
                 margin: 0 auto;
+                background-repeat: no-repeat;
             }
         `
     ],
