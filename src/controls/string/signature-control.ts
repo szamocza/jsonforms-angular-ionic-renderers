@@ -94,11 +94,13 @@ export class SignatureControlRenderer extends JsonFormsControl {
                 this.placeHolder = this.uischema.options.placeHolder;
             }
             if(this.uischema.options.background) {
-                this.backgroundStyle = {'background-image': this.uischema.options.background};
+                this.backgroundStyle = {
+                    'background-image': this.uischema.options.background,
+                    'height': this.height + 'px',
+                    'width': this.width + 'px'
+                };
                 this.placeHolder = null;
             }
-            console.log(this.uischema.options.background);
-            console.log(this.backgroundStyle);
         }
     }
 
