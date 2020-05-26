@@ -44,11 +44,7 @@ export interface SignatureModalOptions {
     <ion-content #contentWrapper class="ion-padding noselect">
         <div class="signature-wrapper">
             <ion-label position="stacked">Aláírás</ion-label>
-            <div class="signature-pad-wrapper" 
-                 [ngStyle]="{
-                    'width': width+'px',
-                    'height': height+'px'                    
-                }">
+            <div class="signature-pad-wrapper" [ngStyle]="backgroundStyle">
                 <signature-pad [options]="signaturePadOptions" (onBeginEvent)="drawStart()" 
                                (onEndEvent)="drawComplete()"
                 ></signature-pad>
@@ -64,6 +60,7 @@ export class SignatureModalComponent implements SignatureModalOptions, AfterView
     public title: string;
     public width: number = 400;
     public height: number = 100;
+    public backgroundStyle: object = {};
     public signature: string;
     public signaturePadOptions: Object;
 
@@ -71,6 +68,10 @@ export class SignatureModalComponent implements SignatureModalOptions, AfterView
         navParams: NavParams,
         private viewCtrl: ViewController
     ) {
+        this.backgroundStyle = {
+            'width': this.width+'px',
+            'height': this.height+'px'
+        };
         let params: SignatureModalOptions = navParams.data;
         Object.assign(this, params);
         this.signaturePadOptions = { // passed through to szimek/signature_pad constructor
@@ -79,7 +80,6 @@ export class SignatureModalComponent implements SignatureModalOptions, AfterView
             'canvasHeight': this.height
         };
     }
-
 
     ngAfterViewInit() {
         setTimeout(() => {

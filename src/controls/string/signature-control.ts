@@ -108,6 +108,7 @@ export class SignatureControlRenderer extends JsonFormsControl {
         let select = this.modalCtrl.create(SignatureModalComponent, {
             width: this.width,
             height: this.height,
+            backgroundStyle: this.backgroundStyle,
             title: this.label,
             canClear: true,
         });

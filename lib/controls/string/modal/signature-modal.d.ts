@@ -11,6 +11,7 @@ export declare class SignatureModalComponent implements SignatureModalOptions, A
     title: string;
     width: number;
     height: number;
+    backgroundStyle: object;
     signature: string;
     signaturePadOptions: Object;
     constructor(navParams: NavParams, viewCtrl: ViewController);
