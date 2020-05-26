@@ -8,7 +8,7 @@ export declare class SignatureControlRenderer extends JsonFormsControl {
     height: number;
     width: number;
     placeHolder: string;
-    backgroundStyle: string;
+    backgroundStyle: Object;
     constructor(ngRedux: NgRedux<JsonFormsState>, modalCtrl: ModalController);
     getValue: () => any;
     mapAdditionalProps(props: ControlProps): void;

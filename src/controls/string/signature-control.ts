@@ -70,7 +70,7 @@ export class SignatureControlRenderer extends JsonFormsControl {
     height: number = 100;
     width: number = 400;
     placeHolder: string = this.noImage;
-    backgroundStyle: string = "";
+    backgroundStyle: Object = {};
 
     constructor(
         ngRedux: NgRedux<JsonFormsState>,
@@ -94,7 +94,7 @@ export class SignatureControlRenderer extends JsonFormsControl {
                 this.placeHolder = this.uischema.options.placeHolder;
             }
             if(this.uischema.options.background) {
-                this.backgroundStyle = "{'background-image': " + this.uischema.options.background + "}";
+                this.backgroundStyle = {'background-image': this.uischema.options.background};
             }
         }
     }
