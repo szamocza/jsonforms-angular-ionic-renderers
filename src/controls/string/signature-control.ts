@@ -17,6 +17,10 @@ import {SignatureModalComponent} from "./modal/signature-modal";
     selector: 'jsonforms-signature-control',
     styles: [
         `
+            .no-repeat-background {
+                background-repeat: no-repeat;
+            }
+            
             .sign-img {
                 height: 100px;
                 width: 400px;
@@ -30,8 +34,8 @@ import {SignatureModalComponent} from "./modal/signature-modal";
                   [ngStyle]="uischema && uischema.options && uischema.options.style">
           <ion-label [color]="required&&!data ? 'danger' : 'medium'">{{ label }}</ion-label>
         </ion-item>
-        <div>
-            <img class="sign-img"
+        <div [ngStyle]="backgroundStyle" class="no-repeat-background">
+            <img class="sign-img" *ngIf="data || placeHolder"
                  [ngStyle]="{'height': this.height + 'px', 'width': this.width + 'px'}"
                  [src]="data ? data : placeHolder
                      
@@ -66,6 +70,7 @@ export class SignatureControlRenderer extends JsonFormsControl {
     height: number = 100;
     width: number = 400;
     placeHolder: string = this.noImage;
+    backgroundStyle: string = "";
 
     constructor(
         ngRedux: NgRedux<JsonFormsState>,
@@ -87,6 +92,9 @@ export class SignatureControlRenderer extends JsonFormsControl {
             }
             if(this.uischema.options.placeHolder) {
                 this.placeHolder = this.uischema.options.placeHolder;
+            }
+            if(this.uischema.options.background) {
+                this.backgroundStyle = "{'background-image': " + this.uischema.options.background + "}";
             }
         }
     }
