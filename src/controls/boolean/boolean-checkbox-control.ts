@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NgRedux } from '@angular-redux/store';
 import {
+  ControlProps,
   isBooleanControl,
   JsonFormsState,
   RankedTester,
@@ -39,7 +40,7 @@ import { JsonFormsControl } from 'jsonforms/packages/angular';
           <ion-icon [name]="filterOn ? 'ios-funnel' : 'ios-funnel-outline'"></ion-icon>
         </button>
         <img class="cb-picture" *ngIf="uischema && uischema.options && uischema.options.pictureUri" 
-             [src]="uischema.options.pictureUri" height="42" width="42" />
+             [src]="uischema.options.pictureUri" height="{{this.height}}" width="{{this.width}}" />
         <span>{{ label }}</span>
       </ion-label>
       <ion-label stacked *ngIf="error" color="danger">{{ error | translate }}</ion-label>
@@ -53,10 +54,25 @@ import { JsonFormsControl } from 'jsonforms/packages/angular';
   `
 })
 export class BooleanCheckboxControlRenderer extends JsonFormsControl {
+  height: number = 42;
+  width: number = 42;
+
   constructor(ngRedux: NgRedux<JsonFormsState>) {
     super(<any>ngRedux);
   }
   isChecked = () => this.data || false;
+
+  // @ts-ignore
+  mapAdditionalProps(props: ControlProps) {
+    if (this.uischema.options) {
+      if (this.uischema.options.width) {
+        this.width = this.uischema.options.width;
+      }
+      if (this.uischema.options.height) {
+        this.height = this.uischema.options.height;
+      }
+    }
+  }
 
   toggleFilterModeForChk(uischema: any) {
     if(!this.data) {
