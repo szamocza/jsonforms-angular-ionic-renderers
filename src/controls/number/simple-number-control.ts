@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {JsonFormsState} from 'jsonforms/packages/core';
+import {ControlProps, JsonFormsState} from 'jsonforms/packages/core';
 import {NgRedux} from '@angular-redux/store';
 import {JsonFormsControl} from 'jsonforms/packages/angular';
 import {TextInput} from "ionic-angular";
@@ -15,12 +15,17 @@ import {TextInput} from "ionic-angular";
       <ion-label [ngClass]="{'has-errors': !!error}" floating [color]="required&&!data ? 'danger' : 'medium'">
         {{ label }}
       </ion-label>
-      <button ion-button clear color="dark" type="button" item-left (click)="toggleFilterMode(uischema)" 
+        <img item-content *ngIf="uischema && uischema.options && uischema.options.pictureUri"
+             [src]="uischema.options.pictureUri"
+             [ngStyle]="{'height': this.height + 'px', 'width': this.width + 'px'}" />
+
+        <button ion-button clear color="dark" type="button" item-left (click)="toggleFilterMode(uischema)" 
               *ngIf="filterMode"
               [ngStyle]="uischema && uischema.options && uischema.options.style"
       >
         <ion-icon [name]="filterOn ? 'ios-funnel' : 'ios-funnel-outline'"></ion-icon>
       </button>
+        
       <ion-input #numberInput
         (click)="inputClick(numberInput)"
         type="number"
@@ -37,6 +42,9 @@ import {TextInput} from "ionic-angular";
   `
 })
 export class SimpleNumberControlRenderer extends JsonFormsControl {
+    height: number = 42;
+    width: number = 42;
+
     constructor(ngRedux: NgRedux<JsonFormsState>) {
         super(<any>ngRedux);
     }
@@ -46,6 +54,18 @@ export class SimpleNumberControlRenderer extends JsonFormsControl {
             return parseInt(ev.value);
         }
         return null;
+    }
+
+    // @ts-ignore
+    mapAdditionalProps(props: ControlProps) {
+        if (this.uischema.options) {
+            if (this.uischema.options.width) {
+                this.width = this.uischema.options.width;
+            }
+            if (this.uischema.options.height) {
+                this.height = this.uischema.options.height;
+            }
+        }
     }
 
     inputClick(numberInput: TextInput) {

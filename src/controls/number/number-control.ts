@@ -20,12 +20,13 @@ import { JsonFormsControl } from 'jsonforms/packages/angular';
               *ngIf="!filterMode"
               [ngStyle]="uischema && uischema.options && uischema.options.style"
     >
-      <ion-label stacked [color]="required&&!data ? 'danger' : 'medium'">{{ label }}</ion-label>
-      <ion-label stacked *ngIf="error" color="danger">{{ error | translate }}</ion-label>
-      <img item-content item-start 
-           *ngIf="uischema && uischema.options && uischema.options.pictureUri"
+      <ion-label stacked [color]="required&&!data ? 'danger' : 'medium'">
+        {{ label }}
+      </ion-label>
+      <img item-content *ngIf="uischema && uischema.options && uischema.options.pictureUri"
            [src]="uischema.options.pictureUri"
-           [ngStyle]="{'height': this.height + 'px', 'width': this.width + 'px'}" />
+           [ngStyle]="{'height': this.height + 'px', 'width': this.width + 'px'}" />        
+      <ion-label stacked *ngIf="error" color="danger">{{ error | translate }}</ion-label>
       <ion-input
         type="text"
         placeholder="{{ description }}"
@@ -96,7 +97,6 @@ export class NumberControlRenderer extends JsonFormsControl {
         this.height = this.uischema.options.height;
       }
     }
-    console.log(this.uischema);
   }
 }
 
