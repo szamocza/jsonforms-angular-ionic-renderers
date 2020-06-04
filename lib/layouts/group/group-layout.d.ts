@@ -1,4 +1,4 @@
-import { ControlProps, JsonFormsState, RankedTester } from 'jsonforms/packages/core';
+import { JsonFormsState, RankedTester } from 'jsonforms/packages/core';
 import { NgRedux } from '@angular-redux/store';
 import { JsonFormsIonicLayout } from '../JsonFormsIonicLayout';
 export declare class GroupLayoutRenderer extends JsonFormsIonicLayout {
@@ -6,6 +6,6 @@ export declare class GroupLayoutRenderer extends JsonFormsIonicLayout {
     height: number;
     width: number;
     constructor(ngRedux: NgRedux<JsonFormsState>);
-    mapAdditionalProps(props: ControlProps): void;
+    mapAdditionalProps: (props: any) => void;
 }
 export declare const groupTester: RankedTester;

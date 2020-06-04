@@ -1,5 +1,4 @@
 import {
-  ControlProps,
   GroupLayout,
   JsonFormsProps,
   JsonFormsState,
@@ -45,11 +44,12 @@ export class GroupLayoutRenderer extends JsonFormsIonicLayout {
     super(<any>ngRedux);
     this.initializers.push((props: JsonFormsProps) => {
       this.label = (props.uischema as GroupLayout).label;
+      this.mapAdditionalProps(props);
     });
   }
 
   // @ts-ignore
-  mapAdditionalProps(props: ControlProps) {
+  mapAdditionalProps = (props: any) => {
     if (this.uischema.options) {
       if (this.uischema.options.width) {
         this.width = this.uischema.options.width;
