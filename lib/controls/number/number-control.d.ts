@@ -7,6 +7,8 @@ export declare class NumberControlRenderer extends JsonFormsControl {
     step: number;
     locale: string;
     displayValue: string;
+    height: number;
+    width: number;
     constructor(ngRedux: NgRedux<JsonFormsState>);
     getEventValue: (event: any) => any;
     mapAdditionalProps(props: ControlProps): void;

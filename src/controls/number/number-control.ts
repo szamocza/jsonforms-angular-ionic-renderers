@@ -22,6 +22,9 @@ import { JsonFormsControl } from 'jsonforms/packages/angular';
     >
       <ion-label stacked [color]="required&&!data ? 'danger' : 'medium'">{{ label }}</ion-label>
       <ion-label stacked *ngIf="error" color="danger">{{ error | translate }}</ion-label>
+      <img *ngIf="uischema && uischema.options && uischema.options.pictureUri"
+           [src]="uischema.options.pictureUri"
+           [ngStyle]="{'height': this.height + 'px', 'width': this.width + 'px'}" />
       <ion-input
         type="text"
         placeholder="{{ description }}"
@@ -49,6 +52,9 @@ export class NumberControlRenderer extends JsonFormsControl {
   step: number;
   locale: string;
   displayValue: string;
+
+  height: number = 42;
+  width: number = 42;
 
   constructor(
     ngRedux: NgRedux<JsonFormsState>
@@ -80,6 +86,14 @@ export class NumberControlRenderer extends JsonFormsControl {
       this.step = props.scopedSchema.multipleOf || defaultStep;
       this.locale = getLocale(this.ngRedux.getState());
       this.displayValue = props.data;
+    }
+    if (this.uischema.options) {
+      if (this.uischema.options.width) {
+        this.width = this.uischema.options.width;
+      }
+      if (this.uischema.options.height) {
+        this.height = this.uischema.options.height;
+      }
     }
   }
 }

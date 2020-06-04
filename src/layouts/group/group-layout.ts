@@ -1,4 +1,5 @@
 import {
+  ControlProps,
   GroupLayout,
   JsonFormsProps,
   JsonFormsState,
@@ -19,6 +20,9 @@ import { JsonFormsIonicLayout } from '../JsonFormsIonicLayout';
     <ion-card [ngStyle]="uischema && uischema.options && uischema.options.style"
               class="{{scopeClazz}}"
               [hidden]="hidden">
+      <img *ngIf="uischema && uischema.options && uischema.options.pictureUri"
+            [src]="uischema.options.pictureUri"
+            [ngStyle]="{'height': this.height + 'px', 'width': this.width + 'px'}" />
       <ion-card-header> {{ label }} </ion-card-header>
       <ion-card-content>
         <div *ngFor="let element of uischema?.elements" [ngStyle]="uischema && uischema.options && uischema.options.style">
@@ -34,12 +38,26 @@ import { JsonFormsIonicLayout } from '../JsonFormsIonicLayout';
 })
 export class GroupLayoutRenderer extends JsonFormsIonicLayout {
   label: string;
+  height: number = 42;
+  width: number = 42;
 
   constructor(ngRedux: NgRedux<JsonFormsState>) {
     super(<any>ngRedux);
     this.initializers.push((props: JsonFormsProps) => {
       this.label = (props.uischema as GroupLayout).label;
     });
+  }
+
+  // @ts-ignore
+  mapAdditionalProps(props: ControlProps) {
+    if (this.uischema.options) {
+      if (this.uischema.options.width) {
+        this.width = this.uischema.options.width;
+      }
+      if (this.uischema.options.height) {
+        this.height = this.uischema.options.height;
+      }
+    }
   }
 }
 
