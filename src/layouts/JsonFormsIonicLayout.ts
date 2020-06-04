@@ -66,7 +66,7 @@ export class JsonFormsIonicLayout extends JsonFormsBaseRenderer<Layout>
             if(element) {
               if(!element.options) element.options = {};
               for(let key in this.uischema.options) {
-                if(this.uischema.options.hasOwnProperty(key)) {
+                if(this.uischema.options.hasOwnProperty(key) && key!="pictureUri") {
                   if(this.uischema.options[key] && !element.options[key]) {
                       element.options[key] = this.uischema.options[key];
                   } else if(this.uischema.options[key] && element.options[key]
