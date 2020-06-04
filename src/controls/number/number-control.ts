@@ -22,7 +22,7 @@ import { JsonFormsControl } from 'jsonforms/packages/angular';
     >
       <ion-label stacked [color]="required&&!data ? 'danger' : 'medium'">{{ label }}</ion-label>
       <ion-label stacked *ngIf="error" color="danger">{{ error | translate }}</ion-label>
-      <img *ngIf="uischema && uischema.options && uischema.options.pictureUri"
+      <img item-content *ngIf="uischema && uischema.options && uischema.options.pictureUri"
            [src]="uischema.options.pictureUri"
            [ngStyle]="{'height': this.height + 'px', 'width': this.width + 'px'}" />
       <ion-input

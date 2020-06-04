@@ -20,10 +20,10 @@ import { JsonFormsIonicLayout } from '../JsonFormsIonicLayout';
     <ion-card [ngStyle]="uischema && uischema.options && uischema.options.style"
               class="{{scopeClazz}}"
               [hidden]="hidden">
-      <img *ngIf="uischema && uischema.options && uischema.options.pictureUri"
-            [src]="uischema.options.pictureUri"
-            [ngStyle]="{'height': this.height + 'px', 'width': this.width + 'px'}" />
       <ion-card-header> {{ label }} </ion-card-header>
+      <img *ngIf="uischema && uischema.options && uischema.options.pictureUri"
+           [src]="uischema.options.pictureUri"
+           [ngStyle]="{'height': this.height + 'px', 'width': this.width + 'px'}" />
       <ion-card-content>
         <div *ngFor="let element of uischema?.elements" [ngStyle]="uischema && uischema.options && uischema.options.style">
           <jsonforms-outlet
