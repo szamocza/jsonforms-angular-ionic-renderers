@@ -23,6 +23,7 @@ import { JsonFormsControl } from 'jsonforms/packages/angular';
         
         .cb-picture {
           vertical-align: middle;
+          display: inline-block;
         }
     `
   ],
