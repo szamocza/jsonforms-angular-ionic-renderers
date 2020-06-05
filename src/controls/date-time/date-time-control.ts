@@ -114,7 +114,7 @@ export class DateTimeControlRenderer extends JsonFormsControl implements OnInit 
                     this.data.set({hour:Number(date.hours),minute:Number(date.minutes),second:0,millisecond:0});
                     this.handleChange(this.data);
                     if(openDatePicker) {
-                        setTimeout(() => this.openDatePicker(), 150);
+                        setTimeout(() => this.openDatePicker(true), 150);
                     }
                 } else {
                     this.handleChange(undefined);
@@ -129,7 +129,7 @@ export class DateTimeControlRenderer extends JsonFormsControl implements OnInit 
         select.present();
     }
 
-    openDatePicker() {
+    openDatePicker(noTimePickerOpener?: boolean) {
         let date = undefined;
         let oldHour = 0;
         let oldMinute = 0;
@@ -156,7 +156,9 @@ export class DateTimeControlRenderer extends JsonFormsControl implements OnInit 
                         millisecond:0
                     });
                     this.handleChange(date);
-                    setTimeout(() => this.openTimePicker(), 150);
+                    if(!noTimePickerOpener) {
+                        setTimeout(() => this.openTimePicker(), 150);
+                    }
                 } else {
                     this.handleChange(undefined);
                     this.focusDatePicker();

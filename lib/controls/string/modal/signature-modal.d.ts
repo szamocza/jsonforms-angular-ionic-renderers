@@ -3,6 +3,9 @@ import { NavParams, ViewController } from "ionic-angular";
 import { SignaturePad } from "angular2-signaturepad/signature-pad";
 export interface SignatureModalOptions {
     title: string;
+    width: number;
+    height: number;
+    backgroundStyle: Object;
 }
 export declare class SignatureModalComponent implements SignatureModalOptions, AfterViewInit {
     private viewCtrl;

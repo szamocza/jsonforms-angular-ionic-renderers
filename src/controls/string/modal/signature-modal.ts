@@ -4,6 +4,9 @@ import {SignaturePad} from "angular2-signaturepad/signature-pad";
 
 export interface SignatureModalOptions {
     title: string;
+    width: number;
+    height: number
+    backgroundStyle: Object;
 }
 
 @Component({
@@ -69,12 +72,12 @@ export class SignatureModalComponent implements SignatureModalOptions, AfterView
         navParams: NavParams,
         private viewCtrl: ViewController
     ) {
+        let params: SignatureModalOptions = navParams.data;
+        Object.assign(this, params);
         this.backgroundStyle = {
             'width': this.width+'px',
             'height': this.height+'px'
         };
-        let params: SignatureModalOptions = navParams.data;
-        Object.assign(this, params);
         this.signaturePadOptions = { // passed through to szimek/signature_pad constructor
             'minWidth': 1,
             'canvasWidth': this.width,
