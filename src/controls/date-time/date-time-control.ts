@@ -104,13 +104,18 @@ export class DateTimeControlRenderer extends JsonFormsControl implements OnInit 
         select.onDidDismiss((date: {hours: string, minutes: string}, role: string) => {
             if(role == 'done') {
                 if(date) {
+                    let openDatePicker = false;
                     if(!this.data) {
                         this.data = this.moment();
+                        openDatePicker = true;
                     } else {
                         this.data = this.moment(this.data);
                     }
                     this.data.set({hour:Number(date.hours),minute:Number(date.minutes),second:0,millisecond:0});
                     this.handleChange(this.data);
+                    if(openDatePicker) {
+                        setTimeout(() => this.openDatePicker(), 150);
+                    }
                 } else {
                     this.handleChange(undefined);
                 }
