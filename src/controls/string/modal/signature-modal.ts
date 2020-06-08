@@ -74,10 +74,12 @@ export class SignatureModalComponent implements SignatureModalOptions, AfterView
     ) {
         let params: SignatureModalOptions = navParams.data;
         Object.assign(this, params);
-        this.backgroundStyle = {
-            'width': this.width+'px',
-            'height': this.height+'px'
-        };
+        if(!this.backgroundStyle) {
+            this.backgroundStyle = {
+                'width': this.width+'px',
+                'height': this.height+'px'
+            };
+        }
         this.signaturePadOptions = { // passed through to szimek/signature_pad constructor
             'minWidth': 1,
             'canvasWidth': this.width,
