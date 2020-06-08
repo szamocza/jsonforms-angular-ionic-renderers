@@ -92,41 +92,45 @@ export class DateTimeControlRenderer extends JsonFormsControl implements OnInit 
         super.ngOnInit();
     }
 
-    openTimePicker() {
-        let select = this.modalCtrl.create(TimeModalComponent, {
-            title: this.label,
-            canClear: true,
-            selectedHour: this.data ? this.moment(this.data).format("HH") : null,
-            selectedMinute: this.data ? this.moment(this.data).format("mm") : null
-        }, {
-            cssClass: 'time-modal'
-        });
-        select.onDidDismiss((date: {hours: string, minutes: string}, role: string) => {
-            if(role == 'done') {
-                if(date) {
-                    let openDatePicker = false;
-                    if(!this.data) {
-                        this.data = this.moment();
-                        openDatePicker = true;
+    openTimePicker(noDatePickerOpener?: boolean) {
+        if(!this.data && !noDatePickerOpener) {
+            this.openDatePicker();
+        } else {
+            let select = this.modalCtrl.create(TimeModalComponent, {
+                title: this.label,
+                canClear: true,
+                selectedHour: this.data ? this.moment(this.data).format("HH") : null,
+                selectedMinute: this.data ? this.moment(this.data).format("mm") : null
+            }, {
+                cssClass: 'time-modal'
+            });
+            select.onDidDismiss((date: { hours: string, minutes: string }, role: string) => {
+                if (role == 'done') {
+                    if (date) {
+                        if (!this.data) {
+                            this.data = this.moment();
+                        } else {
+                            this.data = this.moment(this.data);
+                        }
+                        this.data.set({
+                            hour: Number(date.hours),
+                            minute: Number(date.minutes),
+                            second: 0,
+                            millisecond: 0
+                        });
+                        this.handleChange(this.data);
                     } else {
-                        this.data = this.moment(this.data);
+                        this.handleChange(undefined);
                     }
-                    this.data.set({hour:Number(date.hours),minute:Number(date.minutes),second:0,millisecond:0});
-                    this.handleChange(this.data);
-                    if(openDatePicker) {
-                        setTimeout(() => this.openDatePicker(true), 150);
-                    }
-                } else {
-                    this.handleChange(undefined);
                 }
-            }
-            if(this.dateOpener && this.dateOpener.nativeElement) {
-                setTimeout(() => {
-                    this.dateOpener.nativeElement.focus();
-                }, 100);
-            }
-        });
-        select.present();
+                if (this.dateOpener && this.dateOpener.nativeElement) {
+                    setTimeout(() => {
+                        this.dateOpener.nativeElement.focus();
+                    }, 100);
+                }
+            });
+            select.present();
+        }
     }
 
     openDatePicker(noTimePickerOpener?: boolean) {
@@ -157,7 +161,7 @@ export class DateTimeControlRenderer extends JsonFormsControl implements OnInit 
                     });
                     this.handleChange(date);
                     if(!noTimePickerOpener) {
-                        setTimeout(() => this.openTimePicker(), 150);
+                        setTimeout(() => this.openTimePicker(true), 150);
                     }
                 } else {
                     this.handleChange(undefined);

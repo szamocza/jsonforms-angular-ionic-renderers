@@ -12,7 +12,7 @@ export declare class DateTimeControlRenderer extends JsonFormsControl implements
     moment: any;
     constructor(ngRedux: NgRedux<JsonFormsState>, modalCtrl: ModalController);
     ngOnInit(): void;
-    openTimePicker(): void;
+    openTimePicker(noDatePickerOpener?: boolean): void;
     openDatePicker(noTimePickerOpener?: boolean): void;
     focusDatePicker(): void;
     mapAdditionalProps(): void;
