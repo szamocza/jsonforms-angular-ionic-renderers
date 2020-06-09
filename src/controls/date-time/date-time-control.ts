@@ -29,45 +29,41 @@ const getLocaleDateString = (locale: string): string => formats[locale] || 'yyyy
         ion-col {
             padding: 0;
         }
+        ion-row {
+            padding: 0;
+        }
     `
     ],
     template: `
-        <ion-grid [hidden]="hidden">
-            <ion-row>
-                <ion-col>
-                    <ion-label class="date-label"
-                               [ngClass]="{'no-error': !(required&&!data)}" 
-                            stacked [color]="required&&!data ? 'danger' : 'medium'">{{ label }}</ion-label>                    
-                </ion-col>
-            </ion-row>
-            <ion-row>
-                <ion-col>
-                    <ion-item no-padding no-lines (click)="!readonly && openDatePicker()"
+        <ion-item [hidden]="hidden">
+            <ion-label class="date-label"
+                       [ngClass]="{'no-error': !(required&&!data)}"
+                       stacked [color]="required&&!data ? 'danger' : 'medium'">{{ label }}</ion-label>
+            <ion-grid item-content>
+                <ion-row>
+                    <ion-col (click)="!readonly && openDatePicker()"
                               [ngStyle]="uischema && uischema.options && uischema.options.style"
-                              *ngIf="!filterMode"
-                    >
-                        <ion-label item-content #dateOpener tabindex="0" role="button" (keyup.enter)="!readonly && openDatePicker()"
+                              *ngIf="!filterMode">
+                        <ion-label #dateOpener tabindex="0" role="button" (keyup.enter)="!readonly && openDatePicker()"
                                    class="left-margined" l10nTranslate
-                                    [ngClass]="{'readonly': readonly}">
+                                   [ngClass]="{'readonly': readonly}">
                             {{data ? (data | date:dateFormat) : '-'}}
                         </ion-label>
-                    </ion-item> 
-                </ion-col>
-                <ion-col>
-                    <ion-item no-padding no-lines (click)="!readonly && openTimePicker()"
+                    </ion-col>
+                    <ion-col (click)="!readonly && openTimePicker()"
                               [ngStyle]="uischema && uischema.options && uischema.options.style"
-                              *ngIf="!filterMode"
-                    >
-                        <ion-label item-content tabindex="0" role="button" 
+                              *ngIf="!filterMode">
+                        <ion-label tabindex="0" role="button"
                                    (keyup.enter)="!readonly && openTimePicker()"
                                    class="left-margined" l10nTranslate
                                    [ngClass]="{'readonly': readonly}">
                             {{ getTime() }}
                         </ion-label>
-                    </ion-item>
-                </ion-col>
-            </ion-row>
-        </ion-grid>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </ion-item>
+
   `
 })
 export class DateTimeControlRenderer extends JsonFormsControl implements OnInit {
