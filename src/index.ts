@@ -63,7 +63,6 @@ import {ListControlRenderer, listControlTester} from "./controls/list/list.contr
 import {DateTimeControlRenderer, dateTimeControlTester} from "./controls/date-time/date-time-control";
 import {RadioControlRenderer, radioControlTester} from "./controls/radio/radio-control";
 import {SimpleNumberControlRenderer} from "./controls/number/simple-number-control";
-import {LabelLayoutRenderer, labelLayoutTester} from "./layouts/label/label-layout";
 
 export {
   booleanControlTester,
@@ -158,7 +157,6 @@ export const ionicRenderers: { tester: any; renderer: any }[] = [
 
   // layouts
   { tester: horizontalLayoutTester, renderer: HorizontalLayoutRenderer },
-  { tester: labelLayoutTester, renderer: LabelLayoutRenderer },
   { tester: gridLayoutTester, renderer: GridLayoutRenderer },
   { tester: verticalLayoutTester, renderer: VerticalLayoutRenderer },
   { tester: categorizationTester, renderer: CategorizationTabLayoutRenderer },
