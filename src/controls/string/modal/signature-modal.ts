@@ -47,7 +47,6 @@ export interface SignatureModalOptions {
 
     <ion-content #contentWrapper class="ion-padding noselect">
         <div class="signature-wrapper">
-            <ion-label position="stacked">Aláírás</ion-label>
             <div class="signature-pad-wrapper" [ngStyle]="backgroundStyle">
                 <signature-pad [options]="signaturePadOptions" (onBeginEvent)="drawStart()" 
                                (onEndEvent)="drawComplete()"
