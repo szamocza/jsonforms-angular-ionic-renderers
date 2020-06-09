@@ -43,6 +43,7 @@ import {DateTimeControlRenderer} from "./controls/date-time/date-time-control";
 import {TimeModalComponent} from "./controls/date-time/modal/time-modal";
 import {RadioControlRenderer} from "./controls/radio/radio-control";
 import {SimpleNumberControlRenderer} from "./controls/number/simple-number-control";
+import {LabelLayoutRenderer} from "./layouts/label/label-layout";
 
 @NgModule({
   declarations: [
@@ -63,6 +64,7 @@ import {SimpleNumberControlRenderer} from "./controls/number/simple-number-contr
     // layouts
     HorizontalLayoutRenderer,
     GridLayoutRenderer,
+    LabelLayoutRenderer,
     VerticalLayoutRenderer,
     CategorizationTabLayoutRenderer,
     CategorizationMenuLayoutRenderer,
@@ -116,6 +118,7 @@ import {SimpleNumberControlRenderer} from "./controls/number/simple-number-contr
     // layouts
     HorizontalLayoutRenderer,
     GridLayoutRenderer,
+    LabelLayoutRenderer,
     VerticalLayoutRenderer,
     CategorizationMenuLayoutRenderer,
     CategorizationTabLayoutRenderer,

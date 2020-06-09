@@ -81,7 +81,7 @@ import { NgRedux } from '@angular-redux/store';
         `
     ],
     template: `
-    <div class="grid-layout-wrapper {{scopeClazz}}" [hidden]="hidden"
+    <div class="grid-layout-wrapper {{scopeClazz}} {{labelClazz}}" [hidden]="hidden"
          [ngClass]="{'bordered': label}"
          [ngStyle]="uischema && uischema.options && uischema.options.style">
         <div class="grid-label" *ngIf="label">
@@ -107,11 +107,13 @@ import { NgRedux } from '@angular-redux/store';
 })
 export class GridLayoutRenderer extends JsonFormsIonicLayout {
     label: string;
+    labelClazz: string = "";
 
     constructor(ngRedux: NgRedux<JsonFormsState>) {
         super(<any>ngRedux);
         this.initializers.push((props: JsonFormsProps) => {
             this.label = (props.uischema as GroupLayout).label;
+            this.labelClazz = (<any> props.uischema).labelClazz;
         });
     }
 }

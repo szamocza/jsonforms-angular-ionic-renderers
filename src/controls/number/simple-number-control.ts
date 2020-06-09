@@ -35,6 +35,10 @@ import {TextInput} from "ionic-angular";
         [readonly]="readonly"
         [id]="id"
         [formControl]="form"
+
+        [min]="min"
+        [max]="max"
+        [step]="step"
       >
       </ion-input>
       <ion-label stacked *ngIf="error" color="danger">{{ error | translate }}</ion-label>
@@ -44,6 +48,9 @@ import {TextInput} from "ionic-angular";
 export class SimpleNumberControlRenderer extends JsonFormsControl {
     height: number = 42;
     width: number = 42;
+    min: number;
+    max: number;
+    step: number = 1;
 
     constructor(ngRedux: NgRedux<JsonFormsState>) {
         super(<any>ngRedux);
@@ -64,6 +71,12 @@ export class SimpleNumberControlRenderer extends JsonFormsControl {
             }
             if (this.uischema.options.height) {
                 this.height = this.uischema.options.height;
+            }
+            if (this.uischema.options.height) {
+                this.min = this.uischema.options.minimum;
+            }
+            if (this.uischema.options.height) {
+                this.max = this.uischema.options.maximum;
             }
         }
     }
