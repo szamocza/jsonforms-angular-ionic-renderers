@@ -72,10 +72,10 @@ export class SimpleNumberControlRenderer extends JsonFormsControl {
             if (this.uischema.options.height) {
                 this.height = this.uischema.options.height;
             }
-            if (this.uischema.options.height) {
+            if (this.uischema.options.minimum) {
                 this.min = this.uischema.options.minimum;
             }
-            if (this.uischema.options.height) {
+            if (this.uischema.options.maximum) {
                 this.max = this.uischema.options.maximum;
             }
         }

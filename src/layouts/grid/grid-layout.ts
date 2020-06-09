@@ -112,8 +112,12 @@ export class GridLayoutRenderer extends JsonFormsIonicLayout {
     constructor(ngRedux: NgRedux<JsonFormsState>) {
         super(<any>ngRedux);
         this.initializers.push((props: JsonFormsProps) => {
-            this.label = (props.uischema as GroupLayout).label;
-            this.labelClazz = (<any> props.uischema).labelClazz;
+            if(props && props.uischema) {
+                this.label = (props.uischema as GroupLayout).label;
+                if(props.uischema.options) {
+                    this.labelClazz = props.uischema.options.labelClazz;
+                }
+            }
         });
     }
 }
