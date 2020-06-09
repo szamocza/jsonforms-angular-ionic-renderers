@@ -53,7 +53,10 @@ export class DateModalComponent implements SiteDateModalOptions {
     ) {
         let params: SiteDateModalOptions = navParams.data;
         Object.assign(this, params);
-        this.options.from = new Date(1900, 0, 1);
+        let fromDate = new Date();
+        fromDate.setFullYear(fromDate.getFullYear() - 100);
+        this.options.from = fromDate;
+        this.options.to = 0;
     }
 
     close() {
