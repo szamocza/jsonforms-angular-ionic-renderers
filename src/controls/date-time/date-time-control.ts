@@ -32,6 +32,9 @@ const getLocaleDateString = (locale: string): string => formats[locale] || 'yyyy
         ion-row {
             padding: 0;
         }
+        ion-grid {
+            padding: 0;
+        }
     `
     ],
     template: `
@@ -39,7 +42,7 @@ const getLocaleDateString = (locale: string): string => formats[locale] || 'yyyy
             <ion-label class="date-label"
                        [ngClass]="{'no-error': !(required&&!data)}"
                        stacked [color]="required&&!data ? 'danger' : 'medium'">{{ label }}</ion-label>
-            <ion-grid class="grid-layout-wrapper">
+            <ion-grid item-content class="grid-layout-wrapper">
                 <ion-row>
                     <ion-col (click)="!readonly && openDatePicker()"
                               [ngStyle]="uischema && uischema.options && uischema.options.style"
