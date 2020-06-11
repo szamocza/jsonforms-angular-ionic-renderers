@@ -16,7 +16,7 @@ import { JsonFormsControl } from 'jsonforms/packages/angular';
 @Component({
   selector: 'jsonforms-number-control',
   template: `
-    <ion-item no-padding no-lines [hidden]="hidden"
+    <ion-item no-padding no-lines [hidden]="hidden" class="{{uischema?.options?.class}}"
               *ngIf="!filterMode"
               [ngStyle]="uischema && uischema.options && uischema.options.style"
     >

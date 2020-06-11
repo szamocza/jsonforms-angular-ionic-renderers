@@ -7,7 +7,7 @@ import {TextInput} from "ionic-angular";
 @Component({
     selector: 'jsonforms-number-control',
     template: `
-    <ion-item no-padding no-lines 
+    <ion-item no-padding no-lines class="{{uischema?.options?.class}}"
               [hidden]="hidden" 
               [ngStyle]="uischema && uischema.options && uischema.options.style"
               [ngClass]="{'filterOff': !filterOn && filterMode}"

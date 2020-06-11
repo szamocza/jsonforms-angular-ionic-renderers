@@ -14,7 +14,7 @@ import { JsonFormsIonicLayout } from '../../layouts/JsonFormsIonicLayout';
 @Component({
   selector: 'label',
   template: `
-    <ion-item class="jsonforms-label-wrapper">
+    <ion-item class="jsonforms-label-wrapper {{uischema?.options?.class}}">
       <ion-label class="label {{scopeClazz}} bordered {{labelClazz}}" [hidden]="hidden"
                  [ngStyle]="uischema && uischema.options && uischema.options.style">
         {{ label }} 

@@ -36,7 +36,7 @@ import {AlertController} from "ionic-angular";
         'class': 'array-control'
     },
     template: `
-        <ion-list *ngIf="props && props.visible"
+        <ion-list *ngIf="props && props.visible" class="{{uischema?.options?.class}}"
                   [ngStyle]="uischema && uischema.options && uischema.options.style"
                   [ngClass]="{'bordered': label}"
                   [hidden]="hidden"

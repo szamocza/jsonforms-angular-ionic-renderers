@@ -38,7 +38,7 @@ const getLocaleDateString = (locale: string): string => formats[locale] || 'yyyy
     `
     ],
     template: `
-        <ion-item [hidden]="hidden">
+        <ion-item [hidden]="hidden" class="{{uischema?.options?.class}}">
             <ion-label class="date-label"
                        [ngClass]="{'no-error': !(required&&!data)}"
                        stacked [color]="required&&!data ? 'danger' : 'medium'">{{ label }}</ion-label>

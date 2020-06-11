@@ -7,7 +7,7 @@ import { JsonFormsState } from 'jsonforms/packages/core';
   selector: 'jsonforms-autocomplete-control',
   template: `
     <ion-item no-padding no-lines [hidden]="hidden" 
-              [ngStyle]="uischema && uischema.options && uischema.options.style"
+              [ngStyle]="uischema && uischema.options && uischema.options.style" class="{{uischema?.options?.class}}"
               [ngClass]="{'filterOff': !filterOn && filterMode, 'readonly': readonly}"
     >
       <ion-label stacked [color]="required&&!data ? 'danger' : 'medium'">{{ label }}</ion-label>

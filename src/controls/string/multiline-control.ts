@@ -12,7 +12,7 @@ import {TextInput} from "ionic-angular";
 @Component({
   selector: 'jsonforms-textarea-control',
   template: `
-    <ion-item no-padding no-lines text-wrap [hidden]="hidden" 
+    <ion-item no-padding no-lines text-wrap [hidden]="hidden" class="{{uischema?.options?.class}}"
               [ngStyle]="uischema && uischema.options && uischema.options.style"
               [ngClass]="{'filterOff': !filterOn && filterMode, 'readonly': readonly}"
     >

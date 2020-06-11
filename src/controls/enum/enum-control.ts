@@ -11,7 +11,7 @@ import { JsonFormsControl } from 'jsonforms/packages/angular';
 @Component({
   selector: 'jsonforms-enum-control',
   template: `
-    <ion-item no-padding no-lines 
+    <ion-item no-padding no-lines class="{{uischema?.options?.class}}"
               [ngStyle]="uischema && uischema.options && uischema.options.style"
               [ngClass]="{'filterOff': !filterOn && filterMode, 'readonly': readonly}"
     >

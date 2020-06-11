@@ -30,7 +30,7 @@ const getLocaleDateString = (locale: string): string => formats[locale] || 'yyyy
   template: `
       <ion-item no-padding no-lines (click)="!readonly && openPicker()" 
                 [ngStyle]="uischema && uischema.options && uischema.options.style"
-                [ngClass]="{'readonly': readonly}"
+                [ngClass]="{'readonly': readonly}" class="{{uischema?.options?.class}}"
                 *ngIf="!filterMode"
                 [hidden]="hidden"
       >
