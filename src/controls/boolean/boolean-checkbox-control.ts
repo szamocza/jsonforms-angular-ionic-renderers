@@ -28,7 +28,7 @@ import { JsonFormsControl } from 'jsonforms/packages/angular';
     `
   ],
   template: `
-    <ion-item no-padding [hidden]="hidden" 
+    <ion-item no-padding [hidden]="hidden" class="{{uischema?.options?.class}}"
               [ngStyle]="uischema && uischema.options && uischema.options.style"
               [ngClass]="{'filterOff': !filterOn && filterMode, 'readonly': readonly}"
     >
