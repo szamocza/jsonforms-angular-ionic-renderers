@@ -63,7 +63,7 @@ export class SignatureModalComponent implements SignatureModalOptions, AfterView
     public title: string;
     public width: number = 400;
     public height: number = 100;
-    public backgroundStyle: object = {};
+    public backgroundStyle: any = {};
     public signature: string;
     public signaturePadOptions: Object;
 
@@ -73,7 +73,7 @@ export class SignatureModalComponent implements SignatureModalOptions, AfterView
     ) {
         let params: SignatureModalOptions = navParams.data;
         Object.assign(this, params);
-        if(!this.backgroundStyle) {
+        if(!this.backgroundStyle || (this.backgroundStyle && (!this.backgroundStyle['height'] || !this.backgroundStyle['width']))) {
             this.backgroundStyle = {
                 'width': this.width+'px',
                 'height': this.height+'px'
