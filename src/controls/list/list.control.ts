@@ -1,6 +1,6 @@
 import {
     ArrayControlProps, ControlElement,
-    ControlProps, Generate, getLocale,
+    ControlProps, Generate, getErrorAt, getLocale,
     isObjectArrayControl,
     isPrimitiveArrayControl,
     JsonFormsState, mapDispatchToArrayControlProps,
@@ -46,7 +46,6 @@ import {AlertController} from "ionic-angular";
                     <ion-icon name="add" *ngIf="!filterMode && !readonly" (click)="addNew()"></ion-icon>
                     {{label}}
                 </ion-label>
-                <ion-label stacked *ngIf="error" color="danger">{{ error | translate }}</ion-label>
             </ion-item>
             <ion-item *ngIf="(!data || (data && data.length==0)); else hasData">{{'Nincs adat' | translate:locale}}</ion-item>
             <ng-template #hasData>
@@ -65,6 +64,7 @@ import {AlertController} from "ionic-angular";
                               (click)="delete(element)" *ngIf="!filterMode && !readonly"></ion-icon>
                 </ion-item>
             </ng-template>
+            <ion-label stacked *ngIf="error" color="danger">{{ getErrorMsg() | translate:getErrorParams() }}</ion-label>
         </ion-list>
   `
 })
@@ -100,6 +100,40 @@ export class ListControlRenderer extends JsonFormsControl  implements OnInit {
                 this.addNew();
             }
         });
+    }
+
+    getErrorMsg() {
+        if(this.error) {
+            let errors = getErrorAt(this.path)(this.ngRedux.getState());
+            let err = null;
+            if(errors && errors.length>0) {
+                err = errors[0];
+            }
+            if(err) {
+                if(err.params) {
+                    let keys = Object.keys(err.params);
+                    if(keys.length>0) {
+                        for(let i = 0; i < keys.length; i++) {
+                            let key = keys[i];
+                            err.message.replace(new RegExp(err.params[key]), '{' + key + '}');
+                        }
+                    }
+                }
+                return err.message;
+            }
+
+        }
+        return "";
+    }
+
+    getErrorParams() {
+        if(this.error) {
+            let errors = getErrorAt(this.path)(this.ngRedux.getState());
+            if(errors && errors.length>0) {
+                return errors[0].params;
+            }
+        }
+        return {};
     }
 
     trackElement(_index: number) {
