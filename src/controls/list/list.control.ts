@@ -43,10 +43,12 @@ import {AlertController} from "ionic-angular";
         >
             <ion-item>
                 <ion-label>
-                    <ion-icon name="add" *ngIf="!filterMode && !readonly" (click)="addNew()"></ion-icon>
+                    <ion-icon name="add" floating *ngIf="!filterMode && !readonly" (click)="addNew()"></ion-icon>
                     {{label}}
                 </ion-label>
+                <ion-label stacked *ngIf="error" color="danger">{{ getErrorMsg() | translate:getErrorParams() }}</ion-label>
             </ion-item>
+            
             <ion-item *ngIf="(!data || (data && data.length==0)); else hasData">{{'Nincs adat' | translate:locale}}</ion-item>
             <ng-template #hasData>
                 <ion-item *ngFor="let element of data; let i = index; trackBy: trackElement"
@@ -64,7 +66,6 @@ import {AlertController} from "ionic-angular";
                               (click)="delete(element)" *ngIf="!filterMode && !readonly"></ion-icon>
                 </ion-item>
             </ng-template>
-            <ion-label stacked *ngIf="error" color="danger">{{ getErrorMsg() | translate:getErrorParams() }}</ion-label>
         </ion-list>
   `
 })
@@ -104,7 +105,7 @@ export class ListControlRenderer extends JsonFormsControl  implements OnInit {
 
     getErrorMsg() {
         if(this.error) {
-            let errors = getErrorAt(this.path)(this.ngRedux.getState());
+            let errors = getErrorAt(this.propsPath)(this.ngRedux.getState());
             let err = null;
             if(errors && errors.length>0) {
                 err = errors[0];
@@ -121,7 +122,6 @@ export class ListControlRenderer extends JsonFormsControl  implements OnInit {
                 }
                 return err.message;
             }
-
         }
         return "";
     }
