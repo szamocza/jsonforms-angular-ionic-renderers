@@ -139,7 +139,7 @@ export class ListControlRenderer extends JsonFormsControl  implements OnInit {
                     for(let key in errors[0].params) {
                         if(errors[0].params.hasOwnProperty(key)) {
                             params[key] = errors[0].params[key];
-                            if(isNaN(params[key])) {
+                            if(!isNaN(params[key])) {
                                 params[key] = Number(params[key]) + 1;
                             }
                         }
