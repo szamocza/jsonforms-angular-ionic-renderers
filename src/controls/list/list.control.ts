@@ -46,6 +46,7 @@ import {AlertController} from "ionic-angular";
                     <ion-icon name="add" *ngIf="!filterMode && !readonly" (click)="addNew()"></ion-icon>
                     {{label}}
                 </ion-label>
+                <ion-label stacked *ngIf="error" color="danger">{{ error | translate }}</ion-label>
             </ion-item>
             <ion-item *ngIf="(!data || (data && data.length==0)); else hasData">{{'Nincs adat' | translate:locale}}</ion-item>
             <ng-template #hasData>
@@ -226,7 +227,9 @@ export class ListControlRenderer extends JsonFormsControl  implements OnInit {
                 {
                     text: this.localeStrs['buttonYes'],
                     handler: () => {
-                        this.removeItems(this.propsPath, [element])();
+                        setTimeout(() => {
+                            this.removeItems(this.propsPath, [element])();
+                        });
                     }
                 }, {text: this.localeStrs['buttonCancel']}
             ]
