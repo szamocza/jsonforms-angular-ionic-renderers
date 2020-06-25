@@ -118,11 +118,7 @@ export class ListControlRenderer extends JsonFormsControl  implements OnInit {
                     if(keys.length>0) {
                         for(let i = 0; i < keys.length; i++) {
                             let key = keys[i];
-                            let value = err.params[key];
-                            if(value && !isNaN(value)) {
-                                value += 1;
-                            }
-                            value += "";
+                            let value = err.params[key]+"";
                             err.message = err.message.replace(value, '{' + key + '}');
 
                         }
@@ -135,13 +131,23 @@ export class ListControlRenderer extends JsonFormsControl  implements OnInit {
     }
 
     getErrorParams() {
+        let params: any = {};
         if(this.error) {
             let errors = getErrorAt(this.propsPath)(this.ngRedux.getState());
             if(errors && errors.length>0) {
-                return errors[0].params;
+                if(errors[0].params) {
+                    for(let key in errors[0].params) {
+                        if(errors[0].params.hasOwnProperty(key)) {
+                            params[key] = errors[0].params[key];
+                            if(isNaN(params[key])) {
+                                params[key] = Number(params[key]) + 1;
+                            }
+                        }
+                    }
+                }
             }
         }
-        return {};
+        return params;
     }
 
     trackElement(_index: number) {
