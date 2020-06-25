@@ -118,7 +118,11 @@ export class ListControlRenderer extends JsonFormsControl  implements OnInit {
                     if(keys.length>0) {
                         for(let i = 0; i < keys.length; i++) {
                             let key = keys[i];
-                            let value = err.params[key]+"";
+                            let value = err.params[key];
+                            if(value && !isNaN(value)) {
+                                value += 1;
+                            }
+                            value += "";
                             err.message = err.message.replace(value, '{' + key + '}');
 
                         }
