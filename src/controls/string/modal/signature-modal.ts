@@ -7,6 +7,7 @@ export interface SignatureModalOptions {
     width: number;
     height: number
     backgroundStyle: Object;
+    type?: string;     // default: png, "image/jpeg", "image/svg+xml"
 }
 
 @Component({
@@ -65,7 +66,9 @@ export class SignatureModalComponent implements SignatureModalOptions, AfterView
     public height: number = 100;
     public backgroundStyle: any = {};
     public signature: string;
+    public type: string = null;     // default: png, "image/jpeg", "image/svg+xml"
     public signaturePadOptions: Object;
+    public static readonly TYPES = ["image/jpeg","image/svg+xml"];
 
     constructor(
         navParams: NavParams,
@@ -100,7 +103,11 @@ export class SignatureModalComponent implements SignatureModalOptions, AfterView
 
     drawComplete() {
         // will be notified of szimek/signature_pad's onEnd event
-        this.signature = this.signaturePad.toDataURL();
+        if(this.type && SignatureModalComponent.TYPES.indexOf(this.type) > -1) {
+            this.signature = this.signaturePad.toDataURL(this.type);
+        } else {
+            this.signature = this.signaturePad.toDataURL();
+        }
     }
 
     drawStart() {
