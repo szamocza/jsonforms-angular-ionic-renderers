@@ -28,4 +28,5 @@ export declare class SignatureModalComponent implements SignatureModalOptions, A
     drawStart(): void;
     close(): void;
     sign(): void;
+    clear(): void;
 }
