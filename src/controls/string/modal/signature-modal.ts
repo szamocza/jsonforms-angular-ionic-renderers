@@ -36,6 +36,9 @@ export interface SignatureModalOptions {
                 <button ion-button icon-only (click)="close()">
                     <ion-icon name="close"></ion-icon>
                 </button>
+                <button ion-button icon-only (click)="clear()">
+                    <ion-icon name="trash"></ion-icon>
+                </button>
             </ion-buttons>
             <ion-title i18n>{{title}}</ion-title>
             <ion-buttons end>
@@ -122,4 +125,7 @@ export class SignatureModalComponent implements SignatureModalOptions, AfterView
         this.viewCtrl.dismiss(this.signature, 'done');
     }
 
+    clear() {
+        this.signaturePad.clear();
+    }
 }
