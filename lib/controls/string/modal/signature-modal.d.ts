@@ -7,6 +7,7 @@ export interface SignatureModalOptions {
     height: number;
     backgroundStyle: Object;
     type?: string;
+    signatureInfo?: string;
 }
 export declare class SignatureModalComponent implements SignatureModalOptions, AfterViewInit {
     private viewCtrl;
@@ -19,6 +20,7 @@ export declare class SignatureModalComponent implements SignatureModalOptions, A
     signature: string;
     type: string;
     signaturePadOptions: Object;
+    signatureInfo: string;
     static readonly TYPES: string[];
     constructor(navParams: NavParams, viewCtrl: ViewController);
     ngAfterViewInit(): void;

@@ -97,6 +97,7 @@ import {SimpleNumberControlRenderer} from "./controls/number/simple-number-contr
   exports: [
     IonicSelectableModule,
     JsonFormsModule,
+    SignatureModalComponent
   ],
   entryComponents: [
     // controls

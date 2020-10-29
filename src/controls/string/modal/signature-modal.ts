@@ -8,6 +8,7 @@ export interface SignatureModalOptions {
     height: number
     backgroundStyle: Object;
     type?: string;     // default: png, "image/jpeg", "image/svg+xml"
+    signatureInfo?: string;
 }
 
 @Component({
@@ -55,6 +56,7 @@ export interface SignatureModalOptions {
                 <signature-pad [options]="signaturePadOptions" (onBeginEvent)="drawStart()" 
                                (onEndEvent)="drawComplete()"
                 ></signature-pad>
+                <div class="signature-pad-text" *ngIf="signatureInfo" [innerHTML]="signatureInfo"></div>
             </div>
         </div>
     </ion-content>
@@ -71,6 +73,7 @@ export class SignatureModalComponent implements SignatureModalOptions, AfterView
     public signature: string;
     public type: string = null;     // default: png, "image/jpeg", "image/svg+xml"
     public signaturePadOptions: Object;
+    public signatureInfo: string = null;
     public static readonly TYPES = ["image/jpeg","image/svg+xml"];
 
     constructor(
