@@ -41,7 +41,9 @@ export class JsonFormsIonicLayout extends JsonFormsBaseRenderer<Layout>
         this.schema = props.schema;
         this.hidden = !props.visible;
         this.enabled = props.enabled;
-        this.readonly = this.uischema && this.uischema.readonly;
+        if(!this.readonly) {
+          this.readonly = this.uischema && this.uischema.readonly;
+        }
 
         let scope: string = this.uischema && (<any>this.uischema).scope;
         if(scope) {
