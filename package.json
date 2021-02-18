@@ -67,7 +67,7 @@
     "json-refs": "^3.0.10",
     "lodash": "4.17.5",
     "@types/lodash": "4.14.108",
-    "lodash-es": "^4.17.15",
+    "lodash-es": "4.17.15",
     "@types/lodash-es": "^4.17.3",
     "moment": "^2.24.0",
     "redux": "^3.0.0",
