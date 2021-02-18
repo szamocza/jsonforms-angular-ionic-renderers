@@ -240,15 +240,18 @@ export class ListControlRenderer extends JsonFormsControl  implements OnInit {
             for(let i = 0; i < this.data.length; i++) {
                 let childUiSchema = Generate.controlElement(undefined, '#');
                 if(!childUiSchema.options) childUiSchema.options = {};
-                if(this.uischema && this.uischema.options) {
-                    for(let key in this.uischema.options) {
-                        if(this.uischema.options.hasOwnProperty(key)) {
-                            if(this.uischema.options[key] && !childUiSchema.options[key]) {
-                                childUiSchema.options[key] = this.uischema.options[key];
-                            } else if(this.uischema.options[key] && childUiSchema.options[key]
-                                && this.uischema.options[key].constructor === Object
-                                && childUiSchema.options[key].constructor === Object) {
-                                childUiSchema.options[key] = {...this.uischema.options[key], ...childUiSchema.options[key]};
+                if(this.uischema) {
+                    if(!childUiSchema.readonly) childUiSchema.readonly = this.uischema && this.uischema.readonly;
+                    if(this.uischema.options) {
+                        for(let key in this.uischema.options) {
+                            if(this.uischema.options.hasOwnProperty(key)) {
+                                if(this.uischema.options[key] && !childUiSchema.options[key]) {
+                                    childUiSchema.options[key] = this.uischema.options[key];
+                                } else if(this.uischema.options[key] && childUiSchema.options[key]
+                                  && this.uischema.options[key].constructor === Object
+                                  && childUiSchema.options[key].constructor === Object) {
+                                    childUiSchema.options[key] = {...this.uischema.options[key], ...childUiSchema.options[key]};
+                                }
                             }
                         }
                     }

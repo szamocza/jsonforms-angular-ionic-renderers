@@ -69,18 +69,21 @@ export class ObjectControlRenderer extends JsonFormsControl {
     );
 
     if(this.detailUiSchema && (<any>this.detailUiSchema)['elements'] && (<any>this.detailUiSchema)['elements'].length) {
-      if(this.uischema && this.uischema.options) {
+      if(this.uischema) {
         for(let i = 0; i < (<any>this.detailUiSchema)['elements'].length; i++) {
           let elem = (<any>this.detailUiSchema)['elements'][i];
-          if(elem && !elem.options) elem.options = {};
-          for(let key in this.uischema.options) {
-            if(this.uischema.options.hasOwnProperty(key)) {
-              if(this.uischema.options[key] && !elem.options[key]) {
-                elem.options[key] = this.uischema.options[key];
-              } else if(this.uischema.options[key] && elem.options[key]
+          if(!elem.readonly) elem.readonly = this.uischema && this.uischema.readonly;
+          if(this.uischema.options) {
+            if(elem && !elem.options) elem.options = {};
+            for(let key in this.uischema.options) {
+              if(this.uischema.options.hasOwnProperty(key)) {
+                if(this.uischema.options[key] && !elem.options[key]) {
+                  elem.options[key] = this.uischema.options[key];
+                } else if(this.uischema.options[key] && elem.options[key]
                   && this.uischema.options[key].constructor === Object
                   && elem.options[key].constructor === Object) {
-                elem.options[key] = {...this.uischema.options[key], ...elem.options[key]};
+                  elem.options[key] = {...this.uischema.options[key], ...elem.options[key]};
+                }
               }
             }
           }
