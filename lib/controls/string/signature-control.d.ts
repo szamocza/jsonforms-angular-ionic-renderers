@@ -4,14 +4,14 @@ import { JsonFormsControl } from 'jsonforms/packages/angular';
 import { ModalController } from "ionic-angular";
 export declare class SignatureControlRenderer extends JsonFormsControl {
     private modalCtrl;
-    readonly noImage: string;
     height: number;
     width: number;
-    placeHolder: string;
     backgroundStyle: Object;
     constructor(ngRedux: NgRedux<JsonFormsState>, modalCtrl: ModalController);
     getValue: () => any;
     mapAdditionalProps(props: ControlProps): void;
     sign(): void;
+    readonly noImage: string;
+    placeHolder: string;
 }
 export declare const signatureControlTester: RankedTester;
