@@ -4,6 +4,8 @@ import { JsonFormsControl } from 'jsonforms/packages/angular';
 import { ModalController } from "ionic-angular";
 export declare class SignatureControlRenderer extends JsonFormsControl {
     private modalCtrl;
+    readonly noImage: string;
+    placeHolder: string;
     height: number;
     width: number;
     backgroundStyle: Object;
@@ -11,7 +13,5 @@ export declare class SignatureControlRenderer extends JsonFormsControl {
     getValue: () => any;
     mapAdditionalProps(props: ControlProps): void;
     sign(): void;
-    readonly noImage: string;
-    placeHolder: string;
 }
 export declare const signatureControlTester: RankedTester;

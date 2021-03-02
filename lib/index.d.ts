@@ -16,6 +16,7 @@ export { CategorizationTabLayoutRenderer } from './layouts/categorization/catego
 export { CategoryRenderer } from './layouts/categorization/category/category';
 export { groupTester, GroupLayoutRenderer } from './layouts/group/group-layout';
 export { SimpleNumberControlRenderer } from "./controls/number/simple-number-control";
+export { AttachmentControlRenderer, attachmentControlTester } from "./controls/string/attachment-control";
 export { listWithDetailTester, ListWithDetailControl } from './other/list-with-detail/list-with-detail-control';
 export { labelTester, LabelRenderer } from './other/label/label';
 export { JsonFormsIonicModule } from './json-forms.module';
