@@ -1,7 +1,6 @@
 import {Component} from '@angular/core';
 import {
   and, ControlProps,
-  formatIs,
   isStringControl, JsonFormsContext,
   JsonFormsState,
   optionIs,
@@ -110,5 +109,5 @@ export class AttachmentControlRenderer extends JsonFormsControl {
 
 export const attachmentControlTester: RankedTester = rankWith(
   3,
-  and(isStringControl, optionIs('attachment', true), formatIs('uri'))
+  and(isStringControl, optionIs('attachment', true))
 );
