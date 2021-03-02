@@ -128,6 +128,7 @@ export { CategoryRenderer } from './layouts/categorization/category/category';
 export { groupTester, GroupLayoutRenderer } from './layouts/group/group-layout';
 export {SimpleNumberControlRenderer} from "./controls/number/simple-number-control";
 export { AttachmentControlRenderer, attachmentControlTester } from "./controls/string/attachment-control";
+export { StringHelper } from "./controls/string/string-helper";
 
 export {
   listWithDetailTester,
