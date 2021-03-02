@@ -63,6 +63,7 @@ import {ListControlRenderer, listControlTester} from "./controls/list/list.contr
 import {DateTimeControlRenderer, dateTimeControlTester} from "./controls/date-time/date-time-control";
 import {RadioControlRenderer, radioControlTester} from "./controls/radio/radio-control";
 import {SimpleNumberControlRenderer} from "./controls/number/simple-number-control";
+import {AttachmentControlRenderer, attachmentControlTester} from "./controls/string/attachment-control";
 
 export {
   booleanControlTester,
@@ -166,5 +167,6 @@ export const ionicRenderers: { tester: any; renderer: any }[] = [
   { tester: listWithDetailTester, renderer: ListWithDetailControl },
   { tester: labelTester, renderer: LabelRenderer },
   { tester: signatureControlTester, renderer: SignatureControlRenderer },
+  { tester: attachmentControlTester, renderer: AttachmentControlRenderer }
 
 ];

@@ -43,6 +43,7 @@ import {DateTimeControlRenderer} from "./controls/date-time/date-time-control";
 import {TimeModalComponent} from "./controls/date-time/modal/time-modal";
 import {RadioControlRenderer} from "./controls/radio/radio-control";
 import {SimpleNumberControlRenderer} from "./controls/number/simple-number-control";
+import {AttachmentControlRenderer} from "./controls/string/attachment-control";
 
 @NgModule({
   declarations: [
@@ -77,6 +78,7 @@ import {SimpleNumberControlRenderer} from "./controls/number/simple-number-contr
     // other
     LabelRenderer,
     SignatureControlRenderer,
+    AttachmentControlRenderer,
 
     DateModalComponent,
     TimeModalComponent,
@@ -131,6 +133,7 @@ import {SimpleNumberControlRenderer} from "./controls/number/simple-number-contr
     // other
     LabelRenderer,
     SignatureControlRenderer,
+    AttachmentControlRenderer,
 
     DateModalComponent,
     TimeModalComponent,
