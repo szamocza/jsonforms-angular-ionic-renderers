@@ -10,6 +10,7 @@ import {
 import { NgRedux } from '@angular-redux/store';
 import {JsonFormsControl} from 'jsonforms/packages/angular';
 import {StringHelper} from "./string-helper";
+import {DomSanitizer, SafeResourceUrl} from "@angular/platform-browser";
 
 @Component({
   selector: 'jsonforms-attachment-control',
@@ -37,7 +38,7 @@ import {StringHelper} from "./string-helper";
             <img class="attach-img" 
                  *ngIf="placeHolder || (data && context && context.getAttachmentUrl)"
                  [ngStyle]="{'height': this.height + 'px', 'width': this.width + 'px'}"
-                 [src]="data ? context.getAttachmentUrl(data) : placeHolder
+                 [src]="data ? getAttachmentUri(data) : placeHolder
                  "/>
         </div>
     </div>
@@ -51,7 +52,8 @@ export class AttachmentControlRenderer extends JsonFormsControl {
   context: JsonFormsContext;
 
   constructor(
-    ngRedux: NgRedux<JsonFormsState>
+    ngRedux: NgRedux<JsonFormsState>,
+    private sanitizer: DomSanitizer
   ) {
     super(<any>ngRedux);
     this.getContext();
@@ -70,6 +72,10 @@ export class AttachmentControlRenderer extends JsonFormsControl {
       }
       return this.context;
     }
+  }
+
+  getAttachmentUri(data: string): SafeResourceUrl {
+    return this.sanitizer.bypassSecurityTrustResourceUrl(this.context.getAttachmentUrl(data));
   }
 
   getValue = () => this.data || '';
