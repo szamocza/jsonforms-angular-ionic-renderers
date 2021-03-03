@@ -51,6 +51,8 @@ export class AttachmentControlRenderer extends JsonFormsControl {
   backgroundStyle: Object = {};
   context: JsonFormsContext;
 
+  cache: { [id: string]: SafeResourceUrl } = {};
+
   constructor(
     ngRedux: NgRedux<JsonFormsState>,
     private sanitizer: DomSanitizer
@@ -75,7 +77,10 @@ export class AttachmentControlRenderer extends JsonFormsControl {
   }
 
   getAttachmentUri(data: string): SafeResourceUrl {
-    return this.sanitizer.bypassSecurityTrustResourceUrl(this.context.getAttachmentUrl(data));
+    if(!this.cache[data]) {
+      this.cache[data] = this.sanitizer.bypassSecurityTrustResourceUrl(this.context.getAttachmentUrl(data));
+    }
+    return this.cache[data];
   }
 
   getValue = () => this.data || '';

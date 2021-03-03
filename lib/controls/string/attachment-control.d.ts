@@ -9,6 +9,9 @@ export declare class AttachmentControlRenderer extends JsonFormsControl {
     width: number;
     backgroundStyle: Object;
     context: JsonFormsContext;
+    cache: {
+        [id: string]: SafeResourceUrl;
+    };
     constructor(ngRedux: NgRedux<JsonFormsState>, sanitizer: DomSanitizer);
     getContext(): JsonFormsContext;
     getAttachmentUri(data: string): SafeResourceUrl;
