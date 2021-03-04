@@ -57,8 +57,16 @@ export class SimpleNumberControlRenderer extends JsonFormsControl {
     }
 
     getEventValue = (ev: any) => {
-        if(ev.value != null && !isNaN(parseInt(ev.value))) {
-            return parseInt(ev.value);
+        if(ev.value != null) {
+            if (this.scopedSchema.type === 'number') {
+                if(!isNaN(parseFloat(ev.value))) {
+                    return parseFloat(ev.value);
+                }
+            } else {
+                if(!isNaN(parseInt(ev.value))) {
+                    return parseInt(ev.value, 10);
+                }
+            }
         }
         return null;
     }
