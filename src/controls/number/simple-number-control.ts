@@ -12,7 +12,8 @@ import {TextInput} from "ionic-angular";
               [ngStyle]="uischema && uischema.options && uischema.options.style"
               [ngClass]="{'filterOff': !filterOn && filterMode}"
     >
-      <ion-label [ngClass]="{'has-errors': !!error}" floating [color]="required&&!data ? 'danger' : 'medium'">
+      <ion-label [ngClass]="{'has-errors': !!error && error != 'should be >= 0'}" 
+                 floating [color]="required&&!data ? 'danger' : 'medium'">
         {{ label }}
       </ion-label>
         <img item-content *ngIf="uischema && uischema.options && uischema.options.pictureUri"
