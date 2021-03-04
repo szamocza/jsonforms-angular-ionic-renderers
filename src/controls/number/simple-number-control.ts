@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {ControlProps, isNumberControl, JsonFormsState} from 'jsonforms/packages/core';
+import {ControlProps, JsonFormsState} from 'jsonforms/packages/core';
 import {NgRedux} from '@angular-redux/store';
 import {JsonFormsControl} from 'jsonforms/packages/angular';
 import {TextInput} from "ionic-angular";
@@ -13,7 +13,7 @@ import {TextInput} from "ionic-angular";
               [ngClass]="{'filterOff': !filterOn && filterMode}"
     >
       <ion-label [ngClass]="{'has-errors': !!error && error != 'should be >= 0'}" 
-                 floating [color]="required&&!data ? 'danger' : 'medium'">
+                 floating [color]="error ? 'danger' : 'medium'">
         {{ label }}
       </ion-label>
         <img item-content *ngIf="uischema && uischema.options && uischema.options.pictureUri"
@@ -87,7 +87,7 @@ export class SimpleNumberControlRenderer extends JsonFormsControl {
             if (this.uischema.options.maximum) {
                 this.max = this.uischema.options.maximum;
             }
-            const defaultStep = isNumberControl(this.uischema, this.schema) ? 0.1 : 1;
+            const defaultStep = 1;
             this.step = props.scopedSchema.multipleOf || defaultStep;
         }
     }
