@@ -3,7 +3,6 @@ import {NgRedux} from '@angular-redux/store';
 import {getLocale, isTimeControl, JsonFormsState, RankedTester, rankWith} from 'jsonforms/packages/core';
 import {JsonFormsControl} from 'jsonforms/packages/angular';
 import {ModalController} from 'ionic-angular';
-import {Moment} from "moment";
 import {TimeModalComponent} from "./modal/time-modal";
 
 @Component({
@@ -94,7 +93,7 @@ export class TimeControlRenderer extends JsonFormsControl implements OnInit {
             second: 0,
             millisecond: 0
           });
-          this.handleChange(this.data);
+          this.handleChange(this.moment(this.data).format('HH:mm'));
         } else {
           this.handleChange(undefined);
         }
@@ -120,8 +119,8 @@ export class TimeControlRenderer extends JsonFormsControl implements OnInit {
     this.locale = getLocale(this.ngRedux.getState());
   }
 
-  handleChange($event: Moment) {
-    this.onChange({value: $event ? $event.toISOString() : undefined});
+  handleChange($event: string) {
+    this.onChange({value: $event});
   }
 
   getTime() {
