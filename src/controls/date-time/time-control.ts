@@ -69,15 +69,15 @@ export class TimeControlRenderer extends JsonFormsControl implements OnInit {
     let select = this.modalCtrl.create(TimeModalComponent, {
       title: this.label,
       canClear: true,
-      selectedHour: this.data && arr && arr.length>0 ? arr[0] : null,
-      selectedMinute: this.data && arr && arr.length>1 ? arr[1] : null
+      selectedHour: this.data && arr && arr.length>0 ? (arr[0] || '00') : null,
+      selectedMinute: this.data && arr && arr.length>1 ? (arr[1] || '00') : null
     }, {
       cssClass: 'time-modal'
     });
     select.onDidDismiss((date: { hours: string, minutes: string }, role: string) => {
       if (role == 'done') {
         if (date) {
-          this.handleChange(date.hours + ":" + date.minutes);
+          this.handleChange((date.hours || '00') + ":" + (date.minutes || '00'));
         } else {
           this.handleChange(undefined);
         }

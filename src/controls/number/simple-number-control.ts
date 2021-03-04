@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {ControlProps, JsonFormsState} from 'jsonforms/packages/core';
+import {ControlProps, isNumberControl, JsonFormsState} from 'jsonforms/packages/core';
 import {NgRedux} from '@angular-redux/store';
 import {JsonFormsControl} from 'jsonforms/packages/angular';
 import {TextInput} from "ionic-angular";
@@ -78,6 +78,8 @@ export class SimpleNumberControlRenderer extends JsonFormsControl {
             if (this.uischema.options.maximum) {
                 this.max = this.uischema.options.maximum;
             }
+            const defaultStep = isNumberControl(this.uischema, this.schema) ? 0.1 : 1;
+            this.step = props.scopedSchema.multipleOf || defaultStep;
         }
     }
 

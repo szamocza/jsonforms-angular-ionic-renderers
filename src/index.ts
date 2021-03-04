@@ -30,7 +30,7 @@ import {
   RangeControlRenderer,
   rangeControlTester
 } from './controls/range/range-control';
-import {isEnumControl, isNumberControl, rankWith} from 'jsonforms/packages/core';
+import {isEnumControl, isIntegerControl, isNumberControl, or, rankWith} from 'jsonforms/packages/core';
 import { AutoCompleteControlRenderer } from './controls/enum/autocomplete-control';
 import {
   HorizontalLayoutRenderer,
@@ -153,7 +153,7 @@ export const ionicRenderers: { tester: any; renderer: any }[] = [
   { tester: stringControlTester, renderer: StringControlRenderer },
   { tester: multilineControlTester, renderer: MultilineControlRenderer },
   { tester: numberControlTester, renderer: NumberControlRenderer },
-  { tester: rankWith(3, isNumberControl), renderer: SimpleNumberControlRenderer },
+  { tester: rankWith(3, or(isNumberControl, isIntegerControl)), renderer: SimpleNumberControlRenderer },
   { tester: dateControlTester, renderer: DateControlRenderer },
   { tester: dateTimeControlTester, renderer: DateTimeControlRenderer },
   { tester: timeControlTester, renderer: TimeControlRenderer },
