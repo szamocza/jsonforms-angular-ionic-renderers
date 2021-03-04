@@ -4,13 +4,24 @@ import {NgRedux} from '@angular-redux/store';
 import {JsonFormsControl} from 'jsonforms/packages/angular';
 import {TextInput} from "ionic-angular";
 
+// https://stackoverflow.com/questions/22443487/angular-is-automatically-adding-ng-invalid-class-on-required-fields
 @Component({
     selector: 'jsonforms-number-control',
+    styles: [
+        `
+            ion-item.readonly-valid {
+                -webkit-box-shadow: none !important;
+                -ms-box-shadow: none !important;;
+                box-shadow: none !important;; 
+                border-bottom-color: white !important;;
+            }
+    `
+    ],
     template: `
     <ion-item no-padding no-lines class="{{uischema?.options?.class}}"
               [hidden]="hidden" 
               [ngStyle]="uischema && uischema.options && uischema.options.style"
-              [ngClass]="{'filterOff': !filterOn && filterMode}"
+              [ngClass]="{'filterOff': !filterOn && filterMode, 'readonly-valid': readonly && !error}"
     >
       <ion-label [ngClass]="{'has-errors': !!error && error != 'should be >= 0'}" 
                  floating [color]="error ? 'danger' : 'medium'">
