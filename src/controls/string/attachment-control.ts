@@ -113,6 +113,8 @@ export class AttachmentControlRenderer extends JsonFormsControl {
     if(this.context && this.context.selectAttachment) {
       this.context.selectAttachment(this.getValue()).then(data => {
         this.onChange({value: data});
+      }, () => {
+        console.warn("ATTACHMENT NOT SELECTED")
       });
     }
   }
