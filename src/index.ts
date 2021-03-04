@@ -64,6 +64,7 @@ import {DateTimeControlRenderer, dateTimeControlTester} from "./controls/date-ti
 import {RadioControlRenderer, radioControlTester} from "./controls/radio/radio-control";
 import {SimpleNumberControlRenderer} from "./controls/number/simple-number-control";
 import {AttachmentControlRenderer, attachmentControlTester} from "./controls/string/attachment-control";
+import {TimeControlRenderer, timeControlTester} from "./controls/date-time/time-control";
 
 export {
   booleanControlTester,
@@ -93,6 +94,10 @@ export {
   dateTimeControlTester,
     DateTimeControlRenderer
 } from './controls/date-time/date-time-control';
+export {
+  timeControlTester,
+  TimeControlRenderer
+} from './controls/date-time/time-control';
 export {
   radioControlTester,
   RadioControlRenderer
@@ -151,6 +156,7 @@ export const ionicRenderers: { tester: any; renderer: any }[] = [
   { tester: rankWith(3, isNumberControl), renderer: SimpleNumberControlRenderer },
   { tester: dateControlTester, renderer: DateControlRenderer },
   { tester: dateTimeControlTester, renderer: DateTimeControlRenderer },
+  { tester: timeControlTester, renderer: TimeControlRenderer },
   { tester: enumControlTester, renderer: EnumControlRenderer },
   { tester: rangeControlTester, renderer: RangeControlRenderer },
   { tester: rankWith(3, isEnumControl), renderer: AutoCompleteControlRenderer },

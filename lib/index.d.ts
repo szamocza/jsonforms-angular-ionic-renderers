@@ -5,6 +5,7 @@ export { multilineControlTester, MultilineControlRenderer } from './controls/str
 export { numberControlTester, NumberControlRenderer } from './controls/number/number-control';
 export { dateControlTester, DateControlRenderer } from './controls/date/date-control';
 export { dateTimeControlTester, DateTimeControlRenderer } from './controls/date-time/date-time-control';
+export { timeControlTester, TimeControlRenderer } from './controls/date-time/time-control';
 export { radioControlTester, RadioControlRenderer } from "./controls/radio/radio-control";
 export { enumControlTester, EnumControlRenderer } from './controls/enum/enum-control';
 export { rangeControlTester, RangeControlRenderer } from './controls/range/range-control';

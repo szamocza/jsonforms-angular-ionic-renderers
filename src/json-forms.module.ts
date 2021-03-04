@@ -44,6 +44,7 @@ import {TimeModalComponent} from "./controls/date-time/modal/time-modal";
 import {RadioControlRenderer} from "./controls/radio/radio-control";
 import {SimpleNumberControlRenderer} from "./controls/number/simple-number-control";
 import {AttachmentControlRenderer} from "./controls/string/attachment-control";
+import {TimeControlRenderer} from "./controls/date-time/time-control";
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import {AttachmentControlRenderer} from "./controls/string/attachment-control";
     NumberControlRenderer,
     DateControlRenderer,
     DateTimeControlRenderer,
+    TimeControlRenderer,
     EnumControlRenderer,
     ListControlRenderer,
     RangeControlRenderer,
@@ -110,6 +112,7 @@ import {AttachmentControlRenderer} from "./controls/string/attachment-control";
     NumberControlRenderer,
     DateControlRenderer,
     DateTimeControlRenderer,
+    TimeControlRenderer,
     EnumControlRenderer,
     ListControlRenderer,
     RangeControlRenderer,
