@@ -7,7 +7,6 @@ export declare class TimeControlRenderer extends JsonFormsControl implements OnI
     private modalCtrl;
     dateOpener: any;
     locale: string;
-    moment: any;
     constructor(ngRedux: NgRedux<JsonFormsState>, modalCtrl: ModalController);
     ngOnInit(): void;
     openTimePicker(): void;

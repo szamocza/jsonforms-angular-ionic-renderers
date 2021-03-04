@@ -53,17 +53,11 @@ export class TimeControlRenderer extends JsonFormsControl implements OnInit {
   @ViewChild('dateOpener') dateOpener: any;
   public locale: string;
 
-  public moment: any;
-
   constructor(
     ngRedux: NgRedux<JsonFormsState>,
     private modalCtrl: ModalController
   ) {
     super(<any>ngRedux);
-    this.moment = require("moment");
-    if ("default" in this.moment) {
-      this.moment = this.moment["default"];
-    }
   }
 
   ngOnInit(): void {
@@ -71,29 +65,19 @@ export class TimeControlRenderer extends JsonFormsControl implements OnInit {
   }
 
   openTimePicker() {
+    let arr = this.data ? this.data.slice(":") : []
     let select = this.modalCtrl.create(TimeModalComponent, {
       title: this.label,
       canClear: true,
-      selectedHour: this.data ? this.moment(this.data).format("HH") : null,
-      selectedMinute: this.data ? this.moment(this.data).format("mm") : null
+      selectedHour: this.data && arr && arr.length>0 ? arr[0] : null,
+      selectedMinute: this.data && arr && arr.length>1 ? arr[1] : null
     }, {
       cssClass: 'time-modal'
     });
     select.onDidDismiss((date: { hours: string, minutes: string }, role: string) => {
       if (role == 'done') {
         if (date) {
-          if (!this.data) {
-            this.data = this.moment();
-          } else {
-            this.data = this.moment(this.data);
-          }
-          this.data.set({
-            hour: Number(date.hours),
-            minute: Number(date.minutes),
-            second: 0,
-            millisecond: 0
-          });
-          this.handleChange(this.moment(this.data).format('HH:mm'));
+          this.handleChange(date.hours + ":" + date.minutes);
         } else {
           this.handleChange(undefined);
         }
@@ -127,7 +111,7 @@ export class TimeControlRenderer extends JsonFormsControl implements OnInit {
     if(!this.data) {
       return "-";
     }
-    return this.moment(this.data).format('HH:mm');
+    return this.data;
   }
 }
 
