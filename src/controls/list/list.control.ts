@@ -245,7 +245,7 @@ export class ListControlRenderer extends JsonFormsControl  implements OnInit {
                 let childUiSchema = Generate.controlElement(undefined, '#');
                 if(!childUiSchema.options) childUiSchema.options = {};
                 if(this.uischema) {
-                    if(!childUiSchema.readonly) childUiSchema.readonly = this.uischema && this.uischema.readonly;
+                    childUiSchema.readonly = this.uischema && this.uischema.readonly;
                     if(this.uischema.options) {
                         for(let key in this.uischema.options) {
                             if(this.uischema.options.hasOwnProperty(key)) {

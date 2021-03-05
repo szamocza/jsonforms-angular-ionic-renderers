@@ -72,7 +72,7 @@ export class ObjectControlRenderer extends JsonFormsControl {
       if(this.uischema) {
         for(let i = 0; i < (<any>this.detailUiSchema)['elements'].length; i++) {
           let elem = (<any>this.detailUiSchema)['elements'][i];
-          if(!elem.readonly) elem.readonly = this.uischema && this.uischema.readonly;
+          elem.readonly = this.uischema && this.uischema.readonly;
           if(this.uischema.options) {
             if(elem && !elem.options) elem.options = {};
             for(let key in this.uischema.options) {
