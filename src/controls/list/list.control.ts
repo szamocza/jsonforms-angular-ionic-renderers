@@ -48,7 +48,7 @@ import {AlertController} from "ionic-angular";
                 </ion-label>
             </ion-item>
             <ion-item *ngIf="error">
-                <ion-label stacked color="danger">{{ getErrorMsg() | translate:getErrorParams() }}</ion-label>                
+                <ion-label stacked color="danger">{{ errorMsg | translate:errorParams }}</ion-label>                
             </ion-item>
             
             <ion-item *ngIf="(!data || (data && data.length==0)); else hasData">{{'Nincs adat' | translate:locale}}</ion-item>
@@ -89,6 +89,9 @@ export class ListControlRenderer extends JsonFormsControl  implements OnInit {
         buttonCancel: 'Mégse'
     };
 
+    errorMsg: string = "";
+    errorParams: any = null;
+
     constructor(
         ngRedux: NgRedux<JsonFormsState>,
         private alertCtrl: AlertController
@@ -120,14 +123,13 @@ export class ListControlRenderer extends JsonFormsControl  implements OnInit {
                             let key = keys[i];
                             let value = err.params[key]+"";
                             err.message = err.message.replace(value, '{' + key + '}');
-
                         }
                     }
                 }
-                return err.message;
+                this.errorMsg = err.message;
             }
         }
-        return "";
+        this.errorMsg = "";
     }
 
     getErrorParams() {
@@ -147,7 +149,7 @@ export class ListControlRenderer extends JsonFormsControl  implements OnInit {
                 }
             }
         }
-        return params;
+        this.errorParams = params;
     }
 
     trackElement(_index: number) {
@@ -178,6 +180,8 @@ export class ListControlRenderer extends JsonFormsControl  implements OnInit {
         if(!this.filterMode) {
             this.addNewItemAutomatically();
         }
+        this.getErrorMsg();
+        this.getErrorParams();
     }
 
     orderArray(index: number, up: boolean) {

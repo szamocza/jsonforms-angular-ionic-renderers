@@ -18,10 +18,12 @@ export declare class ListControlRenderer extends JsonFormsControl implements OnI
         buttonYes: string;
         buttonCancel: string;
     };
+    errorMsg: string;
+    errorParams: any;
     constructor(ngRedux: NgRedux<JsonFormsState>, alertCtrl: AlertController);
     ngOnInit(): void;
-    getErrorMsg(): any;
-    getErrorParams(): any;
+    getErrorMsg(): void;
+    getErrorParams(): void;
     trackElement(_index: number): number;
     addNew(): void;
     mapAdditionalProps(props: ArrayControlProps): void;
