@@ -37,7 +37,7 @@ export class JsonFormsIonicLayout extends JsonFormsBaseRenderer<Layout>
           path: this.path
         };
         const props = mapStateToLayoutProps(state, ownProps);
-        this.uischema = props.uischema as Layout;
+        this.uischema = {...props.uischema} as Layout;
         this.schema = props.schema;
         this.hidden = !props.visible;
         this.enabled = props.enabled;
