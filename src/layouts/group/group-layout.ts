@@ -15,11 +15,27 @@ import { JsonFormsIonicLayout } from '../JsonFormsIonicLayout';
   host: {
     'class': 'group-layout-control'
   },
+  styles: [
+    `
+        .clickable {
+            overflow: hidden;
+            max-height: 3em;
+            cursor: pointer;
+        }
+        .clickable.clicked {
+            max-height: unset;
+        }
+    `
+  ],
   template: `
     <ion-card [ngStyle]="uischema && uischema.options && uischema.options.style"
               class="{{scopeClazz}}"
               [hidden]="hidden">
-      <ion-card-header> {{ label }} </ion-card-header>
+      <ion-card-header  (click)="labelClicked = !labelClicked"
+                        [ngClass]="{'clickable': !(uischema && uischema.elements && uischema.elements.length>0),
+                          'clicked': labelClicked}"> 
+        {{ label }} 
+      </ion-card-header>
       <img *ngIf="uischema && uischema.options && uischema.options.pictureUri"
            [src]="uischema.options.pictureUri"
            [ngStyle]="{'height': this.height + 'px', 'width': this.width + 'px'}" />
@@ -39,6 +55,7 @@ export class GroupLayoutRenderer extends JsonFormsIonicLayout {
   label: string;
   height: number = 42;
   width: number = 42;
+  labelClicked: boolean = false;
 
   constructor(ngRedux: NgRedux<JsonFormsState>) {
     super(<any>ngRedux);

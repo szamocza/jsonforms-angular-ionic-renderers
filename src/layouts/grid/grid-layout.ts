@@ -78,13 +78,24 @@ import { NgRedux } from '@angular-redux/store';
                     grid-template-columns: 100%;
                 }
             }
+            
+            .clickable {
+                overflow: hidden;
+                max-height: 3em;
+                cursor: pointer;
+            }
+            .clickable.clicked {
+                max-height: unset;
+            }
         `
     ],
     template: `
     <div class="grid-layout-wrapper {{scopeClazz}} {{labelClazz}}" [hidden]="hidden"
          [ngClass]="{'bordered': label}"
          [ngStyle]="uischema && uischema.options && uischema.options.style">
-        <div class="grid-label" *ngIf="label">
+        <div class="grid-label" *ngIf="label" (click)="labelClicked = !labelClicked"
+             [ngClass]="{'clickable': !(uischema && uischema.elements && uischema.elements.length>0),
+                          'clicked': labelClicked}">
             {{ label }}
         </div>
         <div class="grid-wrapper" 
@@ -108,6 +119,7 @@ import { NgRedux } from '@angular-redux/store';
 export class GridLayoutRenderer extends JsonFormsIonicLayout {
     label: string;
     labelClazz: string = "";
+    labelClicked: boolean = false;
 
     constructor(ngRedux: NgRedux<JsonFormsState>) {
         super(<any>ngRedux);

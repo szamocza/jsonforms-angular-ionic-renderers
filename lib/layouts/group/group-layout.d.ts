@@ -5,6 +5,7 @@ export declare class GroupLayoutRenderer extends JsonFormsIonicLayout {
     label: string;
     height: number;
     width: number;
+    labelClicked: boolean;
     constructor(ngRedux: NgRedux<JsonFormsState>);
     mapAdditionalProps: (props: any) => void;
 }
