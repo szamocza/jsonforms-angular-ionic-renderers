@@ -10,4 +10,5 @@ export class i18n_en {
     'should be string' = 'should be string';
     'should be equal to one of the allowed values' = 'should be equal to one of the allowed values';
     'Clear' = 'Clear';
+    'Időpont' = 'Time';
 }

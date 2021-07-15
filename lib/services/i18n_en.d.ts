@@ -10,4 +10,5 @@ export declare class i18n_en {
     'should be string': string;
     'should be equal to one of the allowed values': string;
     'Clear': string;
+    'Időpont': string;
 }

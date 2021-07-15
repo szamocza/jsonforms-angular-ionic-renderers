@@ -33,6 +33,11 @@ export interface TimeModalOptions {
             .time-centered {
                 text-align: center;                
             }
+            
+            .row-centered {
+                text-align: center;
+                justify-content: center;
+            }
         `
     ],
     template: `
@@ -56,6 +61,21 @@ export interface TimeModalOptions {
     </ion-header>
     
     <ion-content>
+        <ion-item class="time-centered" no-lines no-padding>
+            <ion-label stacked>{{'Időpont' | translate}}</ion-label>
+        </ion-item>
+        <ion-row class="row-centered">
+            <ion-col col-3>
+                <ion-item>
+                  <ion-input text-center type="number" min="0" max="23" [(ngModel)]="selectedHour"></ion-input>:
+                </ion-item>
+            </ion-col>
+            <ion-col col-3>
+                <ion-item>
+                  <ion-input text-center type="number" min="0" max="59" [(ngModel)]="selectedMinute"></ion-input>
+                </ion-item>
+            </ion-col>
+        </ion-row>
         <ion-label class="time-grey-label time-centered">{{ 'Óra' | translate}}</ion-label>
         <div *ngFor="let hour of hours" class="time-centered">
             <div class="time-item" [ngClass]="{'selected': h==selectedHour}"

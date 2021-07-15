@@ -10,4 +10,5 @@ export class i18n_hu {
     'should be string' = 'Kötelező szöveg mező';
     'should be equal to one of the allowed values' = 'Kötelező, hogy megegyezen valamelyik engedélyezett értékkel';
     'Clear' = 'Törlés';
+    'Időpont' = 'Időpont';
 }
