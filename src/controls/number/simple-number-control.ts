@@ -72,7 +72,7 @@ export class SimpleNumberControlRenderer extends JsonFormsControl {
         if(ev.value != null) {
             if (this.scopedSchema.type === 'number') {
                 if(!isNaN(parseFloat(ev.value))) {
-                    return parseFloat(ev.value);
+                    return this.handleZeroEnding(ev.value);
                 }
             } else {
                 if(!isNaN(parseInt(ev.value))) {
@@ -81,6 +81,22 @@ export class SimpleNumberControlRenderer extends JsonFormsControl {
             }
         }
         return null;
+    }
+
+    handleZeroEnding(value: string): number {
+        let hasDecimals = value.indexOf && (value.indexOf('.') > -1 || value.indexOf(',') > -1);
+        let endWithZero = value.toString().endsWith('0');
+        if(hasDecimals && endWithZero) {
+            // ha 0-val végződik és van decimális jel akkor csak simán visszaadjuk
+            return <any>value;
+            // if(this.data != null && this.data.toString().length > value.length && firstTry) {
+            //     return this.handleZeroEnding(value.slice(0, value.length - 1), false);
+            // } else {
+            //     return parseFloat((value + '1'));
+            // }
+        } else {
+            return parseFloat(value);
+        }
     }
 
     // @ts-ignore

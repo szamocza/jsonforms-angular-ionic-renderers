@@ -10,6 +10,7 @@ export declare class SimpleNumberControlRenderer extends JsonFormsControl {
     step: number;
     constructor(ngRedux: NgRedux<JsonFormsState>);
     getEventValue: (ev: any) => number;
+    handleZeroEnding(value: string): number;
     mapAdditionalProps(props: ControlProps): void;
     inputClick(numberInput: TextInput): void;
 }
